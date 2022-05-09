@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1652091281 source:c:\users\laure\onedrive\documents\kerrian\ece\1ère année\projet pokémon\menu du jeu\main.c
+	"header.h"
+
+1652086573 c:\users\laure\onedrive\documents\kerrian\ece\1ère année\projet pokémon\menu du jeu\header.h
+	<stdio.h>
+	<stdlib.h>
+	<allegro.h>
+	<unistd.h>
+
