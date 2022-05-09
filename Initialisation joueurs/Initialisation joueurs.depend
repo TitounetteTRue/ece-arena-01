@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1652083446 source:c:\users\clement\documents\ece\ing 1 - semestre 2\informatique\projet ece arena\code (tests)\initialisation joueurs\main.c
+	"maBiblioJeu.h"
+
+1652086569 c:\users\clement\documents\ece\ing 1 - semestre 2\informatique\projet ece arena\code (tests)\initialisation joueurs\mabibliojeu.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<unistd.h>
+
