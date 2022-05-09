@@ -29,7 +29,10 @@ typedef struct joueur{
 
 /*----------------------------------------------*/
 ///Prototypes
+void bouton_start(BITMAP *boutonStart, int posx, int posy, int pos2x, int pos2y);
+void choix_player();
 void initialiserJoueur(t_joueur *tabJoueurs, int nbJoueurs, int i);
+
 
 
 /*----------------------------------------------*/
