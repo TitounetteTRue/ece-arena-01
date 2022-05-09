@@ -2,12 +2,12 @@
 #define MABIBLIOJEU_H_INCLUDED
 
 /*----------------------------------------------*/
-///Bibliothèques
+///BibliothÃ¨ques
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
-//#include <allegro.h>
+#include <allegro.h>
 /*----------------------------------------------*/
 
 
