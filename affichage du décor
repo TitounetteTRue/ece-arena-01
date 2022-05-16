@@ -1,0 +1,13 @@
+void affichageDecor (){
+
+BITMAP* decor;
+decor= load_bitmap("Map.bmp", NULL );
+
+while (!key[KEY_ESC])
+
+{
+
+blit(decor, screen, 0, 0, 0, 0, decor->w,decor->h);
+}
+
+}
