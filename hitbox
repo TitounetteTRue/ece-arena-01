@@ -1,0 +1,40 @@
+
+int obstacle (int Scolonne, int Sligne){ // spg de hitbox
+
+//hitbox du lac
+if ((Scolonne>=1&&Scolonne<=16)&&Sligne==11||Sligne==12){
+    return 1;
+}
+//hitbaox maison
+if ((Scolonne>=11&&Scolonne<=14)&&(Sligne>=1&&Sligne<=4)){
+    return 1;
+}
+
+//hitbaox arbres
+if ((Scolonne>=14&&Scolonne<=16)&&(Sligne>=9&&Sligne<=10)){
+    return 1;
+}
+
+
+//hitbaox flac
+if ((Scolonne==3)&&(Sligne>=8&&Sligne<=9)){
+    return 1;
+}
+//hitbaox fleur
+if (((Scolonne>=7&&Scolonne<=12)&&(Sligne>=7&&Sligne<=9))||(Scolonne>=7&&Scolonne<=12)&&(Sligne==10)){
+    return 1;
+}
+
+//hitbaox panneau 1
+if ((Scolonne==5)&&(Sligne>=2&&Sligne<=3)){
+    return 1;
+}
+
+//hitbaox panneau 2
+if ((Scolonne==5)&&(Sligne==10)){
+    return 1;
+}
+
+}
+
+
