@@ -1,0 +1,37 @@
+#include "header.h"
+
+int deplacement (BITMAP* decor, t_perso perso){
+
+    show_mouse(decor);
+    int deplacement,
+  //  int grille [12][16]; // notre grille fait 12 lignes et 16 colonnes
+
+    int Scolonne; // position de la case du personnage en x
+    int Sligne; // position de la case du personnage en y
+
+    if (perso->PM<=0){
+         textout_ex(decor, font, "PAS ASSEZ DE PM", (decor->w)%2, (decor->h)-10, makecol(255,0,0), -1); //si le joueur n'a pas de point de mouvement, il ne peut pas se déplacer
+         return 1;
+
+    }
+//position de la souri
+    Scolonne=mouse_x/64; // chaque case de la grille a des coté de 32 pixedls
+    Sligne=mouse_y/64;
+
+    do{
+    if ((mouse_b &1)&& Scolonne<=16&& Scolonne>0&& Sligne<=12&& Sligne>0){ //si le joueur appui sur la souri et que celle si est dans la grille :
+
+        deplacement= ((perso->ligne)-Sligne)+((perso->colonne)-Scolonne) //point de déplacement à éffectuer
+    }
+       }while (((perso->PM)<deplacement)&&obstacle(Scolonne, Sligne)==1); // recliquez tant que le perso n'a pas assez de point de mouvement ou a cliquer sur un obstacle
+
+
+        ///animation bitamap
+        ///////////////////////////////////////////
+
+        perso->ligne=Sligne;
+        perso->colonne=Scolonne;
+
+        }
+
+
