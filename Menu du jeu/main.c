@@ -162,6 +162,7 @@ void start()
 
 void choix_player()
 {
+    int nombreJoueurs;
     ///CHARGEMENT DES BITMAPS
     BITMAP* imageMenu7;
     imageMenu7 = load_bitmap("Image menu chargement 7.bmp",NULL);
@@ -243,6 +244,7 @@ void choix_player()
                 textout_centre_ex(screen, font, "Entrez le nom du premier joueur :", 260, 180, makecol(255, 255, 255), -1);
                 textout_centre_ex(screen, font, "Entrez le nom du deuxieme joueur :", 260, 460, makecol(255, 255, 255), -1);
                 clic=1;
+                nombreJoueurs=2;
                 sleep(50);
             }
             if(mouse_x>=412 && mouse_x<=612 && mouse_y>=440 && mouse_y<=517)
@@ -258,6 +260,7 @@ void choix_player()
                 textout_centre_ex(screen, font, "Entrez le nom du deuxieme joueur :", 260, 330, makecol(255, 255, 255), -1);
                 textout_centre_ex(screen, font, "Entrez le nom du troisieme joueur :", 260, 530, makecol(255, 255, 255), -1);
                 clic=1;
+                nombreJoueurs=3;
                 sleep(50);
             }
             if(mouse_x>=718 && mouse_x<=918 && mouse_y>=440 && mouse_y<=517)
@@ -275,6 +278,7 @@ void choix_player()
                 textout_centre_ex(screen, font, "Entrez le nom du troisieme joueur :", 260, 445, makecol(255, 255, 255), -1);
                 textout_centre_ex(screen, font, "Entrez le nom du quatrieme joueur :", 260, 610, makecol(255, 255, 255), -1);
                 clic=1;
+                nombreJoueurs=4;
                 sleep(50);
             }
             if (mouse_x<=40 && mouse_y<=20)
