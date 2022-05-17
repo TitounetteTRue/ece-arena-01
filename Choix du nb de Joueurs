@@ -1,0 +1,174 @@
+/*-----------------------------------------------------------------------------------------------------*/
+void choixNbJoueurs(t_joueur *tabJoueurs)
+{
+    int clic=0;
+
+    /******************************************************************************/     //Création / chargement bitmaps
+    BITMAP* imageMenu7;
+    imageMenu7 = load_bitmap("Image menu chargement 7.bmp",NULL);
+
+    if (!imageMenu7)
+    {
+        allegro_message("Nous n'avons pas pu charger \"Image menu chargement 7.bmp\"");
+        quitterAllegro();
+    }
+    /******************************************************************************/
+    BITMAP* bouton2p;
+    bouton2p = load_bitmap("Bouton 2p.bmp",NULL);
+
+    if (!bouton2p)
+    {
+        allegro_message("Nous n'avons pas pu charger \"Bouton 2p.bmp\"");
+        quitterAllegro();
+    }
+    /******************************************************************************/
+    BITMAP* bouton3p;
+    bouton3p = load_bitmap("Bouton 3p.bmp",NULL);
+
+    if (!bouton3p)
+    {
+        allegro_message("Nous n'avons pas pu charger \"Bouton 3p.bmp\"");
+        quitterAllegro();
+    }
+    /******************************************************************************/
+    BITMAP* bouton4p;
+    bouton4p = load_bitmap("Bouton 4p.bmp",NULL);
+
+    if (!bouton4p)
+    {
+        allegro_message("Nous n'avons pas pu charger \"Bouton 4p.bmp\"");
+        quitterAllegro();
+    }
+    /******************************************************************************/
+    BITMAP* cadreJoueur;
+    cadreJoueur = load_bitmap("cadreJoueur.bmp",NULL);
+
+    if (!cadreJoueur)
+    {
+        allegro_message("Nous n'avons pas pu charger \"cadreJoueur.bmp\"");
+        quitterAllegro();
+    }
+    /******************************************************************************/
+    BITMAP* arrierePlanChoix;
+    arrierePlanChoix = load_bitmap("arrierePlanChoix.bmp",NULL);
+
+    if (!arrierePlanChoix)
+    {
+        allegro_message("Nous n'avons pas pu charger \"arrierePlanChoix.bmp\"");
+        quitterAllegro();
+    }
+    /******************************************************************************/
+
+    //Affichage bitmap + texte
+    blit(imageMenu7,screen, 0, 0, 0, 0, 1024, 768);
+    textout_centre_ex(screen, font, "A combien voulez vous jouer ?", 512, 384, makecol(255, 255, 255), -1);
+
+    //Affichage des 3 boutons pour le nombres de joueurs
+    draw_sprite(screen, bouton2p, 106, 440);
+    draw_sprite(screen, bouton3p, 412, 440);
+    draw_sprite(screen, bouton4p, 718, 440);
+
+    affichageBoutonExit();
+
+    sleep(1);  //Pause de 1s
+
+    while (clic == 0){
+        ////Si clic gauche souris cliqué
+        if (mouse_b & 1)
+        {
+            //Si bouton '2 joueurs' cliqué -> initialisation pour 2 joueurs
+            if(mouse_x>=106 && mouse_x<=306 && mouse_y>=440 && mouse_y<=517)
+            {
+                destroy_bitmap(imageMenu7);
+                destroy_bitmap(bouton2p);
+                destroy_bitmap(bouton3p);
+                destroy_bitmap(bouton4p);
+                clear(screen);
+
+                blit(arrierePlanChoix,screen, 0, 0, 0, 0, 1024, 768);  //Nouvel arriere plan
+                //Si bouton 'exit' cliqué -> quitte le jeu
+                affichageBoutonExit();
+                exitJeu();
+
+                initialiserJoueurStats(tabJoueurs,2,1); // initialisation stats de 2 joueurs
+
+                choixClasseJoueur(tabJoueurs,2);   //Affichage des dresseurs
+                draw_sprite(screen, cadreJoueur, 25, 640); //Affichage cadre
+
+
+
+                /*draw_sprite(screen, casenomjoueur, 100, 160);
+                draw_sprite(screen, casenomjoueur, 100, 440);
+                textout_centre_ex(screen, font, "Entrez le nom du premier joueur :", 260, 180, makecol(255, 255, 255), -1);
+                textout_centre_ex(screen, font, "Entrez le nom du deuxieme joueur :", 260, 460, makecol(255, 255, 255), -1);*/
+
+                clic=1;
+                sleep(50);
+            }
+
+            //Si bouton '3 joueurs' cliqué -> initialisation pour 3 joueurs
+            if(mouse_x>=412 && mouse_x<=612 && mouse_y>=440 && mouse_y<=517)
+            {
+                destroy_bitmap(imageMenu7);
+                destroy_bitmap(bouton2p);
+                destroy_bitmap(bouton3p);
+                destroy_bitmap(bouton4p);
+
+                blit(arrierePlanChoix,screen, 0, 0, 0, 0, 1024, 768);  //Nouvel arriere plan
+                affichageBoutonExit();
+                exitJeu();
+
+                initialiserJoueurStats(tabJoueurs,3,1); // initialisation stats de 3 joueurs
+
+                choixClasseJoueur(tabJoueurs,3);
+                draw_sprite(screen, cadreJoueur, 25, 640);
+
+
+                /*draw_sprite(screen, casenomjoueur, 100, 110);
+                draw_sprite(screen, casenomjoueur, 100, 310);
+                draw_sprite(screen, casenomjoueur, 100, 510);
+                textout_centre_ex(screen, font, "Entrez le nom du premier joueur :", 260, 130, makecol(255, 255, 255), -1);
+                textout_centre_ex(screen, font, "Entrez le nom du deuxieme joueur :", 260, 330, makecol(255, 255, 255), -1);
+                textout_centre_ex(screen, font, "Entrez le nom du troisieme joueur :", 260, 530, makecol(255, 255, 255), -1);*/
+
+                clic=1;
+                sleep(50);
+            }
+
+            //Si bouton '4 joueurs' cliqué -> initialisation pour 4 joueurs
+            if(mouse_x>=718 && mouse_x<=918 && mouse_y>=440 && mouse_y<=517)
+            {
+                destroy_bitmap(imageMenu7);
+                destroy_bitmap(bouton2p);
+                destroy_bitmap(bouton3p);
+                destroy_bitmap(bouton4p);
+
+                blit(arrierePlanChoix,screen, 0, 0, 0, 0, 1024, 768);  //Nouvel arriere plan
+                affichageBoutonExit();
+                exitJeu();
+
+                initialiserJoueurStats(tabJoueurs,4,1); // initialisation stats de 4 joueurs
+
+                choixClasseJoueur(tabJoueurs,4);
+                draw_sprite(screen, cadreJoueur, 25, 640);
+
+                /*draw_sprite(screen, casenomjoueur, 100, 70);
+                draw_sprite(screen, casenomjoueur, 100, 245);
+                draw_sprite(screen, casenomjoueur, 100, 425);
+                draw_sprite(screen, casenomjoueur, 100, 590);
+                textout_centre_ex(screen, font, "Entrez le nom du premier joueur :", 260, 90, makecol(255, 255, 255), -1);
+                textout_centre_ex(screen, font, "Entrez le nom du deuxieme joueur :", 260, 265, makecol(255, 255, 255), -1);
+                textout_centre_ex(screen, font, "Entrez le nom du troisieme joueur :", 260, 445, makecol(255, 255, 255), -1);
+                textout_centre_ex(screen, font, "Entrez le nom du quatrieme joueur :", 260, 610, makecol(255, 255, 255), -1);*/
+
+                clic=1;
+                sleep(50);
+
+            }
+
+            exitJeu();
+
+        }
+    }
+}
+/*-----------------------------------------------------------------------------------------------------*/
