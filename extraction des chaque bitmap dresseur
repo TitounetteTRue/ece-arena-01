@@ -1,5 +1,4 @@
-void extractionSprite (spriteDresseur[4][16]){//, BITMAP* spriteDresseur2[16],BITMAP* spriteDresseur3[16], BITMAP* spriteDresseur4[16]){
-
+void extractionSprite (BITMAP* spriteDresseur[4][16]){
 int i, j;
 
 
