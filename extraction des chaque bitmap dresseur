@@ -1,47 +1,25 @@
-void extractionSprite (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur1[16], BITMAP* spriteDresseur2[16],BITMAP* spriteDresseur3[16], BITMAP* spriteDresseur4[16]){
+void extractionSprite (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16]){//, BITMAP* spriteDresseur2[16],BITMAP* spriteDresseur3[16], BITMAP* spriteDresseur4[16]){
 
-int i;
+int i, j;
 
 decor= load_bitmap("Map.bmp", NULL );
 
-BITMAP*groupe_animes1;
-BITMAP*groupe_animes2;
-BITMAP*groupe_animes3;
-BITMAP*groupe_animes4;
+BITMAP* groupe_animes[4];
 
 
+groupe_animes[0]=load_bitmap("Joueur1.bmp",NULL);
+groupe_animes[1]=load_bitmap("Joueur2.bmp",NULL);
+groupe_animes[2]=load_bitmap("Joueur3.bmp",NULL);
+groupe_animes[3]=load_bitmap("Joueur4.bmp",NULL);
 
 
-groupe_animes1=load_bitmap("Joueur1.bmp",NULL);
-groupe_animes2=load_bitmap("Joueur2.bmp",NULL);
-groupe_animes3=load_bitmap("Joueur3.bmp",NULL);
-groupe_animes4=load_bitmap("Joueur4.bmp",NULL);
-
-
-for (i=0;i<16;i++)
-{
-
-spriteDresseur1[i] = recup_sprites(groupe_animes1,64,93,0,0,4,i);
-spriteDresseur2[i] = recup_sprites(groupe_animes2,64,93,0,0,4,i);
-spriteDresseur3[i] = recup_sprites(groupe_animes3,64,93,0,0,4,i);
-spriteDresseur4[i] = recup_sprites(groupe_animes4,64,93,0,0,4,i);
-
-/*
-if (!spriteDresseur1[i]|| !spriteDresseur2|| !spriteDresseur3||!spriteDresseur4)
-
-printf("recup images");
-*/
+for (i=0;i<4;i++){
+    for (j=0;j<16;j++){
+spriteDresseur[i][j] = recup_sprites(groupe_animes[i],64,93,0,0,4,j);
 
 }
-
-destroy_bitmap(groupe_animes1);
-destroy_bitmap(groupe_animes2);
-destroy_bitmap(groupe_animes3);
-destroy_bitmap(groupe_animes4);
-
-
-
-
 }
 
+destroy_bitmap(groupe_animes);
+}
 
