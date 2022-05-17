@@ -1,0 +1,20 @@
+/*-----------------------------------------------------------------------------------------------------*/
+///Initialisation des joueurs au début de la partie
+void initialiserJoueurStats(t_joueur *tabJoueurs, int nbJoueurs, int i)   //Paramètres: tableau de joueurs, nb de joueurs, "i" pour le numéro du joueur
+{
+
+    for(i=1; i<=nbJoueurs; i++)  //Boucle pour initialiser tous les joueurs
+    {
+        tabJoueurs[i].PV = 500;   //Initialisation des stats
+        tabJoueurs[i].PM = 3;
+        tabJoueurs[i].PA = 20;
+        tabJoueurs[i].ligne = rand()% (12-1 +1) + 1;   //Placement aléatoire entre 1 et 12
+        tabJoueurs[i].colonne = rand()% (16-1 +1) + 1;   //Placement aléatoire entre 1 et 16
+
+      //  printf("Nom du joueur ? \n");
+      //  gets(tabJoueurs[i].pseudo);
+      //  printf("Pseudo joueur %d: %s \n\n", i+1, tabJoueurs[i].pseudo);   //Affichage pseudo
+    }
+
+}
+/*-----------------------------------------------------------------------------------------------------*/
