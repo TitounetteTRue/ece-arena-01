@@ -1,0 +1,160 @@
+///Commentaire: il manque bitmap et donc allegro
+///Ce que je n'ai pas fait c'est le % d'échouer du sort(ici pokemon)
+///Il faut donc que je modifie avec vos infos
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+typedef struct joueur//J'ai fait une structure
+{
+    int PV;
+    int PA;
+    int sort1;//1
+    int sort2;//2
+    int sort3;//3
+    int sort4;//4
+    int sort5;//5
+}t_joueur;
+
+int main()
+{
+    t_joueur tab[2];//ici juste pour deux joueurs
+    //Initialisation
+    tab[1].PA=15;
+    tab[1].PV=500;
+    tab[2].PV=500;
+    
+    int x,y,z,a,b;
+    int w=0;
+    srand(time(NULL));
+    
+    do{
+    scanf("%d",&tab[1].sort1);//taper1
+    scanf("%d",&tab[1].sort2);//taper2
+    scanf("%d",&tab[1].sort3);//taper3
+    scanf("%d",&tab[1].sort4);//taper4
+    scanf("%d",&tab[1].sort5);//taper5
+    
+    //PA > ou = à 10
+    if(tab[1].PA>=10)
+    {
+        if(tab[1].sort1==1)
+        {
+            tab[1].PA=tab[1].PA-1;
+            x=rand()%(30-10+1)+10;
+            tab[2].PV=tab[2].PV-x;
+            printf("PA: %d, PV pris: %d, Soit PV joueur2 : %d", tab[1].PA,x,tab[2].PV);
+        }
+       if(tab[1].sort2==2)
+        {
+            tab[1].PA=tab[1].PA-2;
+            y=rand()%(40-20+1)+20;
+            tab[2].PV=tab[2].PV-y;
+            printf("PA: %d, PV pris: %d, Soit PV joueur2 : %d", tab[1].PA,y,tab[2].PV);
+        }
+        if(tab[1].sort3==3)
+        {
+            tab[1].PA=tab[1].PA-3;
+            z=rand()%(60-40+1)+40;
+            tab[2].PV=tab[2].PV-z;
+            printf("PA: %d, PV pris: %d, Soit PV joueur2 : %d", tab[1].PA,z,tab[2].PV);
+        }
+        if(tab[1].sort4==4)
+        {
+            tab[1].PA=tab[1].PA-1;
+            a=rand()%(60-20+1)+20;
+            tab[1].PV=tab[1].PV+a;
+            printf("PA: %d, PV donne: %d, Soit PV joueur1 : %d", tab[1].PA,a,tab[1].PV);
+        }
+        if(tab[1].sort5==5)
+        {
+            tab[1].PA=tab[1].PA-5;
+            b=rand()%(100-70+1)+70;
+            tab[2].PV=tab[2].PV-b;
+            printf("PA: %d, PV pris: %d, Soit PV joueur2 : %d", tab[1].PA,b,tab[2].PV);
+        }
+    }
+    
+    //PA entre 10 et 5
+    else if(tab[1].PA>=5 && tab[1].PA<10)
+    {
+         if(tab[1].sort1==1)
+        {
+            tab[1].PA=tab[1].PA-1;
+            x=rand()%(30-10+1)+10;
+            tab[2].PV=tab[2].PV-x;
+            printf("PA: %d, PV pris: %d, Soit PV joueur2 : %d", tab[1].PA,x,tab[2].PV);
+        }
+       if(tab[1].sort2==2)
+        {
+            tab[1].PA=tab[1].PA-2;
+            y=rand()%(40-20+1)+20;
+            tab[2].PV=tab[2].PV-y;
+            printf("PA: %d, PV pris: %d, Soit PV joueur2 : %d", tab[1].PA,y,tab[2].PV);
+        }
+        if(tab[1].sort3==3)
+        {
+            tab[1].PA=tab[1].PA-3;
+            z=rand()%(60-40+1)+40;
+            tab[2].PV=tab[2].PV-z;
+            printf("PA: %d, PV pris: %d, Soit PV joueur2 : %d", tab[1].PA,z,tab[2].PV);
+        }
+        if(tab[1].sort4==4)
+        {
+            tab[1].PA=tab[1].PA-1;
+            a=rand()%(60-20+1)+20;
+            tab[1].PV=tab[1].PV+a;
+            printf("PA: %d, PV donne: %d, Soit PV joueur1 : %d", tab[1].PA,a,tab[1].PV);
+        }
+        if(tab[1].sort5==5)
+        {
+            tab[1].PA=tab[1].PA-5;
+            b=rand()%(100-70+1)+70;
+            tab[2].PV=tab[2].PV-b;
+            printf("PA: %d, PV pris: %d, Soit PV joueur2 : %d", tab[1].PA,b,tab[2].PV);
+        }
+    }
+    
+    //PA < à 5
+    else if(tab[1].PA<5)
+    {
+        if(tab[1].sort1==1)
+        {
+            tab[1].PA=tab[1].PA-1;
+            x=rand()%(30-10+1)+10;
+            tab[2].PV=tab[2].PV-x;
+            printf("PA: %d, PV pris: %d, Soit PV joueur2 : %d", tab[1].PA,x,tab[2].PV);
+        }
+       if(tab[1].sort2==2)
+        {
+            tab[1].PA=tab[1].PA-2;
+            y=rand()%(40-20+1)+20;
+            tab[2].PV=tab[2].PV-y;
+            printf("PA: %d, PV pris: %d, Soit PV joueur2 : %d", tab[1].PA,y,tab[2].PV);
+        }
+        if(tab[1].sort3==3)
+        {
+            tab[1].PA=tab[1].PA-3;
+            z=rand()%(60-40+1)+40;
+            tab[2].PV=tab[2].PV-z;
+            printf("PA: %d, PV pris: %d, Soit PV joueur2 : %d", tab[1].PA,z,tab[2].PV);
+        }
+        if(tab[1].sort4==4)
+        {
+            tab[1].PA=tab[1].PA-1;
+            a=rand()%(60-20+1)+20;
+            tab[1].PV=tab[1].PV+a;
+            printf("PA: %d, PV donne: %d, Soit PV joueur1 : %d", tab[1].PA,a,tab[1].PV);
+        }
+        if(tab[1].sort5==5)//Ne devrait pas appraître
+        {
+            tab[1].PA=tab[1].PA-5;
+            b=rand()%(100-70+1)+70;
+            tab[2].PV=tab[2].PV-b;
+            printf("PA: %d, PV pris: %d, Soit PV joueur2 : %d", tab[1].PA,b,tab[2].PV);
+        }
+    }
+    }while(w==0);//pour une loop
+    return 0;
+}
