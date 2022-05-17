@@ -1,0 +1,176 @@
+/*-----------------------------------------------------------------------------------------------------*/
+///Choix de la classe(personnage) des joueurs
+void choixClasseJoueur(t_joueur *tabJoueurs, int nbJoueurs){
+
+    int clic=0;
+
+    textprintf_ex(screen, font, 450, 30, makecol(202,112,0), -1, "Choix du dresseur:");
+
+    //Logo classes
+    /******************************************************/
+    //Classe feu
+    BITMAP* logoFeu;
+    logoFeu = load_bitmap("logoFeu.bmp",NULL);
+
+    if (!logoFeu)
+    {
+        allegro_message("Nous n'avons pas pu charger \"logoFeu.bmp\"");
+        quitterAllegro();
+    }
+    /******************************************************/
+    //Classe électricité
+    BITMAP* logoElec;
+    logoElec = load_bitmap("logoElec.bmp",NULL);
+
+    if (!logoElec)
+    {
+        allegro_message("Nous n'avons pas pu charger \"logoElec.bmp\"");
+        quitterAllegro();
+    }
+    /******************************************************/
+    //Classe
+    BITMAP* logoPlante;
+    logoPlante = load_bitmap("logoPlante.bmp",NULL);
+
+    if (!logoPlante)
+    {
+        allegro_message("Nous n'avons pas pu charger \"logoPlante.bmp\"");
+        quitterAllegro();
+    }
+    /******************************************************/
+    //Classe eau
+    BITMAP* logoEau;
+    logoEau= load_bitmap("logoEau.bmp",NULL);
+
+    if (!logoEau)
+    {
+        allegro_message("Nous n'avons pas pu charger \"logoEau.bmp\"");
+        quitterAllegro();
+    }
+    /******************************************************/
+
+
+    //Création Dresseurs
+    /******************************************************/
+    //Dresseur 1
+    BITMAP* Dresseur1;
+    Dresseur1 = load_bitmap("Dresseur1.bmp",NULL);
+
+    if (!Dresseur1)
+    {
+        allegro_message("Nous n'avons pas pu charger \"Dresseur1.bmp\"");
+        quitterAllegro();
+    }
+
+    //Affichage
+    draw_sprite(screen, Dresseur1, 80, 140);
+    draw_sprite(screen, logoFeu, 135, 375);
+    textprintf_ex(screen, font, 80, 125, makecol(190,0,0), -1, "Sacha");
+    /******************************************************/
+    //Dresseur 2
+    BITMAP* Dresseur2;
+    Dresseur2 = load_bitmap("Dresseur2.bmp",NULL);
+
+    if (!Dresseur2)
+    {
+        allegro_message("Nous n'avons pas pu charger \"Dresseur2.bmp\"");
+        quitterAllegro();
+    }
+
+    draw_sprite(screen, Dresseur2, 330, 140);
+    draw_sprite(screen, logoElec, 385, 375);
+    textprintf_ex(screen, font, 330, 125, makecol(244,223,0), -1, "Clem");
+
+    /******************************************************/
+    //Dresseur 3
+    BITMAP* Dresseur3;
+    Dresseur3 = load_bitmap("Dresseur3.bmp",NULL);
+
+    if (!Dresseur3)
+    {
+        allegro_message("Nous n'avons pas pu charger \"Dresseur3.bmp\"");
+        quitterAllegro();
+    }
+
+    draw_sprite(screen, Dresseur3, 580, 140);
+    draw_sprite(screen, logoPlante, 635, 375);
+    textprintf_ex(screen, font, 580, 125, makecol(0,194,21), -1, "Pierre");
+    /******************************************************/
+    //Dresseur 4
+    BITMAP* Dresseur4;
+    Dresseur4 = load_bitmap("Dresseur4.bmp",NULL);
+
+    if (!Dresseur4)
+    {
+        allegro_message("Nous n'avons pas pu charger \"Dresseur4.bmp\"");
+        quitterAllegro();
+    }
+
+    draw_sprite(screen, Dresseur4, 830, 140);
+    draw_sprite(screen, logoEau, 885, 375);
+    textprintf_ex(screen, font, 830, 125, makecol(0,78,202), -1, "Flora");
+    /******************************************************/
+
+
+/*
+
+    switch (nbJoueurs)
+    {
+        // Si 2 joueurs
+        case 2:
+
+        while (clic == 0){
+        ////Si clic gauche souris cliqué
+            if (mouse_b & 1)
+            {
+                //Si Sacha cliqué -> choix de ce dresseur
+                if(mouse_x>=330 && mouse_x<=500 && mouse_y>=140 && mouse_y<=370)
+                    {
+                        textprintf_ex(screen, font, 450, 600, makecol(202,112,0), -1, "Choix du dresseur:");
+                    }
+            }
+
+            clic=1;
+            sleep(50);
+        }
+
+            break;
+
+
+        // Si 3 joueurs
+        case 3:
+
+            break;
+
+
+        // Si 4 joueurs
+        case 4:
+
+            break;
+
+
+        // Cas où nb de joueurs <2 ou >4, mais cas qui n'arrive jamais dans le code
+        default:
+            break;
+    }
+
+*/
+
+
+        while (clic == 0){
+        ////Si clic gauche souris cliqué
+            if (mouse_b & 1)
+            {
+                //Si Sacha cliqué -> choix de ce dresseur
+                if(mouse_x>=140 && mouse_x<=370 && mouse_y>=330 && mouse_y<=500)
+                    {
+                        textprintf_ex(screen, font, 450, 600, makecol(202,112,0), -1, "Choix du dresseur:");
+                    }
+
+                    exitJeu();
+            }
+        }
+
+
+}
+/*-----------------------------------------------------------------------------------------------------*/
