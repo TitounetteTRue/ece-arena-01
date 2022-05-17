@@ -18,6 +18,9 @@ spriteDresseur[i][j] = recup_sprites(groupe_animes[i],64,93,0,0,4,j);
 }
 }
 
-destroy_bitmap(groupe_animes);
+destroy_bitmap(groupe_animes[0]);
+destroy_bitmap(groupe_animes[1]);
+destroy_bitmap(groupe_animes[2]);
+destroy_bitmap(groupe_animes[3]);
 }
 
