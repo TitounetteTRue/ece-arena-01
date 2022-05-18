@@ -1,10 +1,9 @@
 /*-----------------------------------------------------------------------------------------------------*/
-//Lancement du jeu (chargement, choix des joueurs,...)
-void debutPartie(t_joueur *tabJoueurs)
+///Lancement du jeu (chargement, choix des joueurs,...)
+void menuDemarrage(t_joueur *tabJoueurs, int* nbJoueurs)
 {
     int clic = 0;
     show_mouse(screen);   //Affichage curseur souris
-
 
     /******************************************************************************/   //Création / chargement bitmaps
     BITMAP* imageMenu1;
@@ -79,6 +78,15 @@ void debutPartie(t_joueur *tabJoueurs)
         quitterAllegro();;
     }
     /******************************************************************************/
+    BITMAP* menuStart;
+    menuStart = load_bitmap("menuStart.bmp",NULL);
+
+    if (!menuStart)
+    {
+        allegro_message("Nous n'avons pas pu charger \"menuStart.bmp\"");
+        quitterAllegro();;
+    }
+    /******************************************************************************/
 
 
     //******************************************************************************//
@@ -87,53 +95,51 @@ void debutPartie(t_joueur *tabJoueurs)
     textout_centre_ex(screen, font, "Chargement", 512, 384, makecol(0, 0, 0), -1);
     sleep(1);  //Pause de 1s
 
-
+    clear_bitmap(screen);
     blit(imageMenu2,screen, 0, 0, 0, 0, 1024, 768);
     textout_centre_ex(screen, font, "Chargement.", 512, 384, makecol(0, 0, 0), -1);
     sleep(1);
 
-
+    clear_bitmap(screen);
     blit(imageMenu3,screen, 0, 0, 0, 0, 1024, 768);
     textout_centre_ex(screen, font, "Chargement..", 512, 384, makecol(0, 0, 0), -1);
     sleep(1);
 
-
+    clear_bitmap(screen);
     blit(imageMenu4,screen, 0, 0, 0, 0, 1024, 768);
     textout_centre_ex(screen, font, "Chargement...", 512, 384, makecol(0, 0, 0), -1);
     sleep(1);
 
-
+    clear_bitmap(screen);
     blit(imageMenu5,screen, 0, 0, 0, 0, 1024, 768);
     textout_centre_ex(screen, font, "Chargement.", 512, 384, makecol(0, 0, 0), -1);
     sleep(1);
 
-
+    clear_bitmap(screen);
     blit(imageMenu6,screen, 0, 0, 0, 0, 1024, 768);
     textout_centre_ex(screen, font, "Chargement..", 512, 384, makecol(0, 0, 0), -1);
     sleep(1);
 
+    clear_bitmap(screen);
     blit(imageMenu7,screen, 0, 0, 0, 0, 1024, 768);
     textout_centre_ex(screen, font, "Chargement...", 512, 384, makecol(0, 0, 0), -1);
     sleep(1);
 
-
-    blit(imageMenu7,screen, 0, 0, 0, 0, 1024, 768);
-    textout_centre_ex(screen, font, "Appyuez sur Start pour commencer.", 512, 384, makecol(255, 255, 255), -1);
+    clear_bitmap(screen);
+    blit(menuStart,screen, 0, 0, 0, 0, 1024, 768);
+    textout_centre_ex(screen, font, "Appuyez sur 'Start' pour commencer.", 512, 400, makecol(255, 255, 255), -1);
     draw_sprite(screen, boutonStart, 415, 434);
     //******************************************************************************//
-
-    //Affichage bouton 'exit'
-    affichageBoutonExit();
 
    //Utilisation de la souris sur les boutons (boucle)
     while (clic == 0){
         //Si clic gauche souris cliqué
         if (mouse_b & 1)
         {
-
             //Si bouton 'start' cliqué -> lancement choix des joueurs
             if(mouse_x>=415 && mouse_x<=585 && mouse_y>=434 && mouse_y<=532 && (mouse_b & 1))
             {
+                clic=1;
                 //Suppresion des anciennes bitmaps sauf la 7 qui reste pour le fond d'écran
                 destroy_bitmap(imageMenu1);
                 destroy_bitmap(imageMenu2);
@@ -141,18 +147,54 @@ void debutPartie(t_joueur *tabJoueurs)
                 destroy_bitmap(imageMenu4);
                 destroy_bitmap(imageMenu5);
                 destroy_bitmap(imageMenu6);
+                destroy_bitmap(imageMenu7);
                 destroy_bitmap(boutonStart);
+
+                clear_bitmap(screen);
+
                 //Appel de la fonction pour le choix du nombre de joueurs
-                choixNbJoueurs(tabJoueurs);
-                clic=1;
+                choixNbJoueurs(tabJoueurs,nbJoueurs);
+
             }
-
-            //Si bouton 'exit' cliqué -> quitte le jeu
-            exitJeu();
-
         }
     }
+}
+/*-----------------------------------------------------------------------------------------------------*/
 
-    destroy_bitmap(imageMenu7);
+
+/*-----------------------------------------------------------------------------------------------------*/
+void chargementDecorArene()
+{
+    clear_bitmap(screen);
+
+    int clic=0;
+
+    //Déclaration bitmap arene
+    /******************************************************************************/
+    BITMAP* mapJeu;
+    mapJeu = load_bitmap("mapJeu.bmp",NULL);
+
+    if (!mapJeu)
+    {
+        allegro_message("Nous n'avons pas pu charger \"mapJeu.bmp\"");
+        quitterAllegro();
+    }
+    /******************************************************************************/
+
+    blit(mapJeu,screen, 0, 0, 0, 0, 1024, 768);  //Affichage arene
+    affichageBoutonExit();
+
+     while (clic == 0){
+
+        //Si clic gauche souris cliqué
+        if (mouse_b & 1)
+        {
+            //Si bouton 'exit' cliqué -> quitte le jeu
+            if (mouse_x<=40 && mouse_y<=20)
+            {
+                exitJeu();
+            }
+        }
+    }
 }
 /*-----------------------------------------------------------------------------------------------------*/
