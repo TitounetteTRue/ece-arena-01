@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1652914242 source:c:\users\clement\documents\ece\ing 1 - semestre 2\informatique\projet ece arena\ece arena\main.c
+	"biblioJeu.h"
+
+1652914242 c:\users\clement\documents\ece\ing 1 - semestre 2\informatique\projet ece arena\ece arena\bibliojeu.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<unistd.h>
+	<allegro.h>
+
+1652914391 source:c:\users\clement\documents\ece\ing 1 - semestre 2\informatique\projet ece arena\ece arena\sousfonctions.c
+	"biblioJeu.h"
+
