@@ -1,7 +1,20 @@
 /*-----------------------------------------------------------------------------------------------------*/
-///Fonction pour quitter le jeu quand le bouton est cliqué
+///Fonction pour quitter le jeu à tout moment
 void exitJeu()
 {
+    int clic=0;
+    clear_bitmap(screen);
+
+    //Création double buffer fond noir
+    /******************************************************************************/
+    BITMAP* bitmapFondNoir;
+    bitmapFondNoir = create_bitmap(SCREEN_W,SCREEN_H);
+
+    clear_bitmap(bitmapFondNoir);
+
+    /******************************************************************************/
+
+    //Affichage boutons quitter 'oui' ou 'non'
     /******************************************************************************/
     BITMAP* boutonOui;
     boutonOui = load_bitmap("BoutonOui.bmp",NULL);
@@ -22,36 +35,36 @@ void exitJeu()
     }
     /******************************************************************************/
 
+    //Affichage sur la bitmap choisie
+      textout_centre_ex(bitmapFondNoir, font, "Es-tu sur de vouloir quitter notre superbe jeu ?", 510, 200, makecol(255, 255, 255), -1);
+      draw_sprite(bitmapFondNoir, boutonOui, 415, 300);
+      // draw_sprite(bitmapFondNoir, boutonNon, 600, 300);
 
+    //On copie le double buffer dans screen
+      blit(bitmapFondNoir,screen, 0, 0, 0, 0, 1024, 768);
 
-        //Si bouton 'exit' cliqué -> quitte le jeu
-            if (mouse_x<=40 && mouse_y<=20)
+    while (clic == 0){
+
+        if (mouse_b & 1)   //Si clic gauche souris cliqué
             {
-                // prise en compte effective de la zone cliquable EXIT :
-                // clic gauche en haut à gauche de l'écran -> fin du programme
-                clear_bitmap(screen);
-
-                textout_centre_ex(screen, font, "Es-tu sur de vouloir quitter notre superbe jeu ?", 510, 200, makecol(255, 255, 255), -1);
-
-                draw_sprite(screen, boutonOui, 250, 300);
-                draw_sprite(screen, boutonNon, 600, 300);
-
-
                 //Si bouton 'Oui' cliqué -> quitte le jeu
-                if(mouse_x>=212 && mouse_x<=472 && mouse_y>=300 && mouse_y<=502)
+                if(mouse_x>=400 && mouse_x<=639 && mouse_y>=305 && mouse_y<=515)
                 {
+                    //allegro_message("Dommage! A la prochaine");
                     quitterAllegro();
                 }
 
+            ///Annuler 'quitter la partie' ne marche pas
+            /*
                 //Si bouton 'Non' cliqué -> partie reprend
-                if(mouse_x>=592 && mouse_x<=838 && mouse_y>=300 && mouse_y<=502)
+                if(mouse_x>=600 && mouse_x<=859 && mouse_y>=305 && mouse_y<=515)
                 {
-                    clear_bitmap(screen);
                     sleep(3);
+                    clear_bitmap(screen);
                 }
-
             }
-
-
+            */
+            }
+    }
 }
 /*-----------------------------------------------------------------------------------------------------*/
