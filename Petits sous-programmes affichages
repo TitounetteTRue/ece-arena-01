@@ -4,6 +4,7 @@
 //Fonction pour quitter Allegro (pour éviter de réécrire à chaque fois)
 void initialisationAllegro()
 {
+    allegro_init();
     set_color_depth(desktop_color_depth());
     if (set_gfx_mode(GFX_AUTODETECT_WINDOWED,1024,768,0,0)!=0)
     {
@@ -20,10 +21,10 @@ void quitterAllegro()
     exit(EXIT_FAILURE);
 }
 /*----------------------------------------------------------------------------*/
-//Affichage bouton 'exit'
+//Affichage du bouton 'exit' en haut à gauche
 void affichageBoutonExit()
-{
-    rectfill(screen,0,0,40,20,makecol(255,255,0));
-    textprintf_ex(screen,font,4,6,makecol(0,0,0),makecol(255,0,0),"EXIT");
+{  //Dessin du bouton 'exit'
+      rectfill(screen,0,0,40,20,makecol(255,255,0));
+      textprintf_ex(screen,font,4,6,makecol(0,0,0),makecol(255,0,0),"EXIT");
 }
 /*-----------------------------------------------------------------------------------------------------*/
