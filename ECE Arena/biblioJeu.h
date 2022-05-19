@@ -2,7 +2,7 @@
 #define MABIBLIOJEU_H_INCLUDED
 
 /*----------------------------------------------*/
-///BibliothËques
+///Biblioth√®ques
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -22,7 +22,9 @@ typedef struct joueur{
     int PA;
     int ligne;
     int colonne;
-    int choixClasseVerif[3];  //Permet de ne pas choisir une classe dÈj‡ sÈlectionnÈe
+    int choixClasseVerif[3];  //Permet de ne pas choisir une classe d√©j√† s√©lectionn√©e
+    int vivant;
+    int cpt;
 
 }t_joueur;
 /*----------------------------------------------*/
