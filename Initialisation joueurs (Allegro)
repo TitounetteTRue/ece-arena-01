@@ -8,9 +8,12 @@ void initialiserJoueurStats(t_joueur *tabJoueurs, int nbJoueurs)   //Paramètres
     {
         tabJoueurs[i].PV = 500;   //Initialisation des stats
         tabJoueurs[i].PM = 3;
-        tabJoueurs[i].PA = 20;
+        tabJoueurs[i].PA = 15;
         tabJoueurs[i].ligne = rand()% (12-1 +1) + 1;   //Placement aléatoire entre 1 et 12
         tabJoueurs[i].colonne = rand()% (16-1 +1) + 1;   //Placement aléatoire entre 1 et 16
+
+        tabJoueurs[i].cpt=0; //compteur pour PA
+        tabJoueurs[i].vivant=1;//Savoir s'il est en vie ou pas
 
         for(j=0;j<4;j++)
             tabJoueurs[i-1].choixClasseVerif[j] = 0;  //0 si le joueur a choisi une classe, 1 si classe choisie
