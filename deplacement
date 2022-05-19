@@ -1,35 +1,177 @@
-#include "header.h"
+int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur *tabJoueurs, int numJoueur){
 
-int deplacement (BITMAP* decor, t_joueur *tabJoueurs){
-
-    show_mouse(decor);
-    int deplacement,
-  //  int grille [12][16]; // notre grille fait 12 lignes et 16 colonnes
+    show_mouse(screen);
 
     int Scolonne; // position de la case du personnage en x
     int Sligne; // position de la case du personnage en y
 
-    if (tabJoueurs[i].PM<=0){
-         textout_ex(decor, font, "PAS ASSEZ DE PM", (decor->w)%2, (decor->h)-10, makecol(255,0,0), -1); //si le joueur n'a pas de point de mouvement, il ne peut pas se déplacer
-         return 1;
+/*
+    t_joueur* mesJoueur;
+    mesJoueur[numJoueur].PM=500;
+    mesJoueur[numJoueur].ligne=2;
+    mesJoueur[numJoueur].colonne=2;
+*/
+    decor= load_bitmap("Map.bmp", NULL );
 
-    }
-//position de la souri
-    Scolonne=mouse_x/64; // chaque case de la grille a des coté de 32 pixedls
-    Sligne=mouse_y/64;
+    int newLigne;
+    int newColonne;
 
-    do{
-    if ((mouse_b &1)&& Scolonne<=16&& Scolonne>0&& Sligne<=12&& Sligne>0){ //si le joueur appui sur la souri et que celle si est dans la grille :
+    int i, j;
 
-        deplacement= ((tabJoueurs[i].ligne)-Sligne)+((tabJoueurs[i].colonne)-Scolonne) //point de déplacement à éffectuer
-    }
-       }while (((tabJoueurs[i].PM)<deplacement)&&obstacle(Scolonne, Sligne)==1); // recliquez tant que le perso n'a pas assez de point de mouvement ou a cliquer sur un obstacle
+    while (!key[KEY_ESC])
+    {
+        blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
 
 
-        ///animation bitamap
-        ///////////////////////////////////////////
+        //position de la souris
+        Scolonne=mouse_x/64; // chaque case de la grille a des coté de 32 pixedls
+        Sligne=mouse_y/64;
 
-        tabJoueurs[i].ligne=Sligne;
-        tabJoueurs[i].colonne=Scolonne;
+        if (mesJoueur[numJoueur].PM<=0){
+            textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "nombre de PM : %d", mesJoueur[numJoueur].PM); //si le joueur n'a pas de point de mouvement, il ne peut pas se déplacer
+            return 1;
+        }
+
+        int deplacement;
+        int deplacementABS;
+        int deplacementORD;
+
+        draw_sprite(page, spriteDresseur[numJoueur][0], mesJoueur[numJoueur].colonne*64, mesJoueur[numJoueur].ligne*64);
+
+
+        if (mouse_b&1)
+        {
+             newLigne=Sligne;
+             newColonne=Scolonne;
+
+
+
+            deplacementABS=mesJoueur[numJoueur].colonne-Scolonne;
+            deplacementORD=mesJoueur[numJoueur].ligne-Sligne;
+
+
+            if (deplacementABS<0){
+                deplacementABS=-deplacementABS;
+            }
+            if (deplacementORD<0){
+                deplacementORD=-deplacementORD;
+            }
+
+
+
+
+
+
+
+            deplacement= deplacementABS+deplacementORD;
+
+
+if ((deplacement<mesJoueur[numJoueur].PM)&&(obstacle(newColonne,newLigne)!=1)){ //le joueur rentre les conditions pour se déplacer
+
+
+
+            mesJoueur[numJoueur].PM=mesJoueur[numJoueur].PM-deplacement; //on enleve le nombre de pm correspondant au joueur
+
+            ///deplacement animé////
+            //deplacement abcisse
+            //for (i=(mesJoueur[numJoueur].colonne*64); i<newColonne*64; i++){
+
+            if ((mesJoueur[numJoueur].colonne-newColonne)<0){
+                for (i=(mesJoueur[numJoueur].colonne*64); i<newColonne*64; i++){
+                //marcher à droite
+                    for (j=8; j<12; j++){ //sprite correspondant a marcher a droite
+                        clear_bitmap(page);
+                        blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
+                         textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
+                        draw_sprite(page, spriteDresseur[numJoueur][j], i, mesJoueur[numJoueur].ligne*64);
+                        blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
+
+                        if (j>=12){
+                            j=8;
+                        }
+                    }
+                }
+            }
+
+            else if ((mesJoueur[numJoueur].colonne-newColonne)>0){
+                for (i=mesJoueur[numJoueur].colonne*64; i>newColonne*64; i--){
+                    //marcher à gauche
+                    for (j=4; j<8; j++){
+                        clear_bitmap(page);
+                        blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
+                         textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
+                        draw_sprite(page, spriteDresseur[numJoueur][j], i, mesJoueur[numJoueur].ligne*64);
+                        blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
+
+                        if (j>=8){
+                            j=4;
+                        }
+                    }
+                }
+            }
+
+            //deplacement ordonné
+
+            //for (i=(mesJoueur[numJoueur].ligne*64); i<newLigne*64; i++){
+
+
+            if ((mesJoueur[numJoueur].ligne -newLigne)<0){
+                for (i=(mesJoueur[numJoueur].ligne*64); i<newLigne*64; i++){
+                    //marcher en bas
+                    for (j=0; j<4; j++){ //sprite correspondant a marcher a droite
+
+                        clear_bitmap(page);
+                        blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
+                         textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
+                        draw_sprite(page, spriteDresseur[numJoueur][j],newColonne*64, i);
+                        blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
+
+                        if (j>=4){
+                            j=0;
+                        }
+                    }
+                }
+            }
+
+            else if ((mesJoueur[numJoueur].ligne-newLigne)>0){
+                for (i=(mesJoueur[numJoueur].ligne*64 ); i>newLigne*64; i--){
+                    //marcher en haut
+                    for (j=12; j<16; j++){
+                        clear_bitmap(page);
+                        blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
+                         textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
+                        draw_sprite(page, spriteDresseur[numJoueur][j], newColonne*64, i);
+                        blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
+                        if (j>=16){
+                            j=12;
+                        }
+                    }
+                }
+            }
+            clear_bitmap(page);
+            blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
+
+            mesJoueur[numJoueur].ligne=newLigne;
+            mesJoueur[numJoueur].colonne=newColonne;
+
+            draw_sprite(page, spriteDresseur[numJoueur][1],mesJoueur[numJoueur].ligne*64, mesJoueur[numJoueur].colonne*64);
+             textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
 
         }
+
+           else {
+            return 2; // le joueur a touché un obstacle ou n'a pas assez de PM pour le déplacement
+           }
+
+
+            }
+
+
+    blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
+
+
+    }
+
+return 0;
+
+}
