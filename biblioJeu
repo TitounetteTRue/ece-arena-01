@@ -23,6 +23,8 @@ typedef struct joueur{
     int ligne;
     int colonne;
     int choixClasseVerif[3];  //Permet de ne pas choisir une classe déjà sélectionnée
+    int vivant;
+    int cpt;
 
 }t_joueur;
 /*----------------------------------------------*/
