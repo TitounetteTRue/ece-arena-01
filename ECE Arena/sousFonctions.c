@@ -1,9 +1,9 @@
 #include "biblioJeu.h"
 
 /*-----------------------------------------------------------------------------------------------------*/
-///Petits sous-programmes pour éviter les répétitions
+///Petits sous-programmes pour Ã©viter les rÃ©pÃ©titions
 
-//Fonction pour quitter Allegro (pour éviter de réécrire à chaque fois)
+//Fonction pour quitter Allegro (pour Ã©viter de rÃ©Ã©crire Ã  chaque fois)
 void initialisationAllegro()
 {
     allegro_init();
@@ -23,7 +23,7 @@ void quitterAllegro()
     exit(EXIT_FAILURE);
 }
 /*----------------------------------------------------------------------------*/
-//Affichage du bouton 'exit' en haut à gauche
+//Affichage du bouton 'exit' en haut Ã  gauche
 void affichageBoutonExit()
 {  //Dessin du bouton 'exit'
       rectfill(screen,0,0,40,20,makecol(255,255,0));
@@ -33,13 +33,13 @@ void affichageBoutonExit()
 
 
 /*-----------------------------------------------------------------------------------------------------*/
-///Fonction pour quitter le jeu à tout moment
+///Fonction pour quitter le jeu Ã  tout moment
 void exitJeu()
 {
     int clic=0;
     clear_bitmap(screen);
 
-    //Création double buffer fond noir
+    //CrÃ©ation double buffer fond noir
     /******************************************************************************/
     BITMAP* bitmapFondNoir;
     bitmapFondNoir = create_bitmap(SCREEN_W,SCREEN_H);
@@ -79,9 +79,9 @@ void exitJeu()
 
     while (clic == 0){
 
-        if (mouse_b & 1)   //Si clic gauche souris cliqué
+        if (mouse_b & 1)   //Si clic gauche souris cliquÃ©
             {
-                //Si bouton 'Oui' cliqué -> quitte le jeu
+                //Si bouton 'Oui' cliquÃ© -> quitte le jeu
                 if(mouse_x>=400 && mouse_x<=639 && mouse_y>=305 && mouse_y<=515)
                 {
                     //allegro_message("Dommage! A la prochaine");
@@ -90,7 +90,7 @@ void exitJeu()
 
             ///Annuler 'quitter la partie' ne marche pas
             /*
-                //Si bouton 'Non' cliqué -> partie reprend
+                //Si bouton 'Non' cliquÃ© -> partie reprend
                 if(mouse_x>=600 && mouse_x<=859 && mouse_y>=305 && mouse_y<=515)
                 {
                     sleep(3);
@@ -105,8 +105,8 @@ void exitJeu()
 
 
 /*-----------------------------------------------------------------------------------------------------*/
-///Initialisation des joueurs au début de la partie
-void initialiserJoueurStats(t_joueur *tabJoueurs, int nbJoueurs)   //Paramètres: tableau de joueurs, nb de joueurs, "i" pour le numéro du joueur
+///Initialisation des joueurs au dÃ©but de la partie
+void initialiserJoueurStats(t_joueur *tabJoueurs, int nbJoueurs)   //ParamÃ¨tres: tableau de joueurs, nb de joueurs, "i" pour le numÃ©ro du joueur
 {
     int i=0, j=0;
 
@@ -114,9 +114,12 @@ void initialiserJoueurStats(t_joueur *tabJoueurs, int nbJoueurs)   //Paramètres:
     {
         tabJoueurs[i].PV = 500;   //Initialisation des stats
         tabJoueurs[i].PM = 3;
-        tabJoueurs[i].PA = 20;
-        tabJoueurs[i].ligne = rand()% (12-1 +1) + 1;   //Placement aléatoire entre 1 et 12
-        tabJoueurs[i].colonne = rand()% (16-1 +1) + 1;   //Placement aléatoire entre 1 et 16
+        tabJoueurs[i].PA = 15;
+        tabJoueurs[i].ligne = rand()% (12-1 +1) + 1;   //Placement alÃ©atoire entre 1 et 12
+        tabJoueurs[i].colonne = rand()% (16-1 +1) + 1;   //Placement alÃ©atoire entre 1 et 16
+
+        tabJoueurs[i].cpt=0; //compteur pour PA
+        tabJoueurs[i].vivant=1;//Savoir s'il est en vie ou pas
 
         for(j=0;j<4;j++)
             tabJoueurs[i-1].choixClasseVerif[j] = 0;  //0 si le joueur a choisi une classe, 1 si classe choisie
@@ -129,7 +132,7 @@ void initialiserJoueurStats(t_joueur *tabJoueurs, int nbJoueurs)   //Paramètres:
 ///Attribution de la classe en fonction des joueurs
 void attributionClasseJoueur(t_joueur* tabJoueurs, int* nbJoueurs, int i)
 {
-    //Déclarations d'un double buffer pour stats de chaque joueur
+    //DÃ©clarations d'un double buffer pour stats de chaque joueur
     /******************************************************************************/
     BITMAP* fondCadreJoueur1;
     fondCadreJoueur1 = load_bitmap("fondCadreJoueur.bmp",NULL);
@@ -168,7 +171,7 @@ void attributionClasseJoueur(t_joueur* tabJoueurs, int* nbJoueurs, int i)
     }
     /******************************************************************************/
 
-    //Switch case pour savoir à quel joueur de jouer
+    //Switch case pour savoir Ã  quel joueur de jouer
         switch (i){
             //Joueur 1
             case 0:
@@ -226,7 +229,7 @@ void attributionClasseJoueur(t_joueur* tabJoueurs, int* nbJoueurs, int i)
 
                 break;
 
-            //Par défaut
+            //Par dÃ©faut
             default:
                 allegro_message("Erreur nbJoueurs faux !");
                 break;
@@ -242,7 +245,7 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
     int i=0;
     int clic=0;
 
-    //Création double buffer (arriere-plan)
+    //CrÃ©ation double buffer (arriere-plan)
     /******************************************************************************/
     BITMAP* arrierePlanChoix;
     arrierePlanChoix = load_bitmap("arrierePlanChoix.bmp",NULL);
@@ -254,7 +257,7 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
     }
     /******************************************************************************/
 
-    //Création double buffer (tour du joueur)
+    //CrÃ©ation double buffer (tour du joueur)
     /******************************************************************************/
     BITMAP* fondCadreJoueur;
     fondCadreJoueur = load_bitmap("fondCadreJoueur.bmp",NULL);
@@ -266,7 +269,20 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
     }
     /******************************************************************************/
 
-    //Création cadre
+    //CrÃ©ation chargement
+    /******************************************************************************/
+    BITMAP* imageChargement;
+    imageChargement = load_bitmap("imageChargement.bmp",NULL);
+
+    if (!imageChargement)
+    {
+        allegro_message("Nous n'avons pas pu charger \"imageChargement.bmp\"");
+        quitterAllegro();
+    }
+    /******************************************************************************/
+
+
+    //CrÃ©ation cadre
     /******************************************************************************/
     BITMAP* cadreJoueur;
     cadreJoueur = load_bitmap("cadreJoueur.bmp",NULL);
@@ -280,6 +296,7 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
     draw_sprite(arrierePlanChoix, cadreJoueur, 25, 640); //Affichage cadre
     /******************************************************************************/
 
+
     //Logo classes
     /******************************************************/
     //Classe feu
@@ -291,8 +308,10 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
         allegro_message("Nous n'avons pas pu charger \"logoFeu.bmp\"");
         quitterAllegro();
     }
+
+    draw_sprite(arrierePlanChoix, logoFeu, 189, 92);
     /******************************************************/
-    //Classe électricité
+    //Classe Ã©lectricitÃ©
     BITMAP* logoElec;
     logoElec = load_bitmap("logoElec.bmp",NULL);
 
@@ -301,6 +320,8 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
         allegro_message("Nous n'avons pas pu charger \"logoElec.bmp\"");
         quitterAllegro();
     }
+
+    draw_sprite(arrierePlanChoix, logoElec,440 ,92);
     /******************************************************/
     //Classe Plante
     BITMAP* logoPlante;
@@ -311,6 +332,8 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
         allegro_message("Nous n'avons pas pu charger \"logoPlante.bmp\"");
         quitterAllegro();
     }
+
+    draw_sprite(arrierePlanChoix, logoPlante, 682, 92);
     /******************************************************/
     //Classe eau
     BITMAP* logoEau;
@@ -321,10 +344,75 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
         allegro_message("Nous n'avons pas pu charger \"logoEau.bmp\"");
         quitterAllegro();
     }
+
+    draw_sprite(arrierePlanChoix, logoEau, 940, 92);
     /******************************************************/
 
 
-    //Création Dresseurs
+    //Carte Classes
+    /******************************************************/
+    //Classe feu
+    BITMAP* carteFeu;
+    carteFeu= load_bitmap("carteFeu.bmp",NULL);
+
+    if (!carteFeu)
+    {
+        allegro_message("Nous n'avons pas pu charger \"carteFeu.bmp\"");
+        quitterAllegro();
+    }
+
+    draw_sprite(arrierePlanChoix, carteFeu, 83, 398);
+    /******************************************************/
+    //Classe Electrique
+    BITMAP* carteElec;
+    carteElec= load_bitmap("carteElec.bmp",NULL);
+
+    if (!carteElec)
+    {
+        allegro_message("Nous n'avons pas pu charger \"carteElec.bmp\"");
+        quitterAllegro();
+    }
+
+    draw_sprite(arrierePlanChoix, carteElec, 332, 398);
+    /******************************************************/
+    //Classe plante
+    BITMAP* cartePlante;
+    cartePlante= load_bitmap("cartePlante.bmp",NULL);
+
+    if (!cartePlante)
+    {
+        allegro_message("Nous n'avons pas pu charger \"cartePlante.bmp\"");
+        quitterAllegro();
+    }
+
+    draw_sprite(arrierePlanChoix, cartePlante, 582, 398);
+    /******************************************************/
+    //Classe eau
+    BITMAP* carteEau;
+    carteEau= load_bitmap("carteEau.bmp",NULL);
+
+    if (!carteEau)
+    {
+        allegro_message("Nous n'avons pas pu charger \"carteEau.bmp\"");
+        quitterAllegro();
+    }
+
+    draw_sprite(arrierePlanChoix, carteEau, 836, 398);
+    /******************************************************/
+    //Classe dos
+    BITMAP* carteDos;
+    carteDos= load_bitmap("carteDos.bmp",NULL);
+
+    if (!carteDos)
+    {
+        allegro_message("Nous n'avons pas pu charger \"carteDos.bmp\"");
+        quitterAllegro();
+    }
+    /******************************************************/
+
+
+
+    //CrÃ©ation Dresseurs
     /******************************************************/
     //Dresseur 1
     BITMAP* Dresseur1;
@@ -338,7 +426,6 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
 
     //Affichage
     draw_sprite(arrierePlanChoix, Dresseur1, 80, 140);
-    draw_sprite(arrierePlanChoix, logoFeu, 135, 375);
     textprintf_ex(arrierePlanChoix, font, 80, 125, makecol(190,0,0), -1, "Sacha");
     /******************************************************/
     //Dresseur 2
@@ -353,7 +440,6 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
 
     //Affichage
     draw_sprite(arrierePlanChoix, Dresseur2, 330, 140);
-    draw_sprite(arrierePlanChoix, logoElec, 385, 375);
     textprintf_ex(arrierePlanChoix, font, 330, 125, makecol(244,223,0), -1, "Clem");
     /******************************************************/
     //Dresseur 3
@@ -368,7 +454,6 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
 
     //Affichage
     draw_sprite(arrierePlanChoix, Dresseur3, 580, 140);
-    draw_sprite(arrierePlanChoix, logoPlante, 635, 375);
     textprintf_ex(arrierePlanChoix, font, 580, 125, makecol(0,194,21), -1, "Pierre");
     /******************************************************/
     //Dresseur 4
@@ -383,7 +468,6 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
 
     //Affichage
     draw_sprite(arrierePlanChoix, Dresseur4, 830, 140);
-    draw_sprite(arrierePlanChoix, logoEau, 885, 375);
     textprintf_ex(arrierePlanChoix, font, 830, 125, makecol(0,78,202), -1, "Flora");
     /******************************************************/
 
@@ -400,22 +484,22 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
     sleep(1); //Pause de 2sec
 
     clear(fondCadreJoueur);
-    textprintf_ex(fondCadreJoueur, font, 360, 30, makecol(255,255,255), -1, "Choisissez votre dresseur !");  //On affiche à chaque tour
 
     //Boucle des choix de classe
     while(i < *nbJoueurs)
     {
-
+        textprintf_ex(fondCadreJoueur, font, 360, 30, makecol(255,255,255), -1, "Choisissez votre dresseur !");  //On affiche Ã  chaque tour
         clear(fondCadreJoueur);
-        textprintf_ex(fondCadreJoueur, font, 360, 30, makecol(255,255,255), -1, "Choisissez votre dresseur !");  //On affiche à chaque tour
+        textprintf_ex(fondCadreJoueur, font, 360, 30, makecol(255,255,255), -1, "Choisissez votre dresseur !");  //On affiche Ã  chaque tour
         blit(fondCadreJoueur,screen, 0, 0, 30, 650, 1024, 768);  //Double buffer sur le cadre
 
         while(clic == 0)  //Boucle pour pouvoir choisir en cliquant sur les 'cases' des dresseurs
         {
-            //Si clic gauche souris cliqué
+            //Choix du dresseur 1
+            //Si clic gauche souris cliquÃ©
             if (mouse_b & 1)
             {
-                //Choix du dresseur 1
+
                 if(mouse_x>=83 && mouse_x<=235 && mouse_y>=142 && mouse_y<=362) //Si souris clique 'case' du dresseur
                 {
                     tabJoueurs[i].choixClasseVerif[0] = 1;  //Le joueur "i" a choisi le dresseur 1 (donc plus disponible)
@@ -430,6 +514,7 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
                         attributionClasseJoueur(tabJoueurs,nbJoueurs,i); //Appel sous fonction attribution
 
                         rectfill(screen, 80, 140, 235, 362, makecol(195,195,195));  //Colorise 'case' dresseur choisi
+                        draw_sprite(screen, carteDos, 83, 398);
                     }
                 }
 
@@ -449,6 +534,7 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
                         attributionClasseJoueur(tabJoueurs,nbJoueurs,i);
 
                         rectfill(screen, 330, 140, 486, 362, makecol(195,195,195));
+                        draw_sprite(screen, carteDos, 332, 398);
                     }
                 }
 
@@ -467,6 +553,7 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
                         attributionClasseJoueur(tabJoueurs,nbJoueurs,i);
 
                         rectfill(screen, 580, 140, 730, 362, makecol(195,195,195));
+                        draw_sprite(screen, carteDos, 582, 398);
                     }
                 }
 
@@ -486,6 +573,7 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
                         attributionClasseJoueur(tabJoueurs,nbJoueurs,i);
 
                         rectfill(screen, 830, 140, 987, 362, makecol(195,195,195));
+                        draw_sprite(screen, carteDos, 836, 398);
                     }
                 }
 
@@ -500,9 +588,9 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
         } //Fin boucle choix classe pour 1 tour
 
         i++; //On passe au tour suivant
-        clic=0; // Condition réinitialisée pour re-rentrer dans la 2e boucle while
+        clic=0; // Condition rÃ©initialisÃ©e pour re-rentrer dans la 2e boucle while
 
-        sleep(3);
+        sleep(2.2);
 
         /*------------------------------------------------*/   ///Passage au joueur suivant
         if (i == *nbJoueurs)
@@ -511,10 +599,11 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
             allegro_message("--> Passer au 'Joueur %d'", i+1);
         /*------------------------------------------------*/
 
-    }//Fin boucle while (choix des classes jusqu'à NbJoueurs)
+    }//Fin boucle while (choix des classes jusqu'Ã  NbJoueurs)
 
     clear_bitmap(screen);
-    sleep(0.5);
+    blit(imageChargement,screen, 0, 0, 0, 0, 1024, 768);
+    sleep(3);
 }
 /*-----------------------------------------------------------------------------------------------------*/
 
@@ -525,8 +614,8 @@ void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs)
 {
     int clic=0;
 
-    //Création double buffer
-    /******************************************************************************/     //Création / chargement bitmaps
+    //CrÃ©ation double buffer
+    /******************************************************************************/     //CrÃ©ation / chargement bitmaps
     BITMAP* arrierePlanMenu;
     arrierePlanMenu = load_bitmap("choixJoueurs.bmp",NULL);
 
@@ -536,7 +625,7 @@ void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs)
         quitterAllegro();
     }
 
-    //Création boutons choix du nb de joueurs
+    //CrÃ©ation boutons choix du nb de joueurs
     /******************************************************************************/
     BITMAP* bouton2p;
     bouton2p = load_bitmap("Bouton 2p.bmp",NULL);
@@ -580,10 +669,10 @@ void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs)
     sleep(1);  //Pause de 1s
 
     while (clic == 0){
-        ////Si clic gauche souris cliqué
+        ////Si clic gauche souris cliquÃ©
         if (mouse_b & 1)
         {
-            //Si bouton '2 joueurs' cliqué -> initialisation pour 2 joueurs
+            //Si bouton '2 joueurs' cliquÃ© -> initialisation pour 2 joueurs
             if(mouse_x>=106 && mouse_x<=306 && mouse_y>=310&& mouse_y<=387)
             {
                 clic=1;
@@ -593,7 +682,7 @@ void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs)
                 choixClasseJoueur(tabJoueurs,nbJoueurs);   //Appel choix des classes
             }
 
-            //Si bouton '3 joueurs' cliqué -> initialisation pour 3 joueurs
+            //Si bouton '3 joueurs' cliquÃ© -> initialisation pour 3 joueurs
             if(mouse_x>=412 && mouse_x<=612 && mouse_y>=310&& mouse_y<=387)
             {
                 clic=1;
@@ -603,7 +692,7 @@ void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs)
                 choixClasseJoueur(tabJoueurs,nbJoueurs);
             }
 
-            //Si bouton '4 joueurs' cliqué -> initialisation pour 4 joueurs
+            //Si bouton '4 joueurs' cliquÃ© -> initialisation pour 4 joueurs
             if(mouse_x>=718 && mouse_x<=918 && mouse_y>=310&& mouse_y<=387)
             {
                 clic=1;
@@ -613,7 +702,7 @@ void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs)
                 choixClasseJoueur(tabJoueurs,nbJoueurs);
             }
 
-            ////Si bouton 'exit' cliqué -> quitte le jeu
+            ////Si bouton 'exit' cliquÃ© -> quitte le jeu
             if (mouse_x<=40 && mouse_y<=20)
             {
                 exitJeu();
@@ -631,7 +720,7 @@ void menuDemarrage(t_joueur *tabJoueurs, int* nbJoueurs)
     int clic = 0;
     show_mouse(screen);   //Affichage curseur souris
 
-    /******************************************************************************/   //Création / chargement bitmaps
+    /******************************************************************************/   //CrÃ©ation / chargement bitmaps
     BITMAP* imageMenu1;
     imageMenu1 = load_bitmap("Image menu chargement 1.bmp",NULL);
 
@@ -759,14 +848,14 @@ void menuDemarrage(t_joueur *tabJoueurs, int* nbJoueurs)
 
    //Utilisation de la souris sur les boutons (boucle)
     while (clic == 0){
-        //Si clic gauche souris cliqué
+        //Si clic gauche souris cliquÃ©
         if (mouse_b & 1)
         {
-            //Si bouton 'start' cliqué -> lancement choix des joueurs
+            //Si bouton 'start' cliquÃ© -> lancement choix des joueurs
             if(mouse_x>=415 && mouse_x<=585 && mouse_y>=434 && mouse_y<=532 && (mouse_b & 1))
             {
                 clic=1;
-                //Suppresion des anciennes bitmaps sauf la 7 qui reste pour le fond d'écran
+                //Suppresion des anciennes bitmaps sauf la 7 qui reste pour le fond d'Ã©cran
                 destroy_bitmap(imageMenu1);
                 destroy_bitmap(imageMenu2);
                 destroy_bitmap(imageMenu3);
@@ -795,7 +884,7 @@ void chargementDecorArene()
 
     int clic=0;
 
-    //Déclaration bitmap arene
+    //DÃ©claration bitmap arene
     /******************************************************************************/
     BITMAP* mapJeu;
     mapJeu = load_bitmap("mapJeu.bmp",NULL);
@@ -812,10 +901,10 @@ void chargementDecorArene()
 
      while (clic == 0){
 
-        //Si clic gauche souris cliqué
+        //Si clic gauche souris cliquÃ©
         if (mouse_b & 1)
         {
-            //Si bouton 'exit' cliqué -> quitte le jeu
+            //Si bouton 'exit' cliquÃ© -> quitte le jeu
             if (mouse_x<=40 && mouse_y<=20)
             {
                 exitJeu();
