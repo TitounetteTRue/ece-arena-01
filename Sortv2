@@ -1,0 +1,189 @@
+///commentaire: il faut que je rajoute les bitmaps versions boutons des pokémons
+//et donc d'avoir leur emplacement sur le jeu final
+//Il faut aussi que je rajoute l'affichage de fin pour clear les bitmaps du dresseur
+//il manque encore le pourcentage d'échouer
+
+void sort(t_joueur *tab,int i)//i est le joueur qui 
+{
+    srand(time(NULL));
+    show_mouse(screen);
+    int clic=0;
+    int j;/// joueur victime du joueur qui joue
+    int x,y,z,a,b;
+    //Il manque l'info des implacements des bitmaps
+    int d=;
+    int c=;
+    //compteur pour remettre les PA à 15
+    if(tab[i].cpt>3)
+    {
+        tab[i].PA=15;
+        tab[i].cpt=0;
+    }
+    
+    //Si classe feu afficher bitmap feu
+    if(strcmp(tab[i].choixClasse,"Classe: FEU")==0)//FEU
+    {
+        BITMAP*feu;
+        feu=load_bitmap("pokefeu.bmp",NULL);
+        if (!feu)
+    {
+        allegro_message("Nous n'avons pas pu charger \"pokefeu.bmp\"");
+        quitterAllegro();
+    }
+    blit(feu,mapJeu, 0, 0, 0, 0, d,c);
+    }
+    
+    //si classe eau afficher bitmap eau
+    if(strcmp(tab[i].choixClasse,"Classe: EAU")==0)//EAU
+    {
+        BITMAP*eau;
+        eau=load_bitmap("pokeeau.bmp",NULL);
+        if (!eau)
+    {
+        allegro_message("Nous n'avons pas pu charger \"eau.bmp\"");
+        quitterAllegro();
+    }
+    blit(eau,mapJeu, 0, 0, 0, 0, d,c);
+    }
+    
+    //si classe electricite afficher bitmap electricite
+    if(strcmp(tab[i].choixClasse,"Classe: ELECTRIQUE")==0)//ELECTRICITE
+    {
+        BITMAP*elec;
+        elec=load_bitmap("pokeelec.bmp",NULL);
+        if (!elec)
+    {
+        allegro_message("Nous n'avons pas pu charger \"pokeelec.bmp\"");
+        quitterAllegro();
+    }
+    blit(elec,mapJeu, 0, 0, 0, 0, d,c);
+    }
+    
+    //si classe plante afficher bitmap plante
+    if(strcmp(tab[i].choixClasse,"Classe: PLANTE")==0)//PLANTE
+    {
+          BITMAP*plante;
+        plante=load_bitmap("pokeplante.bmp",NULL);
+        if (!elec)
+    {
+        allegro_message("Nous n'avons pas pu charger \"pokeplante.bmp\"");
+        quitterAllegro();
+    }
+    blit(plante,mapJeu, 0, 0, 0, 0, d,c);
+    }
+    
+            //Si clic gauche souris cliqué
+            if (mouse_b & 1)
+            {
+                if(tab[i].PA>=10)//si PA est supérieure à 10
+                    {
+                        //collision proche(1case)
+                        if(mouse_x>= && mouse_x<= && mouse_y>= && mouse_y<= ) //Si souris clique 'attaque corps' du dresseur
+                            {
+                                tab[i].PA=tab[i].PA-1;
+                                x=rand()%(30-10+1)+10;
+                                tab[j].PV=tab[j].PV-x;
+                            }
+                            //collision loin(2cases)
+                        if(mouse_x>= && mouse_x<= && mouse_y>= && mouse_y<=)//Si souris clique 'sort1' du dresseur
+                            {
+                                 tab[i].PA=tab[i].PA-2;
+                                 y=rand()%(40-20+1)+20;
+                                 tab[j].PV=tab[j].PV-y;
+                            }
+                            //collision loin(3cases)
+                        if(mouse_x>= && mouse_x<= && mouse_y>= && mouse_y<=)//si souris clique 'sort2' du dresseur
+                            {
+                                tab[i].PA=tab[i].PA-3;
+                                z=rand()%(60-40+1)+40;
+                                tab[j].PV=tab[j].PV-z;
+                            }
+                            //collision loin 4cases
+                        if(mouse_x>= && mouse_x<= && mouse_y>= && mouse_y<=)//si souris clique 'sort3' du dresseur
+                            {
+                                tab[i].PA=tab[i].PA-1;
+                                a=rand()%(60-20+1)+20;
+                                tab[i].PV=tab[i].PV+a;
+                            }
+                            //collision loin 5 cases
+                        if(mouse_x>= && mouse_x<= && mouse_y>= && mouse_y<=)//si souris clique 'sort4' du dresseur
+                            {
+                                tab[i].PA=tab[i].PA-5;
+                                b=rand()%(100-70+1)+70;
+                                tab[j].PV=tab[j].PV-b;
+                            }
+                    tabJoueur.cpt++;  //compteur plus 1
+                    }
+                else if(tab[i].PA>=5 && tab[i].PA<10)
+                    {
+                         //collision proche(1case)
+                        if(mouse_x>= && mouse_x<= && mouse_y>= && mouse_y<= ) //Si souris clique 'attaque corps' du dresseur
+                            {
+                                tab[i].PA=tab[i].PA-1;
+                                x=rand()%(30-10+1)+10;
+                                tab[j].PV=tab[j].PV-x;
+                            }
+                            //collision loin(2cases)
+                        if(mouse_x>= && mouse_x<= && mouse_y>= && mouse_y<=)//Si souris clique 'sort1' du dresseur
+                            {
+                                 tab[i].PA=tab[i].PA-2;
+                                 y=rand()%(40-20+1)+20;
+                                 tab[j].PV=tab[j].PV-y;
+                            }
+                            //collision loin(3cases)
+                        if(mouse_x>= && mouse_x<= && mouse_y>= && mouse_y<=)//si souris clique 'sort2' du dresseur
+                            {
+                                tab[i].PA=tab[i].PA-3;
+                                z=rand()%(60-40+1)+40;
+                                tab[j].PV=tab[j].PV-z;
+                            }
+                            //collision loin 4cases
+                        if(mouse_x>= && mouse_x<= && mouse_y>= && mouse_y<=)//si souris clique 'sort3' du dresseur
+                            {
+                                tab[i].PA=tab[i].PA-1;
+                                a=rand()%(60-20+1)+20;
+                                tab[i].PV=tab[i].PV+a;
+                            }
+                            //collision loin 5 cases
+                        if(mouse_x>= && mouse_x<= && mouse_y>= && mouse_y<=)//si souris clique 'sort4' du dresseur
+                            {
+                                tab[i].PA=tab[i].PA-5;
+                                b=rand()%(100-70+1)+70;
+                                tab[j].PV=tab[j].PV-b;
+                            }
+                       tabJoueur.cpt++;
+             }
+                else if(tab[1].PA<5)
+                    {
+                        //collision proche(1case)
+                        if(mouse_x>= && mouse_x<= && mouse_y>= && mouse_y<= ) //Si souris clique 'attaque corps' du dresseur
+                            {
+                                tab[i].PA=tab[i].PA-1;
+                                x=rand()%(30-10+1)+10;
+                                tab[j].PV=tab[j].PV-x;
+                            }
+                            //collision loin(2cases)
+                        if(mouse_x>= && mouse_x<= && mouse_y>= && mouse_y<=)//Si souris clique 'sort1' du dresseur
+                            {
+                                 tab[i].PA=tab[i].PA-2;
+                                 y=rand()%(40-20+1)+20;
+                                 tab[j].PV=tab[j].PV-y;
+                            }
+                            //collision loin(3cases)
+                        if(mouse_x>= && mouse_x<= && mouse_y>= && mouse_y<=)//si souris clique 'sort2' du dresseur
+                            {
+                                tab[i].PA=tab[i].PA-3;
+                                z=rand()%(60-40+1)+40;
+                                tab[j].PV=tab[j].PV-z;
+                            }
+                            //collision loin 4cases
+                        if(mouse_x>= && mouse_x<= && mouse_y>= && mouse_y<=)//si souris clique 'sort3' du dresseur
+                            {
+                                tab[i].PA=tab[i].PA-1;
+                                a=rand()%(60-20+1)+20;
+                                tab[i].PV=tab[i].PV+a;
+                            }
+                        tabJoueur.cpt++;
+                        }
+            }
+}
