@@ -1,0 +1,23 @@
+//voici la structure joueur avec info en plus
+
+typedef struct joueur{
+
+    char pseudo[30];
+    char choixClasse[30];
+    int PV;
+    int PM;
+    int PA;
+    int ligne;
+    int colonne;
+    int cpt;
+    int choixClasseVerif[3];//Permet de ne pas choisir une classe déjà sélectionnée
+    int vivant;
+
+}t_joueur;
+
+
+
+///voici aussi les lignes dans l'initialisation dans void initialisation
+
+tabJoueurs[i].cpt=0; //compteur pour PA
+tabJoueurs[i].vivant=1;//Savoir s'il est en vie ou pas
