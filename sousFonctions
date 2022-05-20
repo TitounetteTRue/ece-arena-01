@@ -1000,7 +1000,7 @@ return 0;
 
 
 /*-----------------------------------------------------------------------------------------------------*/
-int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur *mesJoueur, int numJoueur)
+int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur *mesJoueur, int numJoueur, int nbJoueur)
 {
 
     int Scolonne; // position de la case du personnage en x
@@ -1012,7 +1012,7 @@ int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur
     mesJoueur[numJoueur].ligne=2;
     mesJoueur[numJoueur].colonne=2;
 */
-    decor= load_bitmap("mapJeu.bmp", NULL );
+  //  decor= load_bitmap("mapJeu.bmp", NULL );
 
     if (!decor)
     {
@@ -1023,7 +1023,7 @@ int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur
     int newLigne;
     int newColonne;
 
-    int i, j;
+    int i, j, k;
 
     while (!key[KEY_ESC])
     {
@@ -1043,8 +1043,11 @@ int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur
         int deplacementABS;
         int deplacementORD;
 
-        draw_sprite(page, spriteDresseur[numJoueur][0], mesJoueur[numJoueur].colonne*64, mesJoueur[numJoueur].ligne*64);
 
+       for (i=0; i<nbJoueur; i++){
+
+        draw_sprite(page, spriteDresseur[i][0], mesJoueur[i].colonne*64, mesJoueur[i].ligne*64);
+       }
 
         if (mouse_b&1)
         {
@@ -1085,6 +1088,16 @@ if ((deplacement<mesJoueur[numJoueur].PM)&&(obstacle(newColonne,newLigne)!=1)){ 
                         blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
                          textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
                         draw_sprite(page, spriteDresseur[numJoueur][j], i, mesJoueur[numJoueur].ligne*64);
+
+                               for (k=0; k<nbJoueur; k++){
+                                    if (k!=numJoueur){
+
+                                    draw_sprite(page, spriteDresseur[k][0], mesJoueur[k].colonne*64, mesJoueur[k].ligne*64);
+                            }
+                               }
+
+
+
                         blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
 
                         if (j>=12){
@@ -1102,6 +1115,13 @@ if ((deplacement<mesJoueur[numJoueur].PM)&&(obstacle(newColonne,newLigne)!=1)){ 
                         blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
                          textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
                         draw_sprite(page, spriteDresseur[numJoueur][j], i, mesJoueur[numJoueur].ligne*64);
+
+                        for (k=0; k<nbJoueur; k++){
+                                    if (k!=numJoueur){
+
+                                    draw_sprite(page, spriteDresseur[k][0], mesJoueur[k].colonne*64, mesJoueur[k].ligne*64);
+                            }
+                               }
                         blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
 
                         if (j>=8){
@@ -1125,6 +1145,12 @@ if ((deplacement<mesJoueur[numJoueur].PM)&&(obstacle(newColonne,newLigne)!=1)){ 
                         blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
                          textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
                         draw_sprite(page, spriteDresseur[numJoueur][j],newColonne*64, i);
+                        for (k=0; k<nbJoueur; k++){
+                                    if (k!=numJoueur){
+
+                                    draw_sprite(page, spriteDresseur[k][0], mesJoueur[k].colonne*64, mesJoueur[k].ligne*64);
+                            }
+                               }
                         blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
 
                         if (j>=4){
@@ -1142,6 +1168,12 @@ if ((deplacement<mesJoueur[numJoueur].PM)&&(obstacle(newColonne,newLigne)!=1)){ 
                         blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
                          textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
                         draw_sprite(page, spriteDresseur[numJoueur][j], newColonne*64, i);
+                        for (k=0; k<nbJoueur; k++){
+                                    if (k!=numJoueur){
+
+                                    draw_sprite(page, spriteDresseur[k][0], mesJoueur[k].colonne*64, mesJoueur[k].ligne*64);
+                            }
+                               }
                         blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
                         if (j>=16){
                             j=12;
@@ -1155,7 +1187,7 @@ if ((deplacement<mesJoueur[numJoueur].PM)&&(obstacle(newColonne,newLigne)!=1)){ 
             mesJoueur[numJoueur].ligne=newLigne;
             mesJoueur[numJoueur].colonne=newColonne;
 
-            draw_sprite(page, spriteDresseur[numJoueur][1],mesJoueur[numJoueur].ligne*64, mesJoueur[numJoueur].colonne*64);
+            draw_sprite(page, spriteDresseur[numJoueur][1],mesJoueur[numJoueur].colonne*64, mesJoueur[numJoueur].ligne*64);
              textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
 
             }
@@ -1170,32 +1202,11 @@ if ((deplacement<mesJoueur[numJoueur].PM)&&(obstacle(newColonne,newLigne)!=1)){ 
 
     }
 
-
-
-void placement (BITMAP* decor,BITMAP* page, t_joueur* tabJoueur, BITMAP* spriteDresseur[4][16], int nbJoueur){
-
-    int i;
-
-     while (!key[KEY_ESC])
-    {
-    blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
-    for (i=0; i<nbJoueur; i++){
-
-            //blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
-            draw_sprite(page, spriteDresseur[i][1], tabJoueur[i].colonne*64,  tabJoueur[i].ligne*64);
-            // blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
-
-
-    }
-     blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
-    }
-}
-
-
-
 return 0;
 
 }
+
+
 /*-----------------------------------------------------------------------------------------------------*/
 
 
