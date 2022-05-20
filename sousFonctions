@@ -113,7 +113,7 @@ void initialiserJoueurStats(t_joueur *tabJoueurs, int nbJoueurs)   //Paramètres
     for(i=0; i<nbJoueurs; i++)  //Boucle pour initialiser tous les joueurs
     {
         tabJoueurs[i].PV = 500;   //Initialisation des stats
-        tabJoueurs[i].PM = 3;
+        tabJoueurs[i].PM = 500;
         tabJoueurs[i].PA = 15;
         tabJoueurs[i].ligne = rand()% (12-1 +1) + 1;   //Placement aléatoire entre 1 et 12
         tabJoueurs[i].colonne = rand()% (16-1 +1) + 1;   //Placement aléatoire entre 1 et 16
@@ -676,7 +676,6 @@ void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs)
             if(mouse_x>=106 && mouse_x<=306 && mouse_y>=310&& mouse_y<=387)
             {
                 clic=1;
-                tabJoueurs = (t_joueur*) malloc(2*sizeof(t_joueur));
                 initialiserJoueurStats(tabJoueurs,2); // initialisation stats de 2 joueurs
                 *nbJoueurs=2;
                 clear_bitmap(screen);
@@ -687,7 +686,6 @@ void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs)
             if(mouse_x>=412 && mouse_x<=612 && mouse_y>=310&& mouse_y<=387)
             {
                 clic=1;
-                tabJoueurs = (t_joueur*) malloc(3*sizeof(t_joueur));
                 initialiserJoueurStats(tabJoueurs,3); // initialisation stats de 3 joueurs
                 *nbJoueurs=3;
                 clear_bitmap(screen);
@@ -698,7 +696,6 @@ void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs)
             if(mouse_x>=718 && mouse_x<=918 && mouse_y>=310&& mouse_y<=387)
             {
                 clic=1;
-                tabJoueurs = (t_joueur*) malloc(4*sizeof(t_joueur));
                 initialiserJoueurStats(tabJoueurs,4); // initialisation stats de 4 joueurs
                 *nbJoueurs=4;
                 clear_bitmap(screen);
@@ -881,6 +878,44 @@ void menuDemarrage(t_joueur *tabJoueurs, int* nbJoueurs)
 
 
 /*-----------------------------------------------------------------------------------------------------*/
+void chargementDecorArene()
+{
+    clear_bitmap(screen);
+
+    int clic=0;
+
+    //Déclaration bitmap arene
+    /******************************************************************************/
+    BITMAP* mapJeu;
+    mapJeu = load_bitmap("mapJeu.bmp",NULL);
+
+    if (!mapJeu)
+    {
+        allegro_message("Nous n'avons pas pu charger \"mapJeu.bmp\"");
+        quitterAllegro();
+    }
+    /******************************************************************************/
+
+    blit(mapJeu,screen, 0, 0, 0, 0, 1024, 768);  //Affichage arene
+    affichageBoutonExit();
+
+     while (clic == 0){
+
+        //Si clic gauche souris cliqué
+        if (mouse_b & 1)
+        {
+            //Si bouton 'exit' cliqué -> quitte le jeu
+            if (mouse_x<=40 && mouse_y<=20)
+            {
+                exitJeu();
+            }
+        }
+    }
+}
+/*-----------------------------------------------------------------------------------------------------*/
+
+
+/*-----------------------------------------------------------------------------------------------------*/
 BITMAP* recup_sprites( BITMAP*scr, int w, int h, int startx, int starty, int col, int element)
 {
 BITMAP *bmp;
@@ -1049,6 +1084,8 @@ int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur
              newLigne=Sligne;
              newColonne=Scolonne;
 
+
+
             deplacementABS=mesJoueur[numJoueur].colonne-Scolonne;
             deplacementORD=mesJoueur[numJoueur].ligne-Sligne;
 
@@ -1064,6 +1101,8 @@ int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur
 
 
 if ((deplacement<mesJoueur[numJoueur].PM)&&(obstacle(newColonne,newLigne)!=1)){ //le joueur rentre les conditions pour se déplacer
+
+
 
             mesJoueur[numJoueur].PM=mesJoueur[numJoueur].PM-deplacement; //on enleve le nombre de pm correspondant au joueur
 
@@ -1168,6 +1207,10 @@ return 0;
 
 }
 /*-----------------------------------------------------------------------------------------------------*/
+
+
+
+
 
 
 
