@@ -29,7 +29,7 @@ int main()
 
     page=create_bitmap(1024,768);
     extractionSprite(spriteDresseur);
-    deplace(map,page,spriteDresseur,tabJoueurs,0);
+    deplace(map,page,spriteDresseur,tabJoueurs,0,4);
 
     free(tabJoueurs);
 
