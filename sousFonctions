@@ -109,6 +109,8 @@ void exitJeu()
 void initialiserJoueurStats(t_joueur *tabJoueurs, int nbJoueurs)   //Paramètres: tableau de joueurs, nb de joueurs, "i" pour le numéro du joueur
 {
     int i=0, j=0;
+    
+    srand(time(NULL));
 
     for(i=0; i<nbJoueurs; i++)  //Boucle pour initialiser tous les joueurs
     {
