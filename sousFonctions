@@ -115,11 +115,11 @@ void initialiserJoueurStats(t_joueur *tabJoueurs, int nbJoueurs)   //Paramètres
         tabJoueurs[i].PV = 500;   //Initialisation des stats
         tabJoueurs[i].PM = 500;
         tabJoueurs[i].PA = 15;
-        do{
 
+        do{
         tabJoueurs[i].ligne = rand()% (11-0 +1) + 0;   //Placement aléatoire entre 1 et 1
         tabJoueurs[i].colonne = rand()% (15-0 +1) + 0;   //Placement aléatoire entre 1 et 16
-       } while (obstacle(tabJoueurs[i].colonne, tabJoueurs[i].ligne)==1);
+        } while (obstacle(tabJoueurs[i].colonne, tabJoueurs[i].ligne)==1);
 
         tabJoueurs[i].cpt=0; //compteur pour PA
         tabJoueurs[i].vivant=1;//Savoir s'il est en vie ou pas
@@ -855,7 +855,7 @@ void menuDemarrage(t_joueur *tabJoueurs, int* nbJoueurs)
         if (mouse_b & 1)
         {
             //Si bouton 'start' cliqué -> lancement choix des joueurs
-            if(mouse_x>=415 && mouse_x<=585 && mouse_y>=434 && mouse_y<=532 && (mouse_b & 1))
+            if(mouse_x>=415 && mouse_x<=585 && mouse_y>=434 && mouse_y<=532)
             {
                 clic=1;
                 //Suppresion des anciennes bitmaps sauf la 7 qui reste pour le fond d'écran
@@ -873,44 +873,6 @@ void menuDemarrage(t_joueur *tabJoueurs, int* nbJoueurs)
                 //Appel de la fonction pour le choix du nombre de joueurs
                 choixNbJoueurs(tabJoueurs,nbJoueurs);
 
-            }
-        }
-    }
-}
-/*-----------------------------------------------------------------------------------------------------*/
-
-
-/*-----------------------------------------------------------------------------------------------------*/
-void chargementDecorArene()
-{
-    clear_bitmap(screen);
-
-    int clic=0;
-
-    //Déclaration bitmap arene
-    /******************************************************************************/
-    BITMAP* mapJeu;
-    mapJeu = load_bitmap("mapJeu.bmp",NULL);
-
-    if (!mapJeu)
-    {
-        allegro_message("Nous n'avons pas pu charger \"mapJeu.bmp\"");
-        quitterAllegro();
-    }
-    /******************************************************************************/
-
-    blit(mapJeu,screen, 0, 0, 0, 0, 1024, 768);  //Affichage arene
-    affichageBoutonExit();
-
-     while (clic == 0){
-
-        //Si clic gauche souris cliqué
-        if (mouse_b & 1)
-        {
-            //Si bouton 'exit' cliqué -> quitte le jeu
-            if (mouse_x<=40 && mouse_y<=20)
-            {
-                exitJeu();
             }
         }
     }
