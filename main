@@ -1,12 +1,17 @@
-#include "biblioJeu.h"
-
 /*----------------------------------------------------------*/
 int main()
 {
     //Déclarations
     int* nbJoueurs;
     t_joueur *tabJoueurs;   //Tableau de joueurs
-    tabJoueurs = (t_joueur*) malloc(2*sizeof(t_joueur));
+    tabJoueurs = (t_joueur*) malloc((*nbJoueurs)*sizeof(t_joueur));
+
+    BITMAP* map;
+    BITMAP* page;
+    BITMAP* spriteDresseur[4][16];
+
+    page=create_bitmap(1024,768);
+
 
      // Initialisation d'Allegro
     initialisationAllegro();
@@ -21,8 +26,10 @@ int main()
 
     show_mouse(screen); //Permet de montrer la souris à l'écran
 
+    extractionSprite(spriteDresseur);
     menuDemarrage(tabJoueurs,nbJoueurs);  //Appel Fonction début partie
-    chargementDecorArene();
+
+    deplace(map,page,spriteDresseur,tabJoueurs,0);
 
     return 0;  // Fin du main
 
