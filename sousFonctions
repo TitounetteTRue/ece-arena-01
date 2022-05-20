@@ -877,43 +877,6 @@ void menuDemarrage(t_joueur *tabJoueurs, int* nbJoueurs)
 /*-----------------------------------------------------------------------------------------------------*/
 
 
-/*-----------------------------------------------------------------------------------------------------*/
-void chargementDecorArene()
-{
-    clear_bitmap(screen);
-
-    int clic=0;
-
-    //Déclaration bitmap arene
-    /******************************************************************************/
-    BITMAP* mapJeu;
-    mapJeu = load_bitmap("mapJeu.bmp",NULL);
-
-    if (!mapJeu)
-    {
-        allegro_message("Nous n'avons pas pu charger \"mapJeu.bmp\"");
-        quitterAllegro();
-    }
-    /******************************************************************************/
-
-    blit(mapJeu,screen, 0, 0, 0, 0, 1024, 768);  //Affichage arene
-    affichageBoutonExit();
-
-     while (clic == 0){
-
-        //Si clic gauche souris cliqué
-        if (mouse_b & 1)
-        {
-            //Si bouton 'exit' cliqué -> quitte le jeu
-            if (mouse_x<=40 && mouse_y<=20)
-            {
-                exitJeu();
-            }
-        }
-    }
-}
-/*-----------------------------------------------------------------------------------------------------*/
-
 
 /*-----------------------------------------------------------------------------------------------------*/
 void affichageDecor (BITMAP* decor, BITMAP* page){
