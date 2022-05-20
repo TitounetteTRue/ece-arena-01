@@ -1206,6 +1206,29 @@ if ((deplacement<mesJoueur[numJoueur].PM)&&(obstacle(newColonne,newLigne)!=1)){ 
 
     }
 
+
+
+void placement (BITMAP* decor,BITMAP* page, t_joueur* tabJoueur, BITMAP* spriteDresseur[4][16], int nbJoueur){
+
+    int i;
+
+     while (!key[KEY_ESC])
+    {
+    blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
+    for (i=0; i<nbJoueur; i++){
+
+            //blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
+            draw_sprite(page, spriteDresseur[i][1], tabJoueur[i].colonne*64,  tabJoueur[i].ligne*64);
+            // blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
+
+
+    }
+     blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
+    }
+}
+
+
+
 return 0;
 
 }
