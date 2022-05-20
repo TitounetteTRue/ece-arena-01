@@ -1,0 +1,367 @@
+//Commentaire : sous programme de sort, il manque maintenant que le joueur victime, sinon il est terminé
+// J'ai rajouté mes bitmaps, il faut juste que je change le font d'écran
+//j'ai aussi rajouté le pourcentage d'échouer du sort ou de l'attaque du pokémon
+
+
+void attaque(t_joueur *tab,int i,int nbrjoueurs,BITMAP*mapJeu)
+{
+    srand(time(NULL));
+    show_mouse(screen);
+    int clic=0;
+    int j;                                        /// joueur victime
+    int s,f,g,h,q,x,y,z,a,b;                      ///variables aléatoires
+    
+    ///variables enplacement bitmap
+    int k=260;//130
+    int m=680;//340
+    int d=1024;//512
+    int c=768;//384
+    //si j est meme que joueur qui joue
+    while(j==i)
+    {
+        j++;
+        if(j>nbrjoueurs)
+        {
+            j=1;
+        }
+    }
+    //si compteur à plus de trois alors il se réinitialise
+    if(tab[i].cpt>3)
+    {
+        tab[i].PA=15;
+        tab[i].cpt=0;
+    }
+    //Si classe de meme que choix de classe alors bitmap upload sur la carte
+    
+    if(strcmp(tab[i].choixClasse,"Classe: FEU")==0)//FEU
+    {
+        BITMAP*feu;
+        feu=load_bitmap("pokefeu.bmp",NULL);
+        if (!feu)
+    {
+        allegro_message("Nous n'avons pas pu charger \"pokefeu.bmp\"");
+        quitterAllegro();
+    }
+    blit(feu,mapJeu, 0, 0, k, m, d,c);
+    }
+    if(strcmp(tab[i].choixClasse,"Classe: EAU")==0)//EAU
+    {
+        BITMAP*eau;
+        eau=load_bitmap("pokeeau.bmp",NULL);
+        if (!eau)
+    {
+        allegro_message("Nous n'avons pas pu charger \"eau.bmp\"");
+        quitterAllegro();
+    }
+    blit(eau,mapJeu, 0, 0, k, m, d,c);
+    }
+    if(strcmp(tab[i].choixClasse,"Classe: ELECTRIQUE")==0)//ELECTRICITE
+    {
+        BITMAP*elec;
+        elec=load_bitmap("pokeelec.bmp",NULL);
+        if (!elec)
+    {
+        allegro_message("Nous n'avons pas pu charger \"pokeelec.bmp\"");
+        quitterAllegro();
+    }
+    blit(elec,mapJeu, 0, 0, k, m, d,c);
+    }
+    if(strcmp(tab[i].choixClasse,"Classe: PLANTE")==0)//PLANTE
+    {
+          BITMAP*plante;
+        plante=load_bitmap("pokeplante.bmp",NULL);
+        if (!plante)
+    {
+        allegro_message("Nous n'avons pas pu charger \"pokeplante.bmp\"");
+        quitterAllegro();
+    }
+    blit(plante,mapJeu, 0, 0, k, m, d,c);
+    }
+    
+    //affiche de la map avec les bitmap des pokémons
+    blit(mapJeu,screen,0,0,0,0,d,c);
+    //tant que la souris n'est pas cliqué
+        while(clic==0)
+        {
+            //Si clic gauche souris cliqué
+            if (mouse_b & 1)
+            {
+                 if(tab[i].PA>=10)//si PA est supérieure à 10
+
+                    {
+                        //si joueur j sur case bleu alors if(tab[j].ligne
+                        //collision proche(1case)
+                       if(mouse_x>=258 && mouse_x<=316 && mouse_y>=678 && mouse_y<=756 ) //Si souris clique 'attaque corps' du dresseur//129,158,339,378 valeur que j'ai multiplié par deux
+                            {
+                               h=rand()%(10-1+1)+1;//pourcentage d'échouer
+                               //Il a une chance sur 10 de ne pas réussir
+                                if(h!=1)
+                                {
+                                tab[i].PA=tab[i].PA-1;
+                                x=rand()%(30-10+1)+10;
+                                tab[j].PV=tab[j].PV-x;
+                                clic=1;
+                                printf("PV pris : %d du joueur %d\n",tab[j].PV,j);
+                                }
+                                else
+                                {
+                                    allegro_message("rate");
+                                }
+                                printf("Attaque 1\n");//verifie le bon fonctionnement 
+                            }
+                           //si joueur j sur case jaune alors
+                            //collision loin(2cases)
+                        if(mouse_x>=317 && mouse_x<=376 && mouse_y>=678 && mouse_y<=756)//Si souris clique 'sort1' du dresseur// 159 188 339?378
+                            {
+                               s=rand()%(5-1+1)+1;
+                                if(s>1)
+                                {
+                                    tab[i].PA=tab[i].PA-2;
+                                    y=rand()%(40-20+1)+20;
+                                    tab[j].PV=tab[j].PV-y;
+                                    clic=1;
+                                    printf("PV pris : %d du joueur %d\n",tab[j].PV,j);
+                                }
+                                else
+                                {
+                                    allegro_message("rate");
+                                }
+                                printf("Attaque 2");
+                            }
+                            //collision loin(3cases)
+                        if(mouse_x>=377 && mouse_x<=436 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort2' du dresseur//189 218 339 378
+                            {
+                                f=rand()%(10-1+1)+1;
+                                if(f>3)
+                                {
+                                    tab[i].PA=tab[i].PA-3;
+                                    z=rand()%(60-40+1)+40;
+                                    tab[j].PV=tab[j].PV-z;
+                                    clic=1;
+                                    printf("PV pris : %d du joueur %d\n",tab[j].PV,j);
+                                }
+                                else
+                                {
+                                    allegro_message("rate");
+                                }
+                                printf("Attaque 3");
+                            }
+
+                        if(mouse_x>=437 && mouse_x<=494 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort3' du dresseur
+                            {
+                                g=rand()%(5-1+1)+1;
+                                if(g>2)
+                                {
+                                    tab[i].PA=tab[i].PA-4;
+                                    a=rand()%(60-20+1)+20;
+                                    tab[i].PV=tab[i].PV+a;
+                                    clic=1;
+                                    printf("PV donnee : %d du joueur %d\n",tab[i].PV,i);
+                                }
+                                else
+                                {
+                                    allegro_message("rate");
+                                }
+                                printf("Attaque 4");
+                            }
+                            //si joueur sur case rouge alors
+                            //collision loin 5 cases
+                        if(mouse_x>=495 && mouse_x<=554 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort4' du dresseur
+                            {
+                                q=rand()%(2-1+1)+1;
+                                if(q!=1)
+                                {
+                                    tab[i].PA=tab[i].PA-5;
+                                    b=rand()%(100-70+1)+70;
+                                    tab[j].PV=tab[j].PV-b;
+                                    clic=1;
+                                    printf("PV pris : %d du joueur %d\n",tab[j].PV,j);
+                                }
+                                else
+                                {
+                                    allegro_message("rate");
+                                }
+                                printf("Attaque 5");
+                            }
+                    tab[i].cpt++;  //compteur plus 1
+                    }
+                else if(tab[i].PA>=5 && tab[i].PA<10)
+                    {
+                         //si joueur j sur case bleu alors if(tab[j].ligne
+                        //collision proche(1case)
+                       if(mouse_x>=258 && mouse_x<=316 && mouse_y>=678 && mouse_y<=756 ) //Si souris clique 'attaque corps' du dresseur//129,158,339,378
+                            {
+                               h=rand()%(10-1+1)+1;
+                                if(h!=1)
+                                {
+                                tab[i].PA=tab[i].PA-1;
+                                x=rand()%(30-10+1)+10;
+                                tab[j].PV=tab[j].PV-x;
+                                clic=1;
+                                printf("PV pris : %d du joueur %d\n",tab[j].PV,j);
+                                }
+                                else
+                                {
+                                    allegro_message("rate");
+                                }
+                                printf("Attaque 1");
+                            }
+                           //si joueur j sur case jaune alors
+                            //collision loin(2cases)
+                        if(mouse_x>=317 && mouse_x<=376 && mouse_y>=678 && mouse_y<=756)//Si souris clique 'sort1' du dresseur// 159 188 339?378
+                            {
+                               s=rand()%(5-1+1)+1;
+                                if(s>1)
+                                {
+                                    tab[i].PA=tab[i].PA-2;
+                                    y=rand()%(40-20+1)+20;
+                                    tab[j].PV=tab[j].PV-y;
+                                    clic=1;
+                                    printf("PV pris : %d du joueur %d\n",tab[j].PV,j);
+                                }
+                                else
+                                {
+                                    allegro_message("rate");
+                                }
+                                printf("Attaque 2");
+                            }
+                            //collision loin(3cases)
+                        if(mouse_x>=377 && mouse_x<=436 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort2' du dresseur//189 218 339 378
+                            {
+                                f=rand()%(10-1+1)+1;
+                                if(f>3)
+                                {
+                                    tab[i].PA=tab[i].PA-3;
+                                    z=rand()%(60-40+1)+40;
+                                    tab[j].PV=tab[j].PV-z;
+                                    clic=1;
+                                    printf("PV pris : %d du joueur %d\n",tab[j].PV,j);
+                                }
+                                else
+                                {
+                                    allegro_message("rate");
+                                }
+                                printf("Attaque 3");
+                            }
+
+                        if(mouse_x>=437 && mouse_x<=494 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort3' du dresseur
+                            {
+                                g=rand()%(5-1+1)+1;
+                                if(g>2)
+                                {
+                                    tab[i].PA=tab[i].PA-4;
+                                    a=rand()%(60-20+1)+20;
+                                    tab[i].PV=tab[i].PV+a;
+                                    clic=1;
+                                    printf("PV donnee : %d du joueur %d\n",tab[i].PV,i);
+                                }
+                                else
+                                {
+                                    allegro_message("rate");
+                                }
+                                printf("Attaque 4");
+                            }
+                            //si joueur sur case rouge alors
+                            //collision loin 5 cases
+                        if(mouse_x>=495 && mouse_x<=554 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort4' du dresseur
+                            {
+                                q=rand()%(2-1+1)+1;
+                                if(q!=1)
+                                {
+                                    tab[i].PA=tab[i].PA-5;
+                                    b=rand()%(100-70+1)+70;
+                                    tab[j].PV=tab[j].PV-b;
+                                    clic=1;
+                                    printf("PV pris : %d du joueur %d\n",tab[j].PV,j);
+                                }
+                                else
+                                {
+                                    allegro_message("rate");
+                                }
+                                printf("Attaque 5");
+                            }
+                    tab[i].cpt++;  //compteur plus 1
+                    }
+                else if(tab[1].PA<5)
+                    {
+                       //si joueur j sur case bleu alors if(tab[j].ligne
+                        //collision proche(1case)
+                       if(mouse_x>=258 && mouse_x<=316 && mouse_y>=678 && mouse_y<=756 ) //Si souris clique 'attaque corps' du dresseur//129,158,339,378
+                            {
+                               h=rand()%(10-1+1)+1;
+                                if(h!=1)
+                                {
+                                tab[i].PA=tab[i].PA-1;
+                                x=rand()%(30-10+1)+10;
+                                tab[j].PV=tab[j].PV-x;
+                                clic=1;
+                                printf("PV pris : %d du joueur %d\n",tab[j].PV,j);
+                                }
+                                else
+                                {
+                                    allegro_message("rate");
+                                }
+                                printf("Attaque 1");
+                            }
+                           //si joueur j sur case jaune alors
+                            //collision loin(2cases)
+                        if(mouse_x>=317 && mouse_x<=376 && mouse_y>=678 && mouse_y<=756)//Si souris clique 'sort1' du dresseur// 159 188 339?378
+                            {
+                               s=rand()%(5-1+1)+1;
+                                if(s>1)
+                                {
+                                    tab[i].PA=tab[i].PA-2;
+                                    y=rand()%(40-20+1)+20;
+                                    tab[j].PV=tab[j].PV-y;
+                                    clic=1;
+                                    printf("PV pris : %d du joueur %d\n",tab[j].PV,j);
+                                }
+                                else
+                                {
+                                    allegro_message("rate");
+                                }
+                                printf("Attaque 2");
+                            }
+                            //collision loin(3cases)
+                        if(mouse_x>=377 && mouse_x<=436 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort2' du dresseur//189 218 339 378
+                            {
+                                f=rand()%(10-1+1)+1;
+                                if(f>3)
+                                {
+                                    tab[i].PA=tab[i].PA-3;
+                                    z=rand()%(60-40+1)+40;
+                                    tab[j].PV=tab[j].PV-z;
+                                    clic=1;
+                                    printf("PV pris : %d du joueur %d\n",tab[j].PV,j);
+                                }
+                                else
+                                {
+                                    allegro_message("rate");
+                                }
+                                printf("Attaque 3");
+                            }
+
+                        if(mouse_x>=437 && mouse_x<=494 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort3' du dresseur
+                            {
+                                g=rand()%(5-1+1)+1;
+                                if(g>2)
+                                {
+                                    tab[i].PA=tab[i].PA-4;
+                                    a=rand()%(60-20+1)+20;
+                                    tab[i].PV=tab[i].PV+a;
+                                    clic=1;
+                                    printf("PV donnee : %d du joueur %d\n",tab[i].PV,i);
+                                }
+                                else
+                                {
+                                    allegro_message("rate");
+                                }
+                                printf("Attaque 4");
+                            }  
+                    tab[i].cpt++;  //compteur plus 1
+                    }
+
+           }
+
+}
+}
