@@ -676,6 +676,7 @@ void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs)
             if(mouse_x>=106 && mouse_x<=306 && mouse_y>=310&& mouse_y<=387)
             {
                 clic=1;
+                tabJoueurs = (t_joueur*) malloc(2*sizeof(t_joueur));
                 initialiserJoueurStats(tabJoueurs,2); // initialisation stats de 2 joueurs
                 *nbJoueurs=2;
                 clear_bitmap(screen);
@@ -686,6 +687,7 @@ void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs)
             if(mouse_x>=412 && mouse_x<=612 && mouse_y>=310&& mouse_y<=387)
             {
                 clic=1;
+                tabJoueurs = (t_joueur*) malloc(3*sizeof(t_joueur));
                 initialiserJoueurStats(tabJoueurs,3); // initialisation stats de 3 joueurs
                 *nbJoueurs=3;
                 clear_bitmap(screen);
@@ -696,6 +698,7 @@ void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs)
             if(mouse_x>=718 && mouse_x<=918 && mouse_y>=310&& mouse_y<=387)
             {
                 clic=1;
+                tabJoueurs = (t_joueur*) malloc(4*sizeof(t_joueur));
                 initialiserJoueurStats(tabJoueurs,4); // initialisation stats de 4 joueurs
                 *nbJoueurs=4;
                 clear_bitmap(screen);
@@ -877,23 +880,6 @@ void menuDemarrage(t_joueur *tabJoueurs, int* nbJoueurs)
 /*-----------------------------------------------------------------------------------------------------*/
 
 
-
-/*-----------------------------------------------------------------------------------------------------*/
-void affichageDecor (BITMAP* decor, BITMAP* page){
-
-decor= load_bitmap("mapJeu.bmp", NULL );
-
-while (!key[KEY_ESC])
-
-{
-
-blit(decor, screen, 0, 0, 0, 0, decor->w,decor->h);
-}
-
-}
-/*-----------------------------------------------------------------------------------------------------*/
-
-
 /*-----------------------------------------------------------------------------------------------------*/
 BITMAP* recup_sprites( BITMAP*scr, int w, int h, int startx, int starty, int col, int element)
 {
@@ -901,6 +887,13 @@ BITMAP *bmp;
 int x,y;
 
 bmp=create_bitmap(w,h);
+
+    if (!bmp)
+    {
+        allegro_message("Nous n'avons pas pu charger votre sprite");
+        quitterAllegro();
+    }
+
 if (bmp!=NULL){
 x= startx+(element%col)*w;
 y= starty+(element/col)*h;
@@ -920,9 +913,29 @@ BITMAP* groupe_animes[4];
 
 
 groupe_animes[0]=load_bitmap("Joueur1.bmp",NULL);
+    if (!groupe_animes[0])
+    {
+        allegro_message("Nous n'avons pas pu charger \ Joueur1.bmp \"");
+        quitterAllegro();
+    }
 groupe_animes[1]=load_bitmap("Joueur2.bmp",NULL);
+    if (!groupe_animes[1])
+    {
+        allegro_message("Nous n'avons pas pu charger  \ Joueur2.bmp \"");
+        quitterAllegro();
+    }
 groupe_animes[2]=load_bitmap("Joueur3.bmp",NULL);
+    if (!groupe_animes[2])
+    {
+        allegro_message("Nous n'avons pas pu charger \* Joueur3.bmp *\"");
+        quitterAllegro();
+    }
 groupe_animes[3]=load_bitmap("Joueur4.bmp",NULL);
+    if (!groupe_animes[3])
+    {
+        allegro_message("Nous n'avons pas pu charger \* Joueur4.bmp *\"");
+        quitterAllegro();
+    }
 
 
 for (i=0;i<4;i++){
@@ -944,47 +957,49 @@ destroy_bitmap(groupe_animes[3]);
 int obstacle (int Scolonne, int Sligne){ // spg de hitbox
 
 //hitbox du lac
-if ((Scolonne>=1&&Scolonne<=16)&&Sligne==11||Sligne==12){
+if ((Scolonne>=0&&Scolonne<=15)&&(Sligne==10||Sligne==11)){
     return 1;
 }
 //hitbaox maison
-if ((Scolonne>=11&&Scolonne<=14)&&(Sligne>=1&&Sligne<=4)){
+if ((Scolonne>=10&&Scolonne<=13)&&(Sligne>=0&&Sligne<=3)){
     return 1;
 }
 
 //hitbaox arbres
-if ((Scolonne>=14&&Scolonne<=16)&&(Sligne>=9&&Sligne<=10)){
+if ((Scolonne>=13&&Scolonne<=15)&&(Sligne>=8&&Sligne<=9)){
     return 1;
 }
 
 
 //hitbaox flac
-if ((Scolonne==3)&&(Sligne>=8&&Sligne<=9)){
+if ((Scolonne==2)&&(Sligne>=7&&Sligne<=8)){
     return 1;
 }
 //hitbaox fleur
-if (((Scolonne>=7&&Scolonne<=12)&&(Sligne>=7&&Sligne<=9))||(Scolonne>=7&&Scolonne<=12)&&(Sligne==10)){
+else if (((Scolonne>=6&&Scolonne<=11)&&(Sligne>=6&&Sligne<=8))||((Scolonne>=10&&Scolonne<=11)&&(Sligne==9))){
     return 1;
 }
 
 //hitbaox panneau 1
-if ((Scolonne==5)&&(Sligne>=2&&Sligne<=3)){
+else if ((Scolonne==4)&&(Sligne>=1&&Sligne<=2)){
     return 1;
 }
 
 //hitbaox panneau 2
-if ((Scolonne==5)&&(Sligne==10)){
+else if ((Scolonne==1)&&(Sligne==3)){
     return 1;
 }
 
+else
+
+return 0;
 }
 /*-----------------------------------------------------------------------------------------------------*/
 
 
 /*-----------------------------------------------------------------------------------------------------*/
-int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur *mesJoueur, int numJoueur){
-
-    show_mouse(screen);
+int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur *mesJoueur, int numJoueur)
+{
 
     int Scolonne; // position de la case du personnage en x
     int Sligne; // position de la case du personnage en y
@@ -995,7 +1010,13 @@ int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur
     mesJoueur[numJoueur].ligne=2;
     mesJoueur[numJoueur].colonne=2;
 */
-    decor= load_bitmap("Map.bmp", NULL );
+    decor= load_bitmap("mapJeu.bmp", NULL );
+
+    if (!decor)
+    {
+        allegro_message("Nous n'avons pas pu charger \* mapJeu.bmp *\"");
+        quitterAllegro();
+    }
 
     int newLigne;
     int newColonne;
@@ -1028,8 +1049,6 @@ int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur
              newLigne=Sligne;
              newColonne=Scolonne;
 
-
-
             deplacementABS=mesJoueur[numJoueur].colonne-Scolonne;
             deplacementORD=mesJoueur[numJoueur].ligne-Sligne;
 
@@ -1041,18 +1060,10 @@ int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur
                 deplacementORD=-deplacementORD;
             }
 
-
-
-
-
-
-
             deplacement= deplacementABS+deplacementORD;
 
 
 if ((deplacement<mesJoueur[numJoueur].PM)&&(obstacle(newColonne,newLigne)!=1)){ //le joueur rentre les conditions pour se déplacer
-
-
 
             mesJoueur[numJoueur].PM=mesJoueur[numJoueur].PM-deplacement; //on enleve le nombre de pm correspondant au joueur
 
@@ -1141,18 +1152,15 @@ if ((deplacement<mesJoueur[numJoueur].PM)&&(obstacle(newColonne,newLigne)!=1)){ 
             draw_sprite(page, spriteDresseur[numJoueur][1],mesJoueur[numJoueur].ligne*64, mesJoueur[numJoueur].colonne*64);
              textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
 
-        }
+            }
 
            else {
             return 2; // le joueur a touché un obstacle ou n'a pas assez de PM pour le déplacement
            }
 
-
-            }
-
+        }
 
     blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
-
 
     }
 
@@ -1160,3 +1168,8 @@ return 0;
 
 }
 /*-----------------------------------------------------------------------------------------------------*/
+
+
+
+
+
