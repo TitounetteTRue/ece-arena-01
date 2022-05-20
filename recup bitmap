@@ -1,0 +1,13 @@
+BITMAP* recup_sprites( BITMAP*scr, int w, int h, int startx, int starty, int col, int element)
+{
+BITMAP *bmp;
+int x,y;
+
+bmp=create_bitmap(w,h);
+if (bmp!=NULL){
+x= startx+(element%col)*w;
+y= starty+(element/col)*h;
+blit(scr,bmp,x,y,0,0,w,h);
+}
+return bmp;
+}
