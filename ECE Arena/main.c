@@ -3,10 +3,14 @@
 /*----------------------------------------------------------*/
 int main()
 {
-    //Déclarations
+    //DÃ©clarations
     int* nbJoueurs;
     t_joueur *tabJoueurs;   //Tableau de joueurs
     tabJoueurs = (t_joueur*) malloc(2*sizeof(t_joueur));
+    BITMAP* map;
+    BITMAP* page;
+    BITMAP* spriteDresseur[4][16]; // 4 dresseurs et 16 postions par dresseur
+    page=create_bitmap(1024,768);
 
      // Initialisation d'Allegro
     initialisationAllegro();
@@ -19,9 +23,9 @@ int main()
         return 1;
     }
 
-    show_mouse(screen); //Permet de montrer la souris à l'écran
+    show_mouse(screen); //Permet de montrer la souris Ã  l'Ã©cran
 
-    menuDemarrage(tabJoueurs,nbJoueurs);  //Appel Fonction début partie
+    menuDemarrage(tabJoueurs,nbJoueurs);  //Appel Fonction dÃ©but partie
     chargementDecorArene();
 
     return 0;  // Fin du main
