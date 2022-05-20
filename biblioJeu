@@ -41,7 +41,7 @@ void attributionClasseJoueur(t_joueur* tabJoueurs, int* nbJoueurs, int i);
 void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs);
 void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs);
 void menuDemarrage(t_joueur *tabJoueurs, int* nbJoueurs);
-int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur *tabJoueurs, int numJoueur);
+int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur *tabJoueurs, int numJoueur, int nbJoueur);
 int obstacle (int Scolonne, int Sligne);
 void extractionSprite (BITMAP* spriteDresseur[4][16]);
 
