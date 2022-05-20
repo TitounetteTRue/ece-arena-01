@@ -6,13 +6,11 @@ int main()
     //Déclarations
     int* nbJoueurs;
     t_joueur *tabJoueurs;   //Tableau de joueurs
+    tabJoueurs = (t_joueur*) malloc(4*sizeof(t_joueur));
 
     BITMAP* map;
     BITMAP* page;
     BITMAP* spriteDresseur[4][16];
-
-
-
      // Initialisation d'Allegro
     initialisationAllegro();
 
@@ -39,4 +37,3 @@ int main()
 
 }END_OF_MAIN();  //Macro pour quitter Allegro
 /*-----------------------------------------------------------------------------------------------------*/
-
