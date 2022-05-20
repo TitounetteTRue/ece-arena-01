@@ -6,13 +6,11 @@ int main()
     //Déclarations
     int* nbJoueurs;
     t_joueur *tabJoueurs;   //Tableau de joueurs
-    tabJoueurs = (t_joueur*) malloc((*nbJoueurs)*sizeof(t_joueur));
 
     BITMAP* map;
     BITMAP* page;
     BITMAP* spriteDresseur[4][16];
 
-    page=create_bitmap(1024,768);
 
 
      // Initialisation d'Allegro
@@ -28,12 +26,17 @@ int main()
 
     show_mouse(screen); //Permet de montrer la souris à l'écran
 
-    extractionSprite(spriteDresseur);
+
     menuDemarrage(tabJoueurs,nbJoueurs);  //Appel Fonction début partie
 
+    page=create_bitmap(1024,768);
+    extractionSprite(spriteDresseur);
     deplace(map,page,spriteDresseur,tabJoueurs,0);
+
+    free(tabJoueurs);
 
     return 0;  // Fin du main
 
 }END_OF_MAIN();  //Macro pour quitter Allegro
 /*-----------------------------------------------------------------------------------------------------*/
+
