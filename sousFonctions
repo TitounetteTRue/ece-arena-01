@@ -125,6 +125,7 @@ void initialiserJoueurStats(t_joueur *tabJoueurs, int nbJoueurs)   //Paramètres
 
         tabJoueurs[i].cpt=0; //compteur pour PA
         tabJoueurs[i].vivant=1;//Savoir s'il est en vie ou pas
+        tabJoueurs[i].classement=0;
 
         for(j=0;j<4;j++)
             tabJoueurs[i-1].choixClasseVerif[j] = 0;  //0 si le joueur a choisi une classe, 1 si classe choisie
