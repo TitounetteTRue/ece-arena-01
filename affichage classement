@@ -15,6 +15,16 @@ void affichageclassement(t_joueur*tab,int nbJoueurs,BITMAP*mapJeu)
         textprintf_ex(Font, font, 512, 384+y, makecol(255, 100, 200),-1, "%d/ %s",tab[i].classement,tab[i].pseudo);//en rose le résultat du classement
         y=y+20;//c'est pour mettre en dessous du 1er résultat
     }
-   
-      blit(Font,screen,0, 0, 0, 0, 512, 384);//affichage
+    while(clic==0)
+    {
+      blit(Font,screen,0, 0, 0, 0, 1024, 768);//affichage
+        if(mouse_b & 1)
+        {
+          if(mouse_x>=0 && mouse_x<=1024 && mouse_y>=0 && mouse_y <=768)
+          {
+            clear_bitmap(Font);
+            clic=1;
+         }
+        }
+    }
 }
