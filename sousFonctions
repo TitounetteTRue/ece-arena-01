@@ -1021,11 +1021,11 @@ int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur
     mesJoueur[numJoueur].ligne=2;
     mesJoueur[numJoueur].colonne=2;
 */
-  //  decor= load_bitmap("mapJeu.bmp", NULL );
+    decor= load_bitmap("mapJeu.bmp", NULL );
 
     if (!decor)
     {
-        allegro_message("Nous n'avons pas pu charger \* mapJeu.bmp *\"");
+        allegro_message("Nous n'avons pas pu charger  mapJeu.bmp ");
         quitterAllegro();
     }
 
@@ -1035,7 +1035,7 @@ int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur
     int i, j, k;
     int clic=0;
 
-    while (clic=0)
+    while (clic == 0)
     {
         blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
 
@@ -1059,7 +1059,7 @@ int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur
         draw_sprite(page, spriteDresseur[i][0], mesJoueur[i].colonne*64, mesJoueur[i].ligne*64);
        }
 
-cadreJeu(page, mesJoueur, nbJoueur, numJoueur);
+//cadreJeu(page, mesJoueur, nbJoueur, numJoueur);
 
 
         if (mouse_b&1)
@@ -1219,8 +1219,6 @@ if ((deplacement<=3)&&(obstacle(newColonne,newLigne)!=1)){ //le joueur rentre le
 return 0;
 
 }
-
-
 /*-----------------------------------------------------------------------------------------------------*/
 
 
