@@ -179,7 +179,7 @@ void attaque(t_joueur *tab,int numJoueur,int nbrjoueurs,BITMAP*mapJeu)// i est l
                     printf("Attaque 4");
                     clic2=1;
                 }
-                            //collision loin 5 cases
+                            //collision loin 4 cases
                 if(mouse_x>=495 && mouse_x<=554 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort4' du dresseur
                 {
                     if((tab[j].ligne<=tab[numJoueur].ligne+4 || tab[j].ligne>=tab[numJoueur].ligne-4) &&(tab[j].colonne<=tab[numJoueur].colonne+3 || tab[j].colonne>=tab[numJoueur].colonne-3))
@@ -307,7 +307,7 @@ void attaque(t_joueur *tab,int numJoueur,int nbrjoueurs,BITMAP*mapJeu)// i est l
                     printf("Attaque 4");
                     clic2=1;
                 }
-                            //collision loin 5 cases
+                            //collision loin 4 cases
                 if(mouse_x>=495 && mouse_x<=554 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort4' du dresseur
                 {
                     if((tab[j].ligne<=tab[numJoueur].ligne+4 || tab[j].ligne>=tab[numJoueur].ligne-4) &&(tab[j].colonne<=tab[numJoueur].colonne+3 || tab[j].colonne>=tab[numJoueur].colonne-3))
@@ -437,7 +437,7 @@ void attaque(t_joueur *tab,int numJoueur,int nbrjoueurs,BITMAP*mapJeu)// i est l
                     printf("Attaque 4");
                     clic2=1;
                 }
-                            //collision loin 5 cases
+                
                 if(mouse_x>=495 && mouse_x<=554 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort4' du dresseur
                 {
                         allegro_message("Impossible");
