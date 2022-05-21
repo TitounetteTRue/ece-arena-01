@@ -39,6 +39,7 @@ int main()
     extractionSprite(spriteDresseur);
     //deplace(map,page,spriteDresseur,tabJoueurs,0,4);
 
+    //Boucle de jeu
     for(i=0;i<nbJoueurs;i++)
             tourJoueur(tabJoueurs,i,nbJoueurs,map,page,spriteDresseur);
 
