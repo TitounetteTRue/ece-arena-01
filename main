@@ -12,6 +12,8 @@ int main()
     BITMAP* map;
     BITMAP* page;
     BITMAP* spriteDresseur[4][16];
+     BITMAP* spritePokemon[4];
+    BITMAP* spritePokeAttack[4][4];
 
     // Initialisation d'Allegro
     initialisationAllegro();
@@ -36,7 +38,7 @@ int main()
     choixClasseJoueur(tabJoueurs,nbJoueurs);
 
     page=create_bitmap(1024,768);
-    extractionSprite(spriteDresseur);
+    extractionSprite(spriteDresseur, spritePokemon, spritePokeAttack);
     //deplace(map,page,spriteDresseur,tabJoueurs,0,4);
 
     //Boucle de jeu
