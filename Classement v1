@@ -1,0 +1,20 @@
+//il faut juste faire disparaitre le joueur
+
+int classement(joueur*tab,numJoueur,int nbJoueurs)
+{
+    if(tab[numJoueur].PV<=0)
+    {
+        tab[numJoueur].vivant=0;
+        tab[numJoueur].classement=nbJoueurs;
+        nbJoueurs--;
+        return nbJoueurs;
+    }
+    else
+    {
+        return nbJoueurs;
+    }
+}
+
+
+
+//il faut ajouter à la structure le classement du joueur
