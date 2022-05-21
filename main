@@ -4,17 +4,19 @@
 int main()
 {
     //Déclarations
-    int* nbJoueurs;
+    int nbJoueurs, i;
     t_joueur *tabJoueurs;   //Tableau de joueurs
     tabJoueurs = (t_joueur*) malloc(4*sizeof(t_joueur));
 
+    //Bitmaps
     BITMAP* map;
     BITMAP* page;
     BITMAP* spriteDresseur[4][16];
-     // Initialisation d'Allegro
+
+    // Initialisation d'Allegro
     initialisationAllegro();
 
-    // install_keyboard(); //Installation du clavier
+    //install_keyboard(); //Installation du clavier
 
     if (install_mouse() == -1)    //Installation de la souris
     {
@@ -24,12 +26,21 @@ int main()
 
     show_mouse(screen); //Permet de montrer la souris à l'écran
 
+    //Appel Fonction début partie
+    //menuDemarrage();
 
-    menuDemarrage(tabJoueurs,nbJoueurs);  //Appel Fonction début partie
+    //Appel de la fonction pour le choix du nombre de joueurs
+    nbJoueurs=choixNbJoueurs(tabJoueurs);
+
+    //Appel fonction classe des Joueurs
+    choixClasseJoueur(tabJoueurs,nbJoueurs);
 
     page=create_bitmap(1024,768);
     extractionSprite(spriteDresseur);
-    deplace(map,page,spriteDresseur,tabJoueurs,0,4);
+    //deplace(map,page,spriteDresseur,tabJoueurs,0,4);
+
+    for(i=0;i<nbJoueurs;i++)
+            tourJoueur(tabJoueurs,i,nbJoueurs,map,page,spriteDresseur);
 
     free(tabJoueurs);
 
