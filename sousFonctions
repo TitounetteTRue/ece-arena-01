@@ -1199,6 +1199,7 @@ if ((deplacement<=3)&&(obstacle(newColonne,newLigne)!=1)){ //le joueur rentre le
 
             mesJoueur[numJoueur].ligne=newLigne;
             mesJoueur[numJoueur].colonne=newColonne;
+             mesJoueur[numJoueur].PM=3;
 
             draw_sprite(page, spriteDresseur[numJoueur][1],mesJoueur[numJoueur].colonne*64, mesJoueur[numJoueur].ligne*64);
              textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
