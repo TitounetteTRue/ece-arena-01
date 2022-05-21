@@ -44,6 +44,8 @@ void menuDemarrage(t_joueur *tabJoueurs, int* nbJoueurs);
 int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur *tabJoueurs, int numJoueur, int nbJoueur);
 int obstacle (int Scolonne, int Sligne);
 void extractionSprite (BITMAP* spriteDresseur[4][16]);
+void affichageStats(BITMAP* page,t_joueur* tabJoueur, int nbJoueur, int numJoueur);
+void cadreJeu(BITMAP* page,t_joueur* tabJoueur, int nbJoueur, int numJoueur);
 
 /*----------------------------------------------*/
 
