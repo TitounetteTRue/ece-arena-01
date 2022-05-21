@@ -88,7 +88,7 @@ void attaque(t_joueur *tab,int numJoueur,int nbrjoueurs,BITMAP*mapJeu)// i est l
             if (mouse_b & 1)
             {
                         //collision proche(1case)
-                if(mouse_x>=258 && mouse_x<=316 && mouse_y>=678 && mouse_y<=756 ) //Si souris clique 'attaque corps' du dresseur
+                if(mouse_x>=370 && mouse_x<=427 && mouse_y>=603 && mouse_y<=631 ) //Si souris clique 'attaque corps' du dresseur
                 {
                     if((tab[j].ligne==tab[numJoueur].ligne+1 || tab[j].ligne==tab[numJoueur].ligne-1) &&(tab[j].colonne==tab[numJoueur].colonne+1 || tab[j].colonne==tab[numJoueur].colonne-1))
                     {
@@ -113,7 +113,7 @@ void attaque(t_joueur *tab,int numJoueur,int nbrjoueurs,BITMAP*mapJeu)// i est l
                     }
                 }
                             //collision loin(2cases)
-                if(mouse_x>=317 && mouse_x<=376 && mouse_y>=678 && mouse_y<=756)//Si souris clique 'sort1' du dresseur
+                if(mouse_x>=428 && mouse_x<=485 mouse_y>=603 && mouse_y<=631)//Si souris clique 'sort1' du dresseur
                 {
                     if((tab[j].ligne==tab[numJoueur].ligne+2 || tab[j].ligne==tab[numJoueur].ligne-2) &&(tab[j].colonne==tab[numJoueur].colonne+2 || tab[j].colonne==tab[numJoueur].colonne-2))
                     {
@@ -138,7 +138,7 @@ void attaque(t_joueur *tab,int numJoueur,int nbrjoueurs,BITMAP*mapJeu)// i est l
                     }
                 }
                             //collision loin(3cases)
-                if(mouse_x>=377 && mouse_x<=436 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort2' du dresseur//189 218 339 378
+                if(mouse_x>=486 && mouse_x<=544 && mouse_y>=603 && mouse_y<=631)//si souris clique 'sort2' du dresseur//189 218 339 378
                 {
                     if((tab[j].ligne<=tab[numJoueur].ligne+3 || tab[j].ligne>=tab[numJoueur].ligne-3) &&(tab[j].colonne<=tab[numJoueur].colonne+3 || tab[j].colonne>=tab[numJoueur].colonne-3))
                     {
@@ -162,7 +162,7 @@ void attaque(t_joueur *tab,int numJoueur,int nbrjoueurs,BITMAP*mapJeu)// i est l
                         allegro_message("Impossible");
                     }
                 }
-                if(mouse_x>=437 && mouse_x<=494 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort3' du dresseur
+                if(mouse_x>=545 && mouse_x<=603 && mouse_y>=603 && mouse_y<=631)//si souris clique 'sort3' du dresseur
                 {
                     g=rand()%(5-1+1)+1;
                     if(g>2)
@@ -180,7 +180,7 @@ void attaque(t_joueur *tab,int numJoueur,int nbrjoueurs,BITMAP*mapJeu)// i est l
                     clic2=1;
                 }
                             //collision loin 4 cases
-                if(mouse_x>=495 && mouse_x<=554 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort4' du dresseur
+                if(mouse_x>=604 && mouse_x<=662 && mouse_y>=553 && mouse_y<=631)//si souris clique 'sort4' du dresseur
                 {
                     if((tab[j].ligne<=tab[numJoueur].ligne+4 || tab[j].ligne>=tab[numJoueur].ligne-4) &&(tab[j].colonne<=tab[numJoueur].colonne+3 || tab[j].colonne>=tab[numJoueur].colonne-3))
                     {
@@ -210,13 +210,13 @@ void attaque(t_joueur *tab,int numJoueur,int nbrjoueurs,BITMAP*mapJeu)// i est l
     }
     else if(tab[numJoueur].PA>=5 && tab[numJoueur].PA<10)
     {
-        while(clic2==0)
+         while(clic2==0)
         {
                                     //Si clic gauche souris cliqué
             if (mouse_b & 1)
             {
                         //collision proche(1case)
-                if(mouse_x>=258 && mouse_x<=316 && mouse_y>=678 && mouse_y<=756 ) //Si souris clique 'attaque corps' du dresseur
+                if(mouse_x>=370 && mouse_x<=427 && mouse_y>=603 && mouse_y<=631 ) //Si souris clique 'attaque corps' du dresseur
                 {
                     if((tab[j].ligne==tab[numJoueur].ligne+1 || tab[j].ligne==tab[numJoueur].ligne-1) &&(tab[j].colonne==tab[numJoueur].colonne+1 || tab[j].colonne==tab[numJoueur].colonne-1))
                     {
@@ -241,7 +241,7 @@ void attaque(t_joueur *tab,int numJoueur,int nbrjoueurs,BITMAP*mapJeu)// i est l
                     }
                 }
                             //collision loin(2cases)
-                if(mouse_x>=317 && mouse_x<=376 && mouse_y>=678 && mouse_y<=756)//Si souris clique 'sort1' du dresseur
+                if(mouse_x>=428 && mouse_x<=485 mouse_y>=603 && mouse_y<=631)//Si souris clique 'sort1' du dresseur
                 {
                     if((tab[j].ligne==tab[numJoueur].ligne+2 || tab[j].ligne==tab[numJoueur].ligne-2) &&(tab[j].colonne==tab[numJoueur].colonne+2 || tab[j].colonne==tab[numJoueur].colonne-2))
                     {
@@ -266,7 +266,7 @@ void attaque(t_joueur *tab,int numJoueur,int nbrjoueurs,BITMAP*mapJeu)// i est l
                     }
                 }
                             //collision loin(3cases)
-                if(mouse_x>=377 && mouse_x<=436 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort2' du dresseur//189 218 339 378
+                if(mouse_x>=486 && mouse_x<=544 && mouse_y>=603 && mouse_y<=631)//si souris clique 'sort2' du dresseur//189 218 339 378
                 {
                     if((tab[j].ligne<=tab[numJoueur].ligne+3 || tab[j].ligne>=tab[numJoueur].ligne-3) &&(tab[j].colonne<=tab[numJoueur].colonne+3 || tab[j].colonne>=tab[numJoueur].colonne-3))
                     {
@@ -290,7 +290,7 @@ void attaque(t_joueur *tab,int numJoueur,int nbrjoueurs,BITMAP*mapJeu)// i est l
                         allegro_message("Impossible");
                     }
                 }
-                if(mouse_x>=437 && mouse_x<=494 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort3' du dresseur
+                if(mouse_x>=545 && mouse_x<=603 && mouse_y>=603 && mouse_y<=631)//si souris clique 'sort3' du dresseur
                 {
                     g=rand()%(5-1+1)+1;
                     if(g>2)
@@ -308,7 +308,7 @@ void attaque(t_joueur *tab,int numJoueur,int nbrjoueurs,BITMAP*mapJeu)// i est l
                     clic2=1;
                 }
                             //collision loin 4 cases
-                if(mouse_x>=495 && mouse_x<=554 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort4' du dresseur
+                if(mouse_x>=604 && mouse_x<=662 && mouse_y>=553 && mouse_y<=631)//si souris clique 'sort4' du dresseur
                 {
                     if((tab[j].ligne<=tab[numJoueur].ligne+4 || tab[j].ligne>=tab[numJoueur].ligne-4) &&(tab[j].colonne<=tab[numJoueur].colonne+3 || tab[j].colonne>=tab[numJoueur].colonne-3))
                     {
@@ -340,13 +340,13 @@ void attaque(t_joueur *tab,int numJoueur,int nbrjoueurs,BITMAP*mapJeu)// i est l
     else if(tab[1].PA<5)
         {
 
-        while(clic2==0)
+         while(clic2==0)
         {
                                     //Si clic gauche souris cliqué
             if (mouse_b & 1)
             {
                         //collision proche(1case)
-                if(mouse_x>=258 && mouse_x<=316 && mouse_y>=678 && mouse_y<=756 ) //Si souris clique 'attaque corps' du dresseur
+                if(mouse_x>=370 && mouse_x<=427 && mouse_y>=603 && mouse_y<=631 ) //Si souris clique 'attaque corps' du dresseur
                 {
                     if((tab[j].ligne==tab[numJoueur].ligne+1 || tab[j].ligne==tab[numJoueur].ligne-1) &&(tab[j].colonne==tab[numJoueur].colonne+1 || tab[j].colonne==tab[numJoueur].colonne-1))
                     {
@@ -371,7 +371,7 @@ void attaque(t_joueur *tab,int numJoueur,int nbrjoueurs,BITMAP*mapJeu)// i est l
                     }
                 }
                             //collision loin(2cases)
-                if(mouse_x>=317 && mouse_x<=376 && mouse_y>=678 && mouse_y<=756)//Si souris clique 'sort1' du dresseur
+                if(mouse_x>=428 && mouse_x<=485 mouse_y>=603 && mouse_y<=631)//Si souris clique 'sort1' du dresseur
                 {
                     if((tab[j].ligne==tab[numJoueur].ligne+2 || tab[j].ligne==tab[numJoueur].ligne-2) &&(tab[j].colonne==tab[numJoueur].colonne+2 || tab[j].colonne==tab[numJoueur].colonne-2))
                     {
@@ -396,7 +396,7 @@ void attaque(t_joueur *tab,int numJoueur,int nbrjoueurs,BITMAP*mapJeu)// i est l
                     }
                 }
                             //collision loin(3cases)
-                if(mouse_x>=377 && mouse_x<=436 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort2' du dresseur//189 218 339 378
+                if(mouse_x>=486 && mouse_x<=544 && mouse_y>=603 && mouse_y<=631)//si souris clique 'sort2' du dresseur//189 218 339 378
                 {
                     if((tab[j].ligne<=tab[numJoueur].ligne+3 || tab[j].ligne>=tab[numJoueur].ligne-3) &&(tab[j].colonne<=tab[numJoueur].colonne+3 || tab[j].colonne>=tab[numJoueur].colonne-3))
                     {
@@ -420,7 +420,7 @@ void attaque(t_joueur *tab,int numJoueur,int nbrjoueurs,BITMAP*mapJeu)// i est l
                         allegro_message("Impossible");
                     }
                 }
-                if(mouse_x>=437 && mouse_x<=494 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort3' du dresseur
+                if(mouse_x>=545 && mouse_x<=603 && mouse_y>=603 && mouse_y<=631)//si souris clique 'sort3' du dresseur
                 {
                     g=rand()%(5-1+1)+1;
                     if(g>2)
@@ -437,11 +437,13 @@ void attaque(t_joueur *tab,int numJoueur,int nbrjoueurs,BITMAP*mapJeu)// i est l
                     printf("Attaque 4");
                     clic2=1;
                 }
-                
-                if(mouse_x>=495 && mouse_x<=554 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort4' du dresseur
+                           //collision loin 4 cases
+                if(mouse_x>=604 && mouse_x<=662 && mouse_y>=553 && mouse_y<=631)//si souris clique 'sort4' du dresseur
                 {
-                        allegro_message("Impossible");
-                }
+                    if((tab[j].ligne<=tab[numJoueur].ligne+4 || tab[j].ligne>=tab[numJoueur].ligne-4) &&(tab[j].colonne<=tab[numJoueur].colonne+3 || tab[j].colonne>=tab[numJoueur].colonne-3))
+                    {
+                        allegro_message("Impossible pas assez de PA");
+                    }
             }
         }
         tab[numJoueur].cpt++;  //compteur plus 1
