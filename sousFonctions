@@ -1024,8 +1024,9 @@ int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur
     int newColonne;
 
     int i, j, k;
+    int clic=0;
 
-    while (!key[KEY_ESC])
+    while (clic=0)
     {
         blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
 
@@ -1073,7 +1074,7 @@ cadreJeu(page, mesJoueur, nbJoueur, numJoueur);
             deplacement= deplacementABS+deplacementORD;
 
 
-if ((deplacement<mesJoueur[numJoueur].PM)&&(obstacle(newColonne,newLigne)!=1)){ //le joueur rentre les conditions pour se déplacer
+if ((deplacement<=3)&&(obstacle(newColonne,newLigne)!=1)){ //le joueur rentre les conditions pour se déplacer
 
 
 
@@ -1192,7 +1193,7 @@ if ((deplacement<mesJoueur[numJoueur].PM)&&(obstacle(newColonne,newLigne)!=1)){ 
 
             draw_sprite(page, spriteDresseur[numJoueur][1],mesJoueur[numJoueur].colonne*64, mesJoueur[numJoueur].ligne*64);
              textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
-
+            clic=1;
             }
 
            else {
