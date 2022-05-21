@@ -109,7 +109,7 @@ void exitJeu()
 void initialiserJoueurStats(t_joueur *tabJoueurs, int nbJoueurs)   //Paramètres: tableau de joueurs, nb de joueurs, "i" pour le numéro du joueur
 {
     int i=0, j=0;
-    
+
     srand(time(NULL));
 
     for(i=0; i<nbJoueurs; i++)  //Boucle pour initialiser tous les joueurs
@@ -136,7 +136,7 @@ void initialiserJoueurStats(t_joueur *tabJoueurs, int nbJoueurs)   //Paramètres
 
 /*-----------------------------------------------------------------------------------------------------*/
 ///Attribution de la classe en fonction des joueurs
-void attributionClasseJoueur(t_joueur* tabJoueurs, int* nbJoueurs, int i)
+void attributionClasseJoueur(t_joueur* tabJoueurs, int i)
 {
     //Déclarations d'un double buffer pour stats de chaque joueur
     /******************************************************************************/
@@ -246,7 +246,7 @@ void attributionClasseJoueur(t_joueur* tabJoueurs, int* nbJoueurs, int i)
 
 /*-----------------------------------------------------------------------------------------------------*/
 ///Choix de la classe(personnage) des joueurs
-void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
+void choixClasseJoueur(t_joueur *tabJoueurs, int nbJoueurs)
 {
     int i=0;
     int clic=0;
@@ -479,7 +479,7 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
 
     //Affichages
     textprintf_ex(arrierePlanChoix, font, 450, 50, makecol(202,112,0),-1, "Choix du dresseur:");
-    textprintf_ex(arrierePlanChoix, font, 20, 80, makecol(128,0,128), -1, "Nombre joueurs: %d", *nbJoueurs);
+    textprintf_ex(arrierePlanChoix, font, 20, 80, makecol(128,0,128), -1, "Nombre joueurs: %d", nbJoueurs);
     rect(arrierePlanChoix, 445,46,600,61, makecol(202,112,0));
     line(arrierePlanChoix,23,93,149,93, makecol(128,0,128));
 
@@ -492,7 +492,7 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
     clear(fondCadreJoueur);
 
     //Boucle des choix de classe
-    while(i < *nbJoueurs)
+    while(i < nbJoueurs)
     {
         textprintf_ex(fondCadreJoueur, font, 360, 30, makecol(255,255,255), -1, "Choisissez votre dresseur !");  //On affiche à chaque tour
         clear(fondCadreJoueur);
@@ -519,7 +519,7 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
 
                         tabJoueurs[i].classe=1;
 
-                        attributionClasseJoueur(tabJoueurs,nbJoueurs,i); //Appel sous fonction attribution
+                        attributionClasseJoueur(tabJoueurs,i); //Appel sous fonction attribution
 
                         rectfill(screen, 80, 140, 235, 362, makecol(195,195,195));  //Colorise 'case' dresseur choisi
                         draw_sprite(screen, carteDos, 83, 398);
@@ -541,7 +541,7 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
 
                         tabJoueurs[i].classe=3;
 
-                        attributionClasseJoueur(tabJoueurs,nbJoueurs,i);
+                        attributionClasseJoueur(tabJoueurs,i);
 
                         rectfill(screen, 330, 140, 486, 362, makecol(195,195,195));
                         draw_sprite(screen, carteDos, 332, 398);
@@ -562,7 +562,7 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
 
                         tabJoueurs[i].classe=4;
 
-                        attributionClasseJoueur(tabJoueurs,nbJoueurs,i);
+                        attributionClasseJoueur(tabJoueurs,i);
 
                         rectfill(screen, 580, 140, 730, 362, makecol(195,195,195));
                         draw_sprite(screen, carteDos, 582, 398);
@@ -584,7 +584,7 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
 
                         tabJoueurs[i].classe=2;
 
-                        attributionClasseJoueur(tabJoueurs,nbJoueurs,i);
+                        attributionClasseJoueur(tabJoueurs,i);
 
                         rectfill(screen, 830, 140, 987, 362, makecol(195,195,195));
                         draw_sprite(screen, carteDos, 836, 398);
@@ -607,7 +607,7 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
         sleep(2.2);
 
         /*------------------------------------------------*/   ///Passage au joueur suivant
-        if (i == *nbJoueurs)
+        if (i == nbJoueurs)
             allegro_message("Lancer la partie");
         else
             allegro_message("--> Passer au 'Joueur %d'", i+1);
@@ -624,9 +624,10 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
 
 /*-----------------------------------------------------------------------------------------------------*/
 ///Choix du nb de joueurs (avec affichage des boutons)
-void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs)
+int choixNbJoueurs(t_joueur *tabJoueurs)
 {
     int clic=0;
+    int nbJoueurs;
 
     //Création double buffer
     /******************************************************************************/     //Création / chargement bitmaps
@@ -691,9 +692,9 @@ void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs)
             {
                 clic=1;
                 initialiserJoueurStats(tabJoueurs,2); // initialisation stats de 2 joueurs
-                *nbJoueurs=2;
+                nbJoueurs=2;
                 clear_bitmap(screen);
-                choixClasseJoueur(tabJoueurs,nbJoueurs);   //Appel choix des classes
+                return nbJoueurs;
             }
 
             //Si bouton '3 joueurs' cliqué -> initialisation pour 3 joueurs
@@ -701,9 +702,9 @@ void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs)
             {
                 clic=1;
                 initialiserJoueurStats(tabJoueurs,3); // initialisation stats de 3 joueurs
-                *nbJoueurs=3;
+                nbJoueurs=3;
                 clear_bitmap(screen);
-                choixClasseJoueur(tabJoueurs,nbJoueurs);
+                return nbJoueurs;
             }
 
             //Si bouton '4 joueurs' cliqué -> initialisation pour 4 joueurs
@@ -711,9 +712,9 @@ void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs)
             {
                 clic=1;
                 initialiserJoueurStats(tabJoueurs,4); // initialisation stats de 4 joueurs
-                *nbJoueurs=4;
+                nbJoueurs=4;
                 clear_bitmap(screen);
-                choixClasseJoueur(tabJoueurs,nbJoueurs);
+                return nbJoueurs;
             }
 
             ////Si bouton 'exit' cliqué -> quitte le jeu
@@ -880,10 +881,6 @@ void menuDemarrage(t_joueur *tabJoueurs, int* nbJoueurs)
                 destroy_bitmap(boutonStart);
 
                 clear_bitmap(screen);
-
-                //Appel de la fonction pour le choix du nombre de joueurs
-                choixNbJoueurs(tabJoueurs,nbJoueurs);
-
             }
         }
     }
