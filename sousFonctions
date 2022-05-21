@@ -115,7 +115,7 @@ void initialiserJoueurStats(t_joueur *tabJoueurs, int nbJoueurs)   //Paramètres
     for(i=0; i<nbJoueurs; i++)  //Boucle pour initialiser tous les joueurs
     {
         tabJoueurs[i].PV = 500;   //Initialisation des stats
-        tabJoueurs[i].PM = 500;
+        tabJoueurs[i].PM = 3;
         tabJoueurs[i].PA = 15;
 
         do{
