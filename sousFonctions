@@ -913,35 +913,38 @@ return bmp;
 
 
 /*-----------------------------------------------------------------------------------------------------*/
-void extractionSprite (BITMAP* spriteDresseur[4][16]){
+void extractionSprite (BITMAP* spriteDresseur[4][16],BITMAP* spritePokemon[4], BITMAP* spritePokeAttack[4][4]){
 int i, j;
 
 
 BITMAP* groupe_animes[4];
+BITMAP* groupe_pokemon[4];
+BITMAP*groupe_pokemonAttaque[4];
+
 
 
 groupe_animes[0]=load_bitmap("Joueur1.bmp",NULL);
     if (!groupe_animes[0])
     {
-        allegro_message("Nous n'avons pas pu charger  Joueur1.bmp ");
+        allegro_message("Nous n'avons pas pu charger \ Joueur1.bmp \"");
         quitterAllegro();
     }
 groupe_animes[1]=load_bitmap("Joueur2.bmp",NULL);
     if (!groupe_animes[1])
     {
-        allegro_message("Nous n'avons pas pu charger   Joueur2.bmp ");
+        allegro_message("Nous n'avons pas pu charger  \ Joueur2.bmp \"");
         quitterAllegro();
     }
 groupe_animes[2]=load_bitmap("Joueur3.bmp",NULL);
     if (!groupe_animes[2])
     {
-        allegro_message("Nous n'avons pas pu charger  Joueur3.bmp ");
+        allegro_message("Nous n'avons pas pu charger \* Joueur3.bmp *\"");
         quitterAllegro();
     }
 groupe_animes[3]=load_bitmap("Joueur4.bmp",NULL);
     if (!groupe_animes[3])
     {
-        allegro_message("Nous n'avons pas pu charger  Joueur4.bmp ");
+        allegro_message("Nous n'avons pas pu charger \* Joueur4.bmp *\"");
         quitterAllegro();
     }
 
@@ -953,10 +956,94 @@ spriteDresseur[i][j] = recup_sprites(groupe_animes[i],64,93,0,0,4,j);
 }
 }
 
+
+
+groupe_pokemonAttaque[0]=load_bitmap("Joueur1.bmp",NULL);
+    if (!groupe_pokemonAttaque[0])
+    {
+        allegro_message("Nous n'avons pas pu charger \ Joueur1.bmp \"");
+        quitterAllegro();
+    }
+groupe_pokemonAttaque[1]=load_bitmap("Joueur2.bmp",NULL);
+    if (!groupe_pokemonAttaque[1])
+    {
+        allegro_message("Nous n'avons pas pu charger  \ Joueur2.bmp \"");
+        quitterAllegro();
+    }
+groupe_pokemonAttaque[2]=load_bitmap("Joueur3.bmp",NULL);
+    if (!groupe_pokemonAttaque[2])
+    {
+        allegro_message("Nous n'avons pas pu charger \* Joueur3.bmp *\"");
+        quitterAllegro();
+    }
+groupe_pokemonAttaque[3]=load_bitmap("Joueur4.bmp",NULL);
+    if (!groupe_pokemonAttaque[3])
+    {
+        allegro_message("Nous n'avons pas pu charger \* Joueur4.bmp *\"");
+        quitterAllegro();
+    }
+
+
+for (i=0;i<4;i++){
+    for (j=0;j<4;j++){
+spritePokeAttack[i][j] = recup_sprites(groupe_pokemonAttaque[i],58,78,0,0,4,j);
+
+}
+}
+
+
+
+
+groupe_pokemon[0]=load_bitmap("pokefeu.bmp",NULL);
+    if (!groupe_pokemon[0])
+    {
+        allegro_message("Nous n'avons pas pu charger \ Joueur1.bmp \"");
+        quitterAllegro();
+    }
+groupe_pokemon[1]=load_bitmap("pokeeau.bmp",NULL);
+    if (!groupe_pokemon[1])
+    {
+        allegro_message("Nous n'avons pas pu charger  \ Joueur2.bmp \"");
+        quitterAllegro();
+    }
+groupe_pokemon[2]=load_bitmap("pokeelec.bmp",NULL);
+    if (!groupe_pokemon[2])
+    {
+        allegro_message("Nous n'avons pas pu charger \* Joueur3.bmp *\"");
+        quitterAllegro();
+    }
+groupe_pokemon[3]=load_bitmap("pokeplante.bmp",NULL);
+    if (!groupe_pokemon[3])
+    {
+        allegro_message("Nous n'avons pas pu charger \* Joueur4.bmp *\"");
+        quitterAllegro();
+    }
+
+
+for (i=0; i<4; i++){
+    spritePokemon[i]= groupe_pokemon[i];
+}
+
+
+
+
+
 destroy_bitmap(groupe_animes[0]);
 destroy_bitmap(groupe_animes[1]);
 destroy_bitmap(groupe_animes[2]);
 destroy_bitmap(groupe_animes[3]);
+
+destroy_bitmap(groupe_pokemon[0]);
+destroy_bitmap(groupe_pokemon[1]);
+destroy_bitmap(groupe_pokemon[2]);
+destroy_bitmap(groupe_pokemon[3]);
+
+destroy_bitmap(groupe_pokemonAttaque[0]);
+destroy_bitmap(groupe_pokemonAttaque[1]);
+destroy_bitmap(groupe_pokemonAttaque[2]);
+destroy_bitmap(groupe_pokemonAttaque[3]);
+
+
 }
 /*-----------------------------------------------------------------------------------------------------*/
 
@@ -1382,5 +1469,523 @@ void tourJoueur(t_joueur *tabJoueurs,int numJoueur, int nbJoueurs, BITMAP* decor
 
 }
 /*-----------------------------------------------------------------------------------------------------*/
+void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4],BITMAP* spritePokeattaque[4][4], BITMAP* spriteDresseur[4][16],int nbrjoueurs, int numJoueur)
+{
+    srand(time(NULL));
+
+
+   int i;
+
+    int clic=0;
+    int clic2=0;
+    int j;                                        /// joueur victime
+    int s,f,g,h,q,x,y,z,a,b;
+                 ///variables aléatoires
+
+
+
+    //si compteur à plus de trois alors il se réinitialise
+    if(tab[numJoueur].cpt>3)
+    {
+        tab[numJoueur].PA=15;
+        tab[numJoueur].cpt=0;
+
+    }
+    //affiche de la map avec les bitmap des pokémons
+
+
+
+clear_bitmap(page);
+
+
+
+        while(clic==0)
+        {
+
+        blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
+
+       for (i=0; i<nbrjoueurs; i++){
+
+        draw_sprite(page, spriteDresseur[i][0], tab[i].colonne*64, tab[i].ligne*64);
+
+       }
+
+
+            //Si clic gauche souris cliqué
+
+     if ((mouse_b &1)){
+
+        for (j=0; j<nbrjoueurs; j++){
+            if ( j!=numJoueur){
+               if ((mouse_x>=tab[j].colonne*64) &&(mouse_x<=tab[j].colonne*64+64) &&(mouse_y>=tab[j].ligne)&&(mouse_y<=tab[j].ligne+64)) {
+                    j=j;
+                clic=1;
+               }
+            }
+        }
+
+     }
+
+     blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
+
+        }
+
+
+
+
+
+
+       if(tab[numJoueur].PA>=10)//si PA est supérieure à 10
+    {
+
+      while(clic2==0)
+        {
+
+       clear_bitmap(page);
+        blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
+        for (i=0; i<nbrjoueurs; i++){
+        draw_sprite(page, spriteDresseur[i][0], tab[i].colonne*64, tab[i].ligne*64);
+        }
+        draw_sprite(page, spritePokemon[tab[numJoueur].classe], 662, 631);
+
+
+    //Si clic gauche souris cliqué
+    if (mouse_b & 1)
+                {
+            //collision proche(1case)
+
+                if(mouse_x>=662 && mouse_x<=733 && mouse_y>=631 && mouse_y<=728 ) //Si souris clique 'attaque corps' du dresseur
+                {
+                    if((tab[j].ligne==tab[numJoueur].ligne+1 || tab[j].ligne==tab[numJoueur].ligne-1) &&(tab[j].colonne==tab[numJoueur].colonne+1 || tab[j].colonne==tab[numJoueur].colonne-1))
+                    {
+                        h=rand()%(10-1+1)+1;
+                        if(h!=1)
+                        {
+                            tab[numJoueur].PA=tab[numJoueur].PA-1;
+                            x=rand()%(30-10+1)+10;
+                            tab[j].PV=tab[j].PV-x;
+                            animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 1);
+                           // printf("PV restant: %d, PV pris : %d du joueur %d\n",tab[j].PV,x,j);
+                        }
+                        else
+                        {
+                            allegro_message("rate");
+                        }
+                        printf("Attaque 1");
+                        clic2=1;
+                        }
+                    else
+                    {
+                        allegro_message("Impossible");
+                    }
+                }
+                            //collision loin(2cases)
+                if(mouse_x>=734 && mouse_x<=805 && mouse_y>=631 && mouse_y<=728)//Si souris clique 'sort1' du dresseur
+                {
+                    if((tab[j].ligne==tab[numJoueur].ligne+2 || tab[j].ligne==tab[numJoueur].ligne-2) &&(tab[j].colonne==tab[numJoueur].colonne+2 || tab[j].colonne==tab[numJoueur].colonne-2))
+                    {
+                        s=rand()%(5-1+1)+1;
+                        if(s>1)
+                        {
+                            tab[numJoueur].PA=tab[numJoueur].PA-2;
+                            y=rand()%(40-20+1)+20;
+                            tab[j].PV=tab[j].PV-y;
+                             animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 2);
+                           // printf("PV restant : %d, PV pris : %d du joueur %d\n",tab[j].PV,y,j);
+                        }
+                        else
+                        {
+                            allegro_message("rate");
+                        }
+                        printf("Attaque 2");
+                        clic2=1;
+                    }
+                    else
+                    {
+                        allegro_message("Impossible");
+                    }
+                }
+                            //collision loin(3cases)
+                if(mouse_x>=806 && mouse_x<=877 && mouse_y>=631 && mouse_y<=728)//si souris clique 'sort2' du dresseur//189 218 339 378
+                {
+                    if((tab[j].ligne<=tab[numJoueur].ligne+3 || tab[j].ligne>=tab[numJoueur].ligne-3) &&(tab[j].colonne<=tab[numJoueur].colonne+3 || tab[j].colonne>=tab[numJoueur].colonne-3))
+                    {
+                        f=rand()%(10-1+1)+1;
+                            if(f>3)
+                            {
+                                tab[numJoueur].PA=tab[numJoueur].PA-3;
+                                z=rand()%(60-40+1)+40;
+                                tab[j].PV=tab[j].PV-z;
+                                 animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 3);
+                                //printf("PV restant: %d, PV pris : %d du joueur %d\n",tab[j].PV,z,j);
+                            }
+                            else
+                            {
+                                allegro_message("rate");
+                            }
+                            printf("Attaque 3");
+                            clic2=1;
+                            }
+                    else
+                    {
+                        allegro_message("Impossible");
+                    }
+                }
+                if(mouse_x>=878 && mouse_x<=949 && mouse_y>=631 && mouse_y<=728)//si souris clique 'sort3' du dresseur
+                {
+                    g=rand()%(5-1+1)+1;
+                    if(g>2)
+                    {
+                        tab[numJoueur].PA=tab[numJoueur].PA-4;
+                        a=rand()%(60-20+1)+20;
+                        tab[numJoueur].PV=tab[numJoueur].PV+a;
+                         animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 4);
+                       // printf("PV restant:%d, PV donnee : %d au joueur %d\n",tab[numJoueur].PV,a,numJoueur);
+                    }
+                    else
+                    {
+                        allegro_message("rate");
+                    }
+                    printf("Attaque 4");
+                    clic2=1;
+                }
+                            //collision loin 4 cases
+                if(mouse_x>=950 && mouse_x<=1022 && mouse_y>=631 && mouse_y<=728)//si souris clique 'sort4' du dresseur
+                {
+                    if((tab[j].ligne<=tab[numJoueur].ligne+4 || tab[j].ligne>=tab[numJoueur].ligne-4) &&(tab[j].colonne<=tab[numJoueur].colonne+3 || tab[j].colonne>=tab[numJoueur].colonne-3))
+                    {
+                        q=rand()%(2-1+1)+1;
+                        if(q!=1)
+                        {
+                            tab[numJoueur].PA=tab[numJoueur].PA-5;
+                            b=rand()%(100-70+1)+70;
+                            tab[j].PV=tab[j].PV-b;
+                             animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 5);
+                          //  printf("PV restant : %d, PV pris: %d du joueur %d\n",tab[j].PV,b,j);
+                        }
+                        else
+                        {
+                            allegro_message("rate");
+                        }
+                        printf("Attaque 5");
+                        clic2=1;
+                    }
+                    else
+                    {
+                        allegro_message("Impossible");
+                    }
+                }
+            }
+            blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
+        }
+        tab[numJoueur].cpt++;  //compteur plus 1
+    }
+    else if(tab[numJoueur].PA>=5 && tab[numJoueur].PA<10)
+    {
+        while(clic2==0)
+        {
+
+                   clear_bitmap(page);
+        blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
+        for (i=0; i<nbrjoueurs; i++){
+        draw_sprite(page, spriteDresseur[i][0], tab[i].colonne*64, tab[i].ligne*64);
+        }
+        draw_sprite(page, spritePokemon[tab[numJoueur].classe], 662, 631);
+
+
+                                    //Si clic gauche souris cliqué
+            if (mouse_b & 1)
+            {
+                        //collision proche(1case)
+                if(mouse_x>=662 && mouse_x<=733 && mouse_y>=631 && mouse_y<=728  ) //Si souris clique 'attaque corps' du dresseur
+                {
+                    if((tab[j].ligne==tab[numJoueur].ligne+1 || tab[j].ligne==tab[numJoueur].ligne-1) &&(tab[j].colonne==tab[numJoueur].colonne+1 || tab[j].colonne==tab[numJoueur].colonne-1))
+                    {
+                        h=rand()%(10-1+1)+1;
+                        if(h!=1)
+                        {
+                            tab[numJoueur].PA=tab[numJoueur].PA-1;
+                            x=rand()%(30-10+1)+10;
+                            tab[j].PV=tab[j].PV-x;
+                             animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 1);
+                           // printf("PV restant: %d, PV pris : %d du joueur %d\n",tab[j].PV,x,j);
+                        }
+                        else
+                        {
+                            allegro_message("rate");
+                        }
+                        printf("Attaque 1");
+                        clic2=1;
+                        }
+                    else
+                    {
+                        allegro_message("Impossible");
+                    }
+                }
+                            //collision loin(2cases)
+                if(mouse_x>=734 && mouse_x<=805 && mouse_y>=631 && mouse_y<=728)//Si souris clique 'sort1' du dresseur
+                {
+                    if((tab[j].ligne==tab[numJoueur].ligne+2 || tab[j].ligne==tab[numJoueur].ligne-2) &&(tab[j].colonne==tab[numJoueur].colonne+2 || tab[j].colonne==tab[numJoueur].colonne-2))
+                    {
+                        s=rand()%(5-1+1)+1;
+                        if(s>1)
+                        {
+                            tab[numJoueur].PA=tab[numJoueur].PA-2;
+                            y=rand()%(40-20+1)+20;
+                            tab[j].PV=tab[j].PV-y;
+                             animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 2);
+                           // printf("PV restant : %d, PV pris : %d du joueur %d\n",tab[j].PV,y,j);
+                        }
+                        else
+                        {
+                            allegro_message("rate");
+                        }
+                        printf("Attaque 2");
+                        clic2=1;
+                    }
+                    else
+                    {
+                        allegro_message("Impossible");
+                    }
+                }
+                            //collision loin(3cases)
+                if(mouse_x>=806 && mouse_x<=877 && mouse_y>=631 && mouse_y<=728)//si souris clique 'sort2' du dresseur//189 218 339 378
+                {
+                    if((tab[j].ligne<=tab[numJoueur].ligne+3 || tab[j].ligne>=tab[numJoueur].ligne-3) &&(tab[j].colonne<=tab[numJoueur].colonne+3 || tab[j].colonne>=tab[numJoueur].colonne-3))
+                    {
+                        f=rand()%(10-1+1)+1;
+                            if(f>3)
+                            {
+                                tab[numJoueur].PA=tab[numJoueur].PA-3;
+                                z=rand()%(60-40+1)+40;
+                                tab[j].PV=tab[j].PV-z;
+                                 animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 3);
+                               // printf("PV restant: %d, PV pris : %d du joueur %d\n",tab[j].PV,z,j);
+                            }
+                            else
+                            {
+                                allegro_message("rate");
+                            }
+                            printf("Attaque 3");
+                            clic2=1;
+                            }
+                    else
+                    {
+                        allegro_message("Impossible");
+                    }
+                }
+                if(mouse_x>=878 && mouse_x<=949 && mouse_y>=631 && mouse_y<=728)//si souris clique 'sort3' du dresseur
+                {
+                    g=rand()%(5-1+1)+1;
+                    if(g>2)
+                    {
+                        tab[numJoueur].PA=tab[numJoueur].PA-4;
+                        a=rand()%(60-20+1)+20;
+                        tab[numJoueur].PV=tab[numJoueur].PV+a;
+                         animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 4);
+                        //printf("PV restant:%d, PV donnee : %d au joueur %d\n",tab[numJoueur].PV,a,numJoueur);
+                    }
+                    else
+                    {
+                        allegro_message("rate");
+                    }
+                    printf("Attaque 4");
+                    clic2=1;
+                }
+                            //collision loin 4 cases
+                if(mouse_x>=950 && mouse_x<=1022 && mouse_y>=631 && mouse_y<=728)//si souris clique 'sort4' du dresseur
+                {
+                    if((tab[j].ligne<=tab[numJoueur].ligne+4 || tab[j].ligne>=tab[numJoueur].ligne-4) &&(tab[j].colonne<=tab[numJoueur].colonne+3 || tab[j].colonne>=tab[numJoueur].colonne-3))
+                    {
+                        q=rand()%(2-1+1)+1;
+                        if(q!=1)
+                        {
+                            tab[numJoueur].PA=tab[numJoueur].PA-5;
+                            b=rand()%(100-70+1)+70;
+                            tab[j].PV=tab[j].PV-b;
+                             animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 5);
+                         //   printf("PV restant : %d, PV pris: %d du joueur %d\n",tab[j].PV,b,j);
+                        }
+                        else
+                        {
+                            allegro_message("rate");
+                        }
+                        printf("Attaque 5");
+                        clic2=1;
+                    }
+                    else
+                    {
+                        allegro_message("Impossible");
+                    }
+                }
+            }
+            blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
+        }
+        tab[numJoueur].cpt++;  //compteur plus 1
+    }
+
+    else if(tab[1].PA<5)
+        {
+
+        while(clic2==0)
+        {
+
+                   clear_bitmap(page);
+        blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
+        for (i=0; i<nbrjoueurs; i++){
+        draw_sprite(page, spriteDresseur[i][0], tab[i].colonne*64, tab[i].ligne*64);
+        }
+        draw_sprite(page, spritePokemon[tab[numJoueur].classe], 662, 631);
+
+                                    //Si clic gauche souris cliqué
+            if (mouse_b & 1)
+            {
+                        //collision proche(1case)
+                if(mouse_x>=662 && mouse_x<=733 && mouse_y>=631 && mouse_y<=728  ) //Si souris clique 'attaque corps' du dresseur
+                {
+                    if((tab[j].ligne==tab[numJoueur].ligne+1 || tab[j].ligne==tab[numJoueur].ligne-1) &&(tab[j].colonne==tab[numJoueur].colonne+1 || tab[j].colonne==tab[numJoueur].colonne-1))
+                    {
+                        h=rand()%(10-1+1)+1;
+                        if(h!=1)
+                        {
+                            tab[numJoueur].PA=tab[numJoueur].PA-1;
+                            x=rand()%(30-10+1)+10;
+                            tab[j].PV=tab[j].PV-x;
+                             animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 1);
+                           // printf("PV restant: %d, PV pris : %d du joueur %d\n",tab[j].PV,x,j);
+                        }
+                        else
+                        {
+                            allegro_message("rate");
+                        }
+                        printf("Attaque 1");
+                        clic2=1;
+                        }
+                    else
+                    {
+                        allegro_message("Impossible");
+                    }
+                }
+                            //collision loin(2cases)
+                if(mouse_x>=734 && mouse_x<=805 && mouse_y>=631 && mouse_y<=728)//Si souris clique 'sort1' du dresseur
+                {
+                    if((tab[j].ligne==tab[numJoueur].ligne+2 || tab[j].ligne==tab[numJoueur].ligne-2) &&(tab[j].colonne==tab[numJoueur].colonne+2 || tab[j].colonne==tab[numJoueur].colonne-2))
+                    {
+                        s=rand()%(5-1+1)+1;
+                        if(s>1)
+                        {
+                            tab[numJoueur].PA=tab[numJoueur].PA-2;
+                            y=rand()%(40-20+1)+20;
+                            tab[j].PV=tab[j].PV-y;
+                             animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 2);
+                           // printf("PV restant : %d, PV pris : %d du joueur %d\n",tab[j].PV,y,j);
+                        }
+                        else
+                        {
+                            allegro_message("rate");
+                        }
+                        printf("Attaque 2");
+                        clic2=1;
+                    }
+                    else
+                    {
+                        allegro_message("Impossible");
+                    }
+                }
+                            //collision loin(3cases)
+                if(mouse_x>=806 && mouse_x<=877 && mouse_y>=631 && mouse_y<=728)//si souris clique 'sort2' du dresseur//189 218 339 378
+                {
+                    if((tab[j].ligne<=tab[numJoueur].ligne+3 || tab[j].ligne>=tab[numJoueur].ligne-3) &&(tab[j].colonne<=tab[numJoueur].colonne+3 || tab[j].colonne>=tab[numJoueur].colonne-3))
+                    {
+                        f=rand()%(10-1+1)+1;
+                            if(f>3)
+                            {
+                                tab[numJoueur].PA=tab[numJoueur].PA-3;
+                                z=rand()%(60-40+1)+40;
+                                tab[j].PV=tab[j].PV-z;
+                                 animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 3);
+                            //    printf("PV restant: %d, PV pris : %d du joueur %d\n",tab[j].PV,z,j);
+                            }
+                            else
+                            {
+                                allegro_message("rate");
+                            }
+                            printf("Attaque 3");
+                            clic2=1;
+                            }
+                    else
+                    {
+                        allegro_message("Impossible");
+                    }
+                }
+                if(mouse_x>=878 && mouse_x<=949 && mouse_y>=631 && mouse_y<=728)//si souris clique 'sort3' du dresseur
+                {
+                    g=rand()%(5-1+1)+1;
+                    if(g>2)
+                    {
+                        tab[numJoueur].PA=tab[numJoueur].PA-4;
+                        a=rand()%(60-20+1)+20;
+                        tab[numJoueur].PV=tab[numJoueur].PV+a;
+                         animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 4);
+                      //  printf("PV restant:%d, PV donnee : %d au joueur %d\n",tab[numJoueur].PV,a,numJoueur);
+                    }
+                    else
+                    {
+                        allegro_message("rate");
+                    }
+                    printf("Attaque 4");
+                    clic2=1;
+                }
+
+                if(mouse_x>=950 && mouse_x<=1022 && mouse_y>=631 && mouse_y<=728)//si souris clique 'sort4' du dresseur
+                {
+                        allegro_message("Impossible");
+                }
+            }
+            blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
+        }
+        tab[numJoueur].cpt++;  //compteur plus 1
+    }
+
+}
+
+
+/*-----------------------------------------------------------------------------------------------------*/
+
+
+void animationAttaque(BITMAP* spritePokeAttack[4][4], int classeAttaquant,int classeVictime, int typeAttaque){
+
+
+    int i;
+
+    BITMAP* attaqueAnim1;
+    BITMAP* attaqueAnim2;
+    BITMAP* page= create_bitmap(1024, 768);
+
+
+    attaqueAnim1=load_bitmap("animeAttaque1.bmp", NULL);
+    attaqueAnim2=load_bitmap("animeAttaque2.bmp", NULL);
+
+
+    for (i=0; i<200; i++){
+        blit(attaqueAnim1, page, 0, 0, 0, 0, page->w,page->h);
+        blit(page, screen, 0, 0, 0, 0, page->w,page->h );
+    }
+
+    clear_bitmap(page);
+
+
+        for (i=0; i<200; i++){
+        blit(attaqueAnim2, page, 0, 0, 0, 0, page->w,page->h);
+
+       draw_sprite(page, spritePokeAttack[classeAttaquant][typeAttaque], 60, 300);
+        draw_sprite(page, spritePokeAttack[classeAttaquant][typeAttaque], 640, 145);
+       // masked_stretch_blit(spritePokeAttack[classeAttaquant][typeAttaque],page , 0, 0, 58, 78,60, 300, 58*7, 78*7);
+        // masked_stretch_blit(spritePokeAttack[classeVictime][typeAttaque],page,  0, 0,640, 145, 58*4, 78*4);
+        blit(page, screen, 0, 0, 0, 0, page->w,page->h );
+    }
+
+
+}
 
 
