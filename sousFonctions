@@ -516,6 +516,8 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
                         strcpy(tabJoueurs[i].pseudo,"Sacha");     //On affecte le nom du dresseur au joueur
                         strcpy(tabJoueurs[i].choixClasse,"Classe: FEU");
 
+                        tabJoueurs[i].classe=1;
+
                         attributionClasseJoueur(tabJoueurs,nbJoueurs,i); //Appel sous fonction attribution
 
                         rectfill(screen, 80, 140, 235, 362, makecol(195,195,195));  //Colorise 'case' dresseur choisi
@@ -536,6 +538,8 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
                         strcpy(tabJoueurs[i].pseudo,"Clem");
                         strcpy(tabJoueurs[i].choixClasse,"Classe: ELECTRIQUE");
 
+                        tabJoueurs[i].classe=3;
+
                         attributionClasseJoueur(tabJoueurs,nbJoueurs,i);
 
                         rectfill(screen, 330, 140, 486, 362, makecol(195,195,195));
@@ -554,6 +558,8 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
 
                         strcpy(tabJoueurs[i].pseudo,"Pierre");
                         strcpy(tabJoueurs[i].choixClasse,"Classe: PLANTE");
+
+                        tabJoueurs[i].classe=4;
 
                         attributionClasseJoueur(tabJoueurs,nbJoueurs,i);
 
@@ -574,6 +580,8 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
 
                         strcpy(tabJoueurs[i].pseudo,"Flora");
                         strcpy(tabJoueurs[i].choixClasse,"Classe: EAU");
+
+                        tabJoueurs[i].classe=2;
 
                         attributionClasseJoueur(tabJoueurs,nbJoueurs,i);
 
