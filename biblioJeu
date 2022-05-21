@@ -26,6 +26,7 @@ typedef struct joueur{
     int vivant;
     int cpt;
     int classe;
+    int classement;
 
 }t_joueur;
 /*----------------------------------------------*/
