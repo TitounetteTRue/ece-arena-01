@@ -1,0 +1,20 @@
+///Ceci est après la partie de jeu
+
+void affichageclassement(t_joueur*tab,int nbJoueurs,BITMAP*mapJeu)
+{
+    int i;//le joueur 1
+    int y = 0;
+    show_mouse(screen);
+    clear_bitmap(mapJeu);//On efface la carte 
+    //On met un autre font
+    BITMAP*Font;
+    Font = load_bitmap("mapJeu.bmp",NULL);//A chercher un bitmap
+    rectfill(Font,460,340,730,560,makecol(255,255,0));//rectangle du milieu en jaune
+    for(i=1;i<=nbJoueurs;i++)
+    {
+        textprintf_ex(Font, font, 512, 384+y, makecol(255, 100, 200),-1, "%d/ %s",tab[i].classement,tab[i].pseudo);//en rose le résultat du classement
+        y=y+20;//c'est pour mettre en dessous du 1er résultat
+    }
+   
+      blit(Font,screen,0, 0, 0, 0, 512, 384);//affichage
+}
