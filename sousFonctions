@@ -1049,6 +1049,9 @@ int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur
         draw_sprite(page, spriteDresseur[i][0], mesJoueur[i].colonne*64, mesJoueur[i].ligne*64);
        }
 
+cadreJeu(page, mesJoueur, nbJoueur, numJoueur);
+
+
         if (mouse_b&1)
         {
              newLigne=Sligne;
