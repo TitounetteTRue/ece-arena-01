@@ -6,7 +6,7 @@
 void attaque(t_joueur *tab,int i,int nbrjoueurs,BITMAP*mapJeu)
 {
     srand(time(NULL));
-    show_mouse(screen);
+
     int clic=0;
     int j;                                        /// joueur victime
     int s,f,g,h,q,x,y,z,a,b;                      ///variables aléatoires
