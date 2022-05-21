@@ -6,13 +6,14 @@ void attaque(t_joueur *tab,int i,int nbrjoueurs,BITMAP*mapJeu)// i est le joueur
     srand(time(NULL));
     show_mouse(screen);
     int clic=0;
-    int j;/// joueur victime
+    int j;/// joueur victime qui faut decider
     int s,f,g,h,q,x,y,z,a,b;///variables aléatoires
     ///variables emplacement bitmap
     int k=260;//130
     int m=680;//340
     int d=1024;//512
     int c=768;//384
+    /*
     while(j==i)
     {
         j++;
@@ -21,6 +22,7 @@ void attaque(t_joueur *tab,int i,int nbrjoueurs,BITMAP*mapJeu)// i est le joueur
             j=1;
         }
     }
+    */
     if(tab[i].cpt>=3)
     {
         tab[i].PA=15;
@@ -79,9 +81,9 @@ void attaque(t_joueur *tab,int i,int nbrjoueurs,BITMAP*mapJeu)// i est le joueur
             if (mouse_b & 1)
             {
                         //collision proche(1case)
-                if(mouse_x>=258 && mouse_x<=316 && mouse_y>=678 && mouse_y<=756 ) //Si souris clique 'attaque corps' du dresseur//129,158,339,378
+                if(mouse_x>=258 && mouse_x<=316 && mouse_y>=678 && mouse_y<=756 ) //Si souris clique 'attaque corps' du dresseur
                 {
-                    if((tab[j].ligne<=tab[i].ligne+55 || tab[j].ligne>=tab[i].ligne-55) &&(tab[j].colonne>=tab[i].colonne+51 || tab[j].colonne>=tab[i].colonne-51))
+                    if((tab[j].ligne<=tab[i].ligne+55 || tab[j].ligne>=tab[i].ligne-55) &&(tab[j].colonne<=tab[i].colonne+51 || tab[j].colonne>=tab[i].colonne-51))
                     {
                         h=rand()%(10-1+1)+1;
                         if(h!=1)
@@ -104,9 +106,9 @@ void attaque(t_joueur *tab,int i,int nbrjoueurs,BITMAP*mapJeu)// i est le joueur
                     }
                 }
                             //collision loin(2cases)
-                if(mouse_x>=317 && mouse_x<=376 && mouse_y>=678 && mouse_y<=756)//Si souris clique 'sort1' du dresseur// 159 188 339?378
+                if(mouse_x>=317 && mouse_x<=376 && mouse_y>=678 && mouse_y<=756)//Si souris clique 'sort1' du dresseur
                 {
-                    if((tab[j].ligne<=tab[i].ligne+165 || tab[j].ligne>=tab[i].ligne-165) &&(tab[j].colonne>=tab[i].colonne+153 || tab[j].colonne>=tab[i].colonne-153))
+                    if((tab[j].ligne<=tab[i].ligne+165 || tab[j].ligne>=tab[i].ligne-165) &&(tab[j].colonne<=tab[i].colonne+153 || tab[j].colonne>=tab[i].colonne-153))
                     {
                         s=rand()%(5-1+1)+1;
                         if(s>1)
@@ -131,7 +133,7 @@ void attaque(t_joueur *tab,int i,int nbrjoueurs,BITMAP*mapJeu)// i est le joueur
                             //collision loin(3cases)
                 if(mouse_x>=377 && mouse_x<=436 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort2' du dresseur//189 218 339 378
                 {
-                    if((tab[j].ligne<=tab[i].ligne+110 || tab[j].ligne>=tab[i].ligne-110) &&(tab[j].colonne>=tab[i].colonne+102 || tab[j].colonne>=tab[i].colonne-102))
+                    if((tab[j].ligne<=tab[i].ligne+110 || tab[j].ligne>=tab[i].ligne-110) &&(tab[j].colonne<=tab[i].colonne+102 || tab[j].colonne>=tab[i].colonne-102))
                     {
                         f=rand()%(10-1+1)+1;
                             if(f>3)
@@ -173,7 +175,7 @@ void attaque(t_joueur *tab,int i,int nbrjoueurs,BITMAP*mapJeu)// i est le joueur
                             //collision loin 5 cases
                 if(mouse_x>=495 && mouse_x<=554 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort4' du dresseur
                 {
-                    if((tab[j].ligne<=tab[i].ligne+110 || tab[j].ligne>=tab[i].ligne-110) &&(tab[j].colonne>=tab[i].colonne+102 || tab[j].colonne>=tab[i].colonne-102))
+                    if((tab[j].ligne<=tab[i].ligne+110 || tab[j].ligne>=tab[i].ligne-110) &&(tab[j].colonne<=tab[i].colonne+102 || tab[j].colonne>=tab[i].colonne-102))
                     {
                         q=rand()%(2-1+1)+1;
                         if(q!=1)
@@ -195,9 +197,9 @@ void attaque(t_joueur *tab,int i,int nbrjoueurs,BITMAP*mapJeu)// i est le joueur
                         allegro_message("Impossible");
                     }
                 }
-                    tab[i].cpt++;  //compteur plus 1
             }
         }
+        tab[i].cpt++;  //compteur plus 1
     }
     else if(tab[i].PA>=5 && tab[i].PA<10)
     {
@@ -209,7 +211,7 @@ void attaque(t_joueur *tab,int i,int nbrjoueurs,BITMAP*mapJeu)// i est le joueur
                         //collision proche(1case)
                 if(mouse_x>=258 && mouse_x<=316 && mouse_y>=678 && mouse_y<=756 ) //Si souris clique 'attaque corps' du dresseur//129,158,339,378
                 {
-                    if((tab[j].ligne<=tab[i].ligne+55 || tab[j].ligne>=tab[i].ligne-55) &&(tab[j].colonne>=tab[i].colonne+51 || tab[j].colonne>=tab[i].colonne-51))
+                    if((tab[j].ligne<=tab[i].ligne+55 || tab[j].ligne>=tab[i].ligne-55) &&(tab[j].colonne<=tab[i].colonne+51 || tab[j].colonne>=tab[i].colonne-51))
                     {
                         h=rand()%(10-1+1)+1;
                         if(h!=1)
@@ -234,7 +236,7 @@ void attaque(t_joueur *tab,int i,int nbrjoueurs,BITMAP*mapJeu)// i est le joueur
                             //collision loin(2cases)
                 if(mouse_x>=317 && mouse_x<=376 && mouse_y>=678 && mouse_y<=756)//Si souris clique 'sort1' du dresseur// 159 188 339?378
                 {
-                    if((tab[j].ligne<=tab[i].ligne+165 || tab[j].ligne>=tab[i].ligne-165) &&(tab[j].colonne>=tab[i].colonne+153 || tab[j].colonne>=tab[i].colonne-153))
+                    if((tab[j].ligne<=tab[i].ligne+165 || tab[j].ligne>=tab[i].ligne-165) &&(tab[j].colonne<=tab[i].colonne+153 || tab[j].colonne>=tab[i].colonne-153))
                     {
                         s=rand()%(5-1+1)+1;
                         if(s>1)
@@ -259,7 +261,7 @@ void attaque(t_joueur *tab,int i,int nbrjoueurs,BITMAP*mapJeu)// i est le joueur
                             //collision loin(3cases)
                 if(mouse_x>=377 && mouse_x<=436 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort2' du dresseur//189 218 339 378
                 {
-                    if((tab[j].ligne<=tab[i].ligne+110 || tab[j].ligne>=tab[i].ligne-110) &&(tab[j].colonne>=tab[i].colonne+102 || tab[j].colonne>=tab[i].colonne-102))
+                    if((tab[j].ligne<=tab[i].ligne+110 || tab[j].ligne>=tab[i].ligne-110) &&(tab[j].colonne<=tab[i].colonne+102 || tab[j].colonne>=tab[i].colonne-102))
                     {
                         f=rand()%(10-1+1)+1;
                             if(f>3)
@@ -301,7 +303,7 @@ void attaque(t_joueur *tab,int i,int nbrjoueurs,BITMAP*mapJeu)// i est le joueur
                             //collision loin 5 cases
                 if(mouse_x>=495 && mouse_x<=554 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort4' du dresseur
                 {
-                    if((tab[j].ligne<=tab[i].ligne+110 || tab[j].ligne>=tab[i].ligne-110) &&(tab[j].colonne>=tab[i].colonne+102 || tab[j].colonne>=tab[i].colonne-102))
+                    if((tab[j].ligne<=tab[i].ligne+110 || tab[j].ligne>=tab[i].ligne-110) &&(tab[j].colonne<=tab[i].colonne+102 || tab[j].colonne>=tab[i].colonne-102))
                     {
                         q=rand()%(2-1+1)+1;
                         if(q!=1)
@@ -323,9 +325,9 @@ void attaque(t_joueur *tab,int i,int nbrjoueurs,BITMAP*mapJeu)// i est le joueur
                         allegro_message("Impossible");
                     }
                 }
-                    tab[i].cpt++;  //compteur plus 1
             }
         }
+        tab[i].cpt++;  //compteur plus 1
     }
     else if(tab[1].PA<5)
         {
@@ -337,7 +339,7 @@ void attaque(t_joueur *tab,int i,int nbrjoueurs,BITMAP*mapJeu)// i est le joueur
                         //collision proche(1case)
                 if(mouse_x>=258 && mouse_x<=316 && mouse_y>=678 && mouse_y<=756 ) //Si souris clique 'attaque corps' du dresseur//129,158,339,378
                 {
-                    if((tab[j].ligne<=tab[i].ligne+55 || tab[j].ligne>=tab[i].ligne-55) &&(tab[j].colonne>=tab[i].colonne+51 || tab[j].colonne>=tab[i].colonne-51))
+                    if((tab[j].ligne<=tab[i].ligne+55 || tab[j].ligne>=tab[i].ligne-55) &&(tab[j].colonne<=tab[i].colonne+51 || tab[j].colonne>=tab[i].colonne-51))
                     {
                         h=rand()%(10-1+1)+1;
                         if(h!=1)
@@ -362,7 +364,7 @@ void attaque(t_joueur *tab,int i,int nbrjoueurs,BITMAP*mapJeu)// i est le joueur
                             //collision loin(2cases)
                 if(mouse_x>=317 && mouse_x<=376 && mouse_y>=678 && mouse_y<=756)//Si souris clique 'sort1' du dresseur// 159 188 339?378
                 {
-                    if((tab[j].ligne<=tab[i].ligne+165 || tab[j].ligne>=tab[i].ligne-165) &&(tab[j].colonne>=tab[i].colonne+153 || tab[j].colonne>=tab[i].colonne-153))
+                    if((tab[j].ligne<=tab[i].ligne+165 || tab[j].ligne>=tab[i].ligne-165) &&(tab[j].colonne<=tab[i].colonne+153 || tab[j].colonne>=tab[i].colonne-153))
                     {
                         s=rand()%(5-1+1)+1;
                         if(s>1)
@@ -387,7 +389,7 @@ void attaque(t_joueur *tab,int i,int nbrjoueurs,BITMAP*mapJeu)// i est le joueur
                             //collision loin(3cases)
                 if(mouse_x>=377 && mouse_x<=436 && mouse_y>=678 && mouse_y<=756)//si souris clique 'sort2' du dresseur//189 218 339 378
                 {
-                    if((tab[j].ligne<=tab[i].ligne+110 || tab[j].ligne>=tab[i].ligne-110) &&(tab[j].colonne>=tab[i].colonne+102 || tab[j].colonne>=tab[i].colonne-102))
+                    if((tab[j].ligne<=tab[i].ligne+110 || tab[j].ligne>=tab[i].ligne-110) &&(tab[j].colonne<=tab[i].colonne+102 || tab[j].colonne>=tab[i].colonne-102))
                     {
                         f=rand()%(10-1+1)+1;
                             if(f>3)
@@ -431,10 +433,9 @@ void attaque(t_joueur *tab,int i,int nbrjoueurs,BITMAP*mapJeu)// i est le joueur
                 {
                     allegro_message("Impossible");
                 }
-
-                    tab[i].cpt++;  //compteur plus 1
             }
         }
+         tab[i].cpt++;  //compteur plus 1
     }
 
 }
