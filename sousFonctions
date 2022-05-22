@@ -1697,6 +1697,7 @@ while(clic3==0)
         }
         tab[numJoueur].cpt++;  //compteur plus 1
     }
+    }
     else if(tab[numJoueur].PA>=5 && tab[numJoueur].PA<10)
     {
          allegro_message("veuillez cliquer sur le type d'attaque en selectionnan");
@@ -1851,7 +1852,7 @@ while(clic3==0)
         }
         tab[numJoueur].cpt++;  //compteur plus 1
     }
-
+    }
     else if(tab[1].PA<5)
         {
              allegro_message("veuillez cliquer sur le type d'attaque en selectionnan");
@@ -1985,6 +1986,8 @@ while(clic3==0)
         }
         tab[numJoueur].cpt++;  //compteur plus 1
     }
+}
+}
 }
 
 
