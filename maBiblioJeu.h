@@ -15,13 +15,18 @@
 ///Structures
 typedef struct joueur{
 
-    char pseudo[50];
+    char pseudo[30];
+    char choixClasse[30];
     int PV;
     int PM;
     int PA;
     int ligne;
     int colonne;
-    int choixClasse;
+    int choixClasseVerif[3];  //Permet de ne pas choisir une classe déjà sélectionnée
+    int vivant;
+    int cpt;
+    int classe;
+    int classement;
 
 }t_joueur;
 /*----------------------------------------------*/
@@ -29,11 +34,24 @@ typedef struct joueur{
 
 /*----------------------------------------------*/
 ///Prototypes
-void initialiserJoueur(t_joueur *tabJoueurs, int nbJoueurs, int i);
-
+void initialisationAllegro();
+void quitterAllegro();
+void affichageBoutonExit();
+void exitJeu();
+void initialiserJoueurStats(t_joueur *tabJoueurs, int nbJoueurs);
+void attributionClasseJoueur(t_joueur* tabJoueurs, int i);
+void choixClasseJoueur(t_joueur *tabJoueurs, int nbJoueurs);
+int choixNbJoueurs(t_joueur *tabJoueurs);
+void menuDemarrage();
+int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur *tabJoueurs, int numJoueur, int nbJoueur);
+int obstacle (int Scolonne, int Sligne);
+void extractionSprite (BITMAP* spriteDresseur[4][16],BITMAP* spritePokemon[4], BITMAP* spritePokeAttack[4][4]);
+void affichageStats(BITMAP* page,t_joueur* tabJoueur, int nbJoueur, int numJoueur);
+void cadreJeu(BITMAP* page,t_joueur* tabJoueur, int nbJoueur, int numJoueur);
+void animationAttaque(BITMAP* spritePokeAttack[4][4], int classeAttaquant,int classeVictime, int typeAttaque);
+void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4],BITMAP* spritePokeattaque[4][4], BITMAP* spriteDresseur[4][16],int nbrjoueurs, int numJoueur);
 
 /*----------------------------------------------*/
-
 
 
 #endif // MABIBLIOJEU_H_INCLUDED
