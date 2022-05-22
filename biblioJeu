@@ -50,7 +50,8 @@ void affichageStats(BITMAP* page,t_joueur* tabJoueur, int nbJoueur, int numJoueu
 void animationAttaque(BITMAP* spritePokeAttack[4][4], int classeAttaquant,int classeVictime, int typeAttaque);
 void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4],BITMAP* spritePokeattaque[4][4], BITMAP* spriteDresseur[4][16],int nbrjoueurs, int numJoueur);
 void tourJoueur(t_joueur *tabJoueurs,int numJoueur, int nbJoueurs, BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16]);
-
+//int classement(t_joueur*tab,int numJoueur,int nbJoueurs);
+//int affichefin(int numJoueurs,  t_joueur*tab);
 /*----------------------------------------------*/
 
 
