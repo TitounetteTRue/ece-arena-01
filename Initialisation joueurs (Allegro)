@@ -4,16 +4,22 @@ void initialiserJoueurStats(t_joueur *tabJoueurs, int nbJoueurs)   //Paramètres
 {
     int i=0, j=0;
 
+    srand(time(NULL));
+
     for(i=0; i<nbJoueurs; i++)  //Boucle pour initialiser tous les joueurs
     {
         tabJoueurs[i].PV = 500;   //Initialisation des stats
         tabJoueurs[i].PM = 3;
         tabJoueurs[i].PA = 15;
-        tabJoueurs[i].ligne = rand()% (12-1 +1) + 1;   //Placement aléatoire entre 1 et 12
-        tabJoueurs[i].colonne = rand()% (16-1 +1) + 1;   //Placement aléatoire entre 1 et 16
+
+        do{
+        tabJoueurs[i].ligne = rand()% (11-0 +1) + 0;   //Placement aléatoire entre 1 et 1
+        tabJoueurs[i].colonne = rand()% (15-0 +1) + 0;   //Placement aléatoire entre 1 et 16
+        } while (obstacle(tabJoueurs[i].colonne, tabJoueurs[i].ligne)==1);
 
         tabJoueurs[i].cpt=0; //compteur pour PA
         tabJoueurs[i].vivant=1;//Savoir s'il est en vie ou pas
+        tabJoueurs[i].classement=0;
 
         for(j=0;j<4;j++)
             tabJoueurs[i-1].choixClasseVerif[j] = 0;  //0 si le joueur a choisi une classe, 1 si classe choisie
