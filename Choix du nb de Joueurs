@@ -1,8 +1,9 @@
 /*-----------------------------------------------------------------------------------------------------*/
 ///Choix du nb de joueurs (avec affichage des boutons)
-void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs)
+int choixNbJoueurs(t_joueur *tabJoueurs)
 {
     int clic=0;
+    int nbJoueurs;
 
     //Création double buffer
     /******************************************************************************/     //Création / chargement bitmaps
@@ -67,9 +68,9 @@ void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs)
             {
                 clic=1;
                 initialiserJoueurStats(tabJoueurs,2); // initialisation stats de 2 joueurs
-                *nbJoueurs=2;
+                nbJoueurs=2;
                 clear_bitmap(screen);
-                choixClasseJoueur(tabJoueurs,nbJoueurs);   //Appel choix des classes
+                return nbJoueurs;
             }
 
             //Si bouton '3 joueurs' cliqué -> initialisation pour 3 joueurs
@@ -77,9 +78,9 @@ void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs)
             {
                 clic=1;
                 initialiserJoueurStats(tabJoueurs,3); // initialisation stats de 3 joueurs
-                *nbJoueurs=3;
+                nbJoueurs=3;
                 clear_bitmap(screen);
-                choixClasseJoueur(tabJoueurs,nbJoueurs);
+                return nbJoueurs;
             }
 
             //Si bouton '4 joueurs' cliqué -> initialisation pour 4 joueurs
@@ -87,9 +88,9 @@ void choixNbJoueurs(t_joueur *tabJoueurs, int* nbJoueurs)
             {
                 clic=1;
                 initialiserJoueurStats(tabJoueurs,4); // initialisation stats de 4 joueurs
-                *nbJoueurs=4;
+                nbJoueurs=4;
                 clear_bitmap(screen);
-                choixClasseJoueur(tabJoueurs,nbJoueurs);
+                return nbJoueurs;
             }
 
             ////Si bouton 'exit' cliqué -> quitte le jeu
