@@ -1,27 +1,27 @@
-#include "biblioJeu.h"
+#include "header.h"
 
 /*----------------------------------------------------------*/
 int main()
 {
     //Déclarations
-    int nbJoueurs, i, cptNbvivants;
-    int d=1;
-    int c=0;
+    int nbJoueurs, i;
     t_joueur *tabJoueurs;   //Tableau de joueurs
     tabJoueurs = (t_joueur*) malloc(4*sizeof(t_joueur));
 
     //Bitmaps
-    BITMAP* decor;
+    BITMAP* map;
     BITMAP* page;
     BITMAP* spriteDresseur[4][16];
-    BITMAP* spritePokemon[4];
+     BITMAP* spritePokemon[4];
     BITMAP* spritePokeAttack[4][4];
-
 
     // Initialisation d'Allegro
     initialisationAllegro();
 
     //install_keyboard(); //Installation du clavier
+
+
+    map=load_bitmap("mapJeu.bmp", NULL);
 
     if (install_mouse() == -1)    //Installation de la souris
     {
@@ -31,48 +31,31 @@ int main()
 
     show_mouse(screen); //Permet de montrer la souris à l'écran
 
+    //Appel Fonction début partie
+    //menuDemarrage();
 
-    do{
-        //Appel Fonction début partie
-        //menuDemarrage();
+    //Appel de la fonction pour le choix du nombre de joueurs
+    nbJoueurs=choixNbJoueurs(tabJoueurs);
 
-        //Appel de la fonction pour le choix du nombre de joueurs
-        nbJoueurs=choixNbJoueurs(tabJoueurs);
+    //Appel fonction classe des Joueurs
+    choixClasseJoueur(tabJoueurs,nbJoueurs);
 
-        //Appel fonction classe des Joueurs
-        choixClasseJoueur(tabJoueurs,nbJoueurs);
+    page=create_bitmap(1024,768);
+    extractionSprite(spriteDresseur, spritePokemon, spritePokeAttack);
 
+    //Boucle de jeu
 
-        extractionSprite(spriteDresseur,spritePokemon,spritePokeAttack);
+for (i=0; i<=nbJoueurs; i++) {
 
-        //Boucle de jeu
-
-        do{
-            page=create_bitmap(1024,768);
-            extractionSprite(spriteDresseur, spritePokemon, spritePokeAttack);
-
-            //Boucle de jeu
-            do
-            {
-                for(i=0;i<nbJoueurs;i++)
-                {
-                    tourJoueur(tabJoueurs,i,nbJoueurs,decor,page,spritePokemon,spritePokeAttack,spriteDresseur);
-                    //cptNbvivants=classement(nbJoueurs);
-                }
-
-                i=0;
-
-            }while(cptNbvivants!=1);
+if (i==nbJoueurs){
+        i=0;
+}
+tourJoueur(tabJoueurs, i, nbJoueurs, map, page, spritePokemon, spritePokeAttack, spriteDresseur);
+}
 
 
-            d=affichefin(nbJoueurs);//pour recommencer une partie, aller au menu ou quitter
-
-            }while(d==1);
-
-        }while(c==0);
 
 
-    //attaque(map,page,tabJoueurs,spritePokemon,spritePokeAttack,spriteDresseur,nbJoueurs,0);
 
     free(tabJoueurs);
 
@@ -80,4 +63,3 @@ int main()
 
 }END_OF_MAIN();  //Macro pour quitter Allegro
 /*-----------------------------------------------------------------------------------------------------*/
-
