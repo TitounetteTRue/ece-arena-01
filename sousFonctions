@@ -2149,7 +2149,6 @@ void tourJoueur(t_joueur *tabJoueurs,int numJoueur, int nbJoueurs, BITMAP* decor
     //Boucle de jeu
     while (clic == 0){
 
-            textprintf_ex(screen, font, 0, 20, makecol(255, 255, 255),makecol(0,0,0), "Coordonnees de la souris en ligne : %4d et en colonne : %4d", mouse_y, mouse_x);
 
             blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
 
@@ -2157,14 +2156,15 @@ void tourJoueur(t_joueur *tabJoueurs,int numJoueur, int nbJoueurs, BITMAP* decor
             draw_sprite(page, spriteDresseur[i][1], tabJoueurs[i].colonne*64,  tabJoueurs[i].ligne*64);
                }
 
-                draw_sprite(page,choixActionsPartie,380,130);
+                 draw_sprite(page,choixActionsPartie,380,130);
 
                  affichageStats(page,tabJoueurs,nbJoueurs,numJoueur);
 
                if(mouse_b & 1)
               {
-                if(mouse_x>=443 && mouse_x<=617 && mouse_y>=195 && mouse_y<=247)
+                if(mouse_x>=443 && mouse_x<=617 && mouse_y>=193 && mouse_y<=247)
                 {
+
                 clic=1;
                 }
 
@@ -2180,27 +2180,40 @@ void tourJoueur(t_joueur *tabJoueurs,int numJoueur, int nbJoueurs, BITMAP* decor
             }
 
         blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
+        clear(page);
     }
+
 
 
                 //Déplacements
                 if(clic==1)
                 {
-                    deplace(decor,page,spriteDresseur,tabJoueurs,numJoueur, nbJoueurs);
-                }
+                    sleep(1);
+                    int monDeplacement;
+                    do{
+                   monDeplacement=deplace(decor,page,spriteDresseur,tabJoueurs,numJoueur, nbJoueurs);
+                  } while(monDeplacement==2);
+
+
+               }
 
                 //Attaques
                 if(clic==2)
                 {
+                    sleep(1);
                     attaque(decor,page,tabJoueurs,spritePokemon,spritePokeattaque,spriteDresseur,nbJoueurs,numJoueur);
+
+
                 }
 
                 //Joueur suivant
                 if(clic==3)
                 {
-                    sleep(1);
+                     sleep(1);//Fin du tou                    sleep(1);
                 }
-}
+            }
+
+
 /*-----------------------------------------------------------------------------------------------------*/
 
 
