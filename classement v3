@@ -1,0 +1,45 @@
+//version V3
+// espace == manque données
+
+int affichefin(int numJoueurs)
+{
+    int d;
+    joueur*tab;
+    int i=0;
+    int x=0;
+    int clic=0;
+    clear_bitmap(screen);
+    BITMAP*Font;
+    Font = load_bitmap("menuStart.bmp",NULL);
+    BITPAP*plan;
+    plan=load_bitmap("affichefin.bmp",NULL);
+    blit(plan,Font,0,0,  ,  ,1024,768);
+    rectfill(Font,0,0,  ,  ,makecol(255,255,255));
+    for(i=1;i<=numJoueurs;i++)
+    {
+        textprintf_ex(Font, font, , +x, makecol(255, 100, 200),-1, "%d/ %s",tab[i].classement,tab[i].pseudo);
+        x=x+20;
+    }
+    blit(Font,screen,0,0,0,0,1024,768);
+    while(clic==0)
+    {
+        if(mouse_b & 1)
+        {
+            if(mouse_x>= && mouse_x<= && mouse_y>= && mouse_y<=)
+             {
+                  d=0;
+                  return d;
+              }
+            else if(mouse_x>= && mouse_x<= && mouse_y>= && mouse_y<=)
+              {
+                  d=1;
+                  return d;
+             }
+           else if(mouse_x>= && mouse_x<= && mouse_y>= && mouse_y<=)
+             {
+                quitterAllegro();
+             }
+        }
+    }
+
+}
