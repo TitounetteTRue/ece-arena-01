@@ -1306,6 +1306,7 @@ void affichageStats(BITMAP* page, t_joueur* tabJoueurs, int nbJoueurs, int numJo
             textprintf_ex(page, font, 125, 737, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
             textprintf_ex(page, font, 125, 747, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
             textprintf_ex(page, font, 125, 757, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+            textprintf_ex(page, font, 351, 760, makecol(255,255,255), -1, "| joueur suivant= %s      |", tabJoueurs[1].pseudo);
             //textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
         }
         else if(numJoueur==1) //Si c'est au joueur 2 de jouer
@@ -1317,11 +1318,12 @@ void affichageStats(BITMAP* page, t_joueur* tabJoueurs, int nbJoueurs, int numJo
             textprintf_ex(page, font, 125, 737, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
             textprintf_ex(page, font, 125, 747, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
             textprintf_ex(page, font, 125, 757, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+             textprintf_ex(page, font, 351, 760, makecol(255,255,255), -1, "| joueur suivant= %s      |", tabJoueurs[0].pseudo);
             //textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
         }
     }
     else if(nbJoueurs==3){
-        if(nbJoueurs == 0) //Si c'est au joueur 1 de jouer
+        if(numJoueur == 0) //Si c'est au joueur 1 de jouer
         {
             textprintf_ex(page, font, 10, 715, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
             textprintf_ex(page, font, 10, 727, makecol(255,255,255), -1, "%s",tabJoueurs[numJoueur].choixClasse);
@@ -1330,9 +1332,10 @@ void affichageStats(BITMAP* page, t_joueur* tabJoueurs, int nbJoueurs, int numJo
             textprintf_ex(page, font, 125, 737, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
             textprintf_ex(page, font, 125, 747, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
             textprintf_ex(page, font, 125, 757, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+             textprintf_ex(page, font, 351, 760, makecol(255,255,255), -1, "| joueur suivant= %s      |", tabJoueurs[1].pseudo);
             //textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
         }
-        else if(nbJoueurs==1) //Si c'est au joueur 2 de jouer
+        else if(numJoueur==1) //Si c'est au joueur 2 de jouer
         {
             textprintf_ex(page, font, 10, 715, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
             textprintf_ex(page, font, 10, 727, makecol(255,255,255), -1, "%s",tabJoueurs[numJoueur].choixClasse);
@@ -1341,9 +1344,10 @@ void affichageStats(BITMAP* page, t_joueur* tabJoueurs, int nbJoueurs, int numJo
             textprintf_ex(page, font, 125, 737, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
             textprintf_ex(page, font, 125, 747, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
             textprintf_ex(page, font, 125, 757, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+             textprintf_ex(page, font, 351, 760, makecol(255,255,255), -1, "| joueur suivant= %s      |", tabJoueurs[2].pseudo);
             //textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
         }
-        else if(nbJoueurs==2) //Si c'est au joueur 2 de jouer
+        else if(numJoueur==2) //Si c'est au joueur 2 de jouer
         {
             textprintf_ex(page, font, 10, 715, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
             textprintf_ex(page, font, 10, 727, makecol(255,255,255), -1, "%s",tabJoueurs[numJoueur].choixClasse);
@@ -1352,11 +1356,12 @@ void affichageStats(BITMAP* page, t_joueur* tabJoueurs, int nbJoueurs, int numJo
             textprintf_ex(page, font, 125, 737, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
             textprintf_ex(page, font, 125, 747, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
             textprintf_ex(page, font, 125, 757, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+             textprintf_ex(page, font, 351, 760, makecol(255,255,255), -1, "| joueur suivant= %s      |", tabJoueurs[0].pseudo);
             //textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
         }
     }
     else if(nbJoueurs==4){
-        if(nbJoueurs==0) //Si c'est au joueur 1 de jouer
+        if(numJoueur==0) //Si c'est au joueur 1 de jouer
         {
             textprintf_ex(page, font, 10, 715, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
             textprintf_ex(page, font, 10, 727, makecol(255,255,255), -1, "%s",tabJoueurs[numJoueur].choixClasse);
@@ -1365,9 +1370,10 @@ void affichageStats(BITMAP* page, t_joueur* tabJoueurs, int nbJoueurs, int numJo
             textprintf_ex(page, font, 125, 737, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
             textprintf_ex(page, font, 125, 747, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
             textprintf_ex(page, font, 125, 757, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+             textprintf_ex(page, font, 351, 760, makecol(255,255,255), -1, "| joueur suivant= %s      |", tabJoueurs[1].pseudo);
             //textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
         }
-        else if(nbJoueurs==1) //Si c'est au joueur 2 de jouer
+        else if(numJoueur==1) //Si c'est au joueur 2 de jouer
         {
             textprintf_ex(page, font, 10, 715, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
             textprintf_ex(page, font, 10, 727, makecol(255,255,255), -1, "%s",tabJoueurs[numJoueur].choixClasse);
@@ -1376,9 +1382,10 @@ void affichageStats(BITMAP* page, t_joueur* tabJoueurs, int nbJoueurs, int numJo
             textprintf_ex(page, font, 125, 737, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
             textprintf_ex(page, font, 125, 747, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
             textprintf_ex(page, font, 125, 757, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+             textprintf_ex(page, font, 351, 760, makecol(255,255,255), -1, "| joueur suivant= %s      |", tabJoueurs[2].pseudo);
             //textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
         }
-        else if(nbJoueurs==2) //Si c'est au joueur 3 de jouer
+        else if(numJoueur==2) //Si c'est au joueur 3 de jouer
         {
             textprintf_ex(page, font, 10, 715, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
             textprintf_ex(page, font, 10, 727, makecol(255,255,255), -1, "%s",tabJoueurs[numJoueur].choixClasse);
@@ -1387,9 +1394,10 @@ void affichageStats(BITMAP* page, t_joueur* tabJoueurs, int nbJoueurs, int numJo
             textprintf_ex(page, font, 125, 737, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
             textprintf_ex(page, font, 125, 747, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
             textprintf_ex(page, font, 125, 757, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+             textprintf_ex(page, font, 351, 760, makecol(255,255,255), -1, "| joueur suivant= %s      |", tabJoueurs[3].pseudo);
             //textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
         }
-        else if(nbJoueurs==3) //Si c'est au joueur 4 de jouer
+        else if(numJoueur==3) //Si c'est au joueur 4 de jouer
         {
             textprintf_ex(page, font, 10, 715, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
             textprintf_ex(page, font, 10, 727, makecol(255,255,255), -1, "%s",tabJoueurs[numJoueur].choixClasse);
@@ -1398,6 +1406,7 @@ void affichageStats(BITMAP* page, t_joueur* tabJoueurs, int nbJoueurs, int numJo
             textprintf_ex(page, font, 125, 737, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
             textprintf_ex(page, font, 125, 747, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
             textprintf_ex(page, font, 125, 757, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+             textprintf_ex(page, font, 351, 760, makecol(255,255,255), -1, "| joueur suivant= %s      |", tabJoueurs[0].pseudo);
             //textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
         }
     }
@@ -1486,7 +1495,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
        if(tab[numJoueur].PA>=10)//si PA est supérieure à 10
     {
 
-    allegro_message("veuillez cliquer sur le type d'attaque en selectionnant");
+    allegro_message("cliquez sur un pokemon !");
 
 
       while(clic2==0)
@@ -1535,7 +1544,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                             //collision loin(2cases)
                 if(mouse_x>=790 && mouse_x<=847 && mouse_y>=690 && mouse_y<=768)//Si souris clique 'sort1' du dresseur
                 {
-                    if((tab[j].ligne==tab[numJoueur].ligne+2 || tab[j].ligne==tab[numJoueur].ligne-2) &&(tab[j].colonne==tab[numJoueur].colonne+2 || tab[j].colonne==tab[numJoueur].colonne-2))
+                    if((tab[j].ligne<=tab[numJoueur].ligne+2 && tab[j].ligne>=tab[numJoueur].ligne-2) &&(tab[j].colonne<=tab[numJoueur].colonne+2 && tab[j].colonne>=tab[numJoueur].colonne-2))
                     {
                         s=rand()%(5-1+1)+1;
                         if(s>1)
@@ -1562,7 +1571,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                             //collision loin(3cases)
                 if(mouse_x>=848 && mouse_x<=905 && mouse_y>=690 && mouse_y<=768)//si souris clique 'sort2' du dresseur//189 218 339 378
                 {
-                    if((tab[j].ligne<=tab[numJoueur].ligne+3 || tab[j].ligne>=tab[numJoueur].ligne-3) &&(tab[j].colonne<=tab[numJoueur].colonne+3 || tab[j].colonne>=tab[numJoueur].colonne-3))
+                    if((tab[j].ligne<=tab[numJoueur].ligne+3 && tab[j].ligne>=tab[numJoueur].ligne-3) &&(tab[j].colonne<=tab[numJoueur].colonne+3 && tab[j].colonne>=tab[numJoueur].colonne-3))
                     {
                         f=rand()%(10-1+1)+1;
                             if(f>3)
@@ -1608,7 +1617,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                             //collision loin 4 cases
                 if(mouse_x>=964 && mouse_x<=1022 && mouse_y>=690 && mouse_y<=768)//si souris clique 'sort4' du dresseur
                 {
-                    if((tab[j].ligne<=tab[numJoueur].ligne+4 || tab[j].ligne>=tab[numJoueur].ligne-4) &&(tab[j].colonne<=tab[numJoueur].colonne+3 || tab[j].colonne>=tab[numJoueur].colonne-3))
+                    if((tab[j].ligne<=tab[numJoueur].ligne+4 && tab[j].ligne>=tab[numJoueur].ligne-4) &&(tab[j].colonne<=tab[numJoueur].colonne+3 && tab[j].colonne>=tab[numJoueur].colonne-3))
                     {
                         q=rand()%(2-1+1)+1;
                         if(q!=1)
@@ -1636,11 +1645,12 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
             blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
         }
         tab[numJoueur].cpt++;  //compteur plus 1
+        clic3=0;
     }
     }
     else if(tab[numJoueur].PA>=5 && tab[numJoueur].PA<10)
     {
-         allegro_message("veuillez cliquer sur le type d'attaque en selectionnant");
+         allegro_message("cliquez sur un pokemon !");
 
         while(clic2==0)
         {
@@ -1660,7 +1670,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                         //collision proche(1case)
                 if(mouse_x>=732 && mouse_x<=789  && mouse_y>=690 && mouse_y<=768  ) //Si souris clique 'attaque corps' du dresseur
                 {
-                    if((tab[j].ligne==tab[numJoueur].ligne+1 || tab[j].ligne==tab[numJoueur].ligne-1) &&(tab[j].colonne==tab[numJoueur].colonne+1 || tab[j].colonne==tab[numJoueur].colonne-1))
+                    if((tab[j].ligne<=tab[numJoueur].ligne+1 && tab[j].ligne>=tab[numJoueur].ligne-1) &&(tab[j].colonne<=tab[numJoueur].colonne+1 && tab[j].colonne>=tab[numJoueur].colonne-1))
                     {
                         h=rand()%(10-1+1)+1;
                         if(h!=1)
@@ -1687,7 +1697,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                             //collision loin(2cases)
                 if(mouse_x>=790 && mouse_x<=847 && mouse_y>=690 && mouse_y<=768)//Si souris clique 'sort1' du dresseur
                 {
-                    if((tab[j].ligne==tab[numJoueur].ligne+2 || tab[j].ligne==tab[numJoueur].ligne-2) &&(tab[j].colonne==tab[numJoueur].colonne+2 || tab[j].colonne==tab[numJoueur].colonne-2))
+                    if((tab[j].ligne<=tab[numJoueur].ligne+2 && tab[j].ligne>=tab[numJoueur].ligne-2) &&(tab[j].colonne<=tab[numJoueur].colonne+2 && tab[j].colonne>=tab[numJoueur].colonne-2))
                     {
                         s=rand()%(5-1+1)+1;
                         if(s>1)
@@ -1714,7 +1724,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                             //collision loin(3cases)
                 if(mouse_x>=848 && mouse_x<=905 && mouse_y>=690 && mouse_y<=768)//si souris clique 'sort2' du dresseur//189 218 339 378
                 {
-                    if((tab[j].ligne<=tab[numJoueur].ligne+3 || tab[j].ligne>=tab[numJoueur].ligne-3) &&(tab[j].colonne<=tab[numJoueur].colonne+3 || tab[j].colonne>=tab[numJoueur].colonne-3))
+                    if((tab[j].ligne<=tab[numJoueur].ligne+3 && tab[j].ligne>=tab[numJoueur].ligne-3) &&(tab[j].colonne<=tab[numJoueur].colonne+3 && tab[j].colonne>=tab[numJoueur].colonne-3))
                     {
                         f=rand()%(10-1+1)+1;
                             if(f>3)
@@ -1760,7 +1770,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                             //collision loin 4 cases
                 if(mouse_x>=964 && mouse_x<=1022 && mouse_y>=690 && mouse_y<=768)//si souris clique 'sort4' du dresseur
                 {
-                    if((tab[j].ligne<=tab[numJoueur].ligne+4 || tab[j].ligne>=tab[numJoueur].ligne-4) &&(tab[j].colonne<=tab[numJoueur].colonne+3 || tab[j].colonne>=tab[numJoueur].colonne-3))
+                    if((tab[j].ligne<=tab[numJoueur].ligne+4 && tab[j].ligne>=tab[numJoueur].ligne-4) &&(tab[j].colonne<=tab[numJoueur].colonne+3 && tab[j].colonne>=tab[numJoueur].colonne-3))
                     {
                         q=rand()%(2-1+1)+1;
                         if(q!=1)
@@ -1788,11 +1798,12 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
             blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
         }
         tab[numJoueur].cpt++;  //compteur plus 1
+         clic3=0;
     }
     }
     else if(tab[1].PA<5)
         {
-             allegro_message("veuillez cliquer sur le type d'attaque en selectionnant");
+             allegro_message("cliquez sur un pokemon !");
 
 
         while(clic2==0)
@@ -1812,7 +1823,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                         //collision proche(1case)
                 if(mouse_x>=732 && mouse_x<=789 && mouse_y>=690 && mouse_y<=768  ) //Si souris clique 'attaque corps' du dresseur
                 {
-                    if((tab[j].ligne==tab[numJoueur].ligne+1 || tab[j].ligne==tab[numJoueur].ligne-1) &&(tab[j].colonne==tab[numJoueur].colonne+1 || tab[j].colonne==tab[numJoueur].colonne-1))
+                    if((tab[j].ligne<=tab[numJoueur].ligne+1 && tab[j].ligne>=tab[numJoueur].ligne-1) &&(tab[j].colonne<=tab[numJoueur].colonne+1 && tab[j].colonne>=tab[numJoueur].colonne-1))
                     {
                         h=rand()%(10-1+1)+1;
                         if(h!=1)
@@ -1839,7 +1850,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                             //collision loin(2cases)
                 if(mouse_x>=790 && mouse_x<=847 && mouse_y>=690 && mouse_y<=768)//Si souris clique 'sort1' du dresseur
                 {
-                    if((tab[j].ligne==tab[numJoueur].ligne+2 || tab[j].ligne==tab[numJoueur].ligne-2) &&(tab[j].colonne==tab[numJoueur].colonne+2 || tab[j].colonne==tab[numJoueur].colonne-2))
+                    if((tab[j].ligne==tab[numJoueur].ligne+2 && tab[j].ligne==tab[numJoueur].ligne-2) &&(tab[j].colonne==tab[numJoueur].colonne+2 && tab[j].colonne==tab[numJoueur].colonne-2))
                     {
                         s=rand()%(5-1+1)+1;
                         if(s>1)
@@ -1866,7 +1877,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                             //collision loin(3cases)
                 if(mouse_x>=848 && mouse_x<=905 && mouse_y>=690 && mouse_y<=768)//si souris clique 'sort2' du dresseur//189 218 339 378
                 {
-                    if((tab[j].ligne<=tab[numJoueur].ligne+3 || tab[j].ligne>=tab[numJoueur].ligne-3) &&(tab[j].colonne<=tab[numJoueur].colonne+3 || tab[j].colonne>=tab[numJoueur].colonne-3))
+                    if((tab[j].ligne<=tab[numJoueur].ligne+3 && tab[j].ligne>=tab[numJoueur].ligne-3) &&(tab[j].colonne<=tab[numJoueur].colonne+3 && tab[j].colonne>=tab[numJoueur].colonne-3))
                     {
                         f=rand()%(10-1+1)+1;
                             if(f>3)
@@ -1919,6 +1930,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
             blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
         }
         tab[numJoueur].cpt++;  //compteur plus 1
+         clic3=0;
         }
     }
 
@@ -2135,7 +2147,7 @@ int t;
 
     textprintf_ex(Fond, font,250,550, makecol(255, 255, 255),-1,"LE CLASSEMENT :");
     textprintf_ex(Fond, font,250,552, makecol(255, 255, 255),-1,"_______________");
-    for(i=1; i<=numJoueurs; i++)
+    for(i=0; i<=numJoueurs; i++)
     {
         textprintf_ex(Fond, font,250,600+x, makecol(255, 255, 255),-1,"%s ton classement est %d",tab[i].pseudo,tab[i].classement);
         x=x+20;
@@ -2169,6 +2181,7 @@ int t;
         }
     }
 }
+
 
 
 
