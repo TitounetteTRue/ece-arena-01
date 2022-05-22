@@ -1997,5 +1997,95 @@ void animationAttaque(BITMAP* spritePokeAttack[4][4], int classeAttaquant,int cl
 
 
 }
+/*-----------------------------------------------------------------------------------------------------*/
 
 
+/*-----------------------------------------------------------------------------------------------------*/
+int classement(t_joueur*tab,int numJoueur,int nbJoueurs){
+    if(tab[numJoueur].PV<=0)
+    {
+        tab[numJoueur].vivant=0;
+        tab[numJoueur].classement=nbJoueurs;
+        nbJoueurs--;
+        return nbJoueurs;
+    }
+    if(nbJoueurs=1)
+    {
+        tab[numJoueur].classement=1;
+        return nbJoueurs;
+    }
+    else
+    {
+        return nbJoueurs;
+    }
+}
+/*-----------------------------------------------------------------------------------------------------*/
+
+
+/*-----------------------------------------------------------------------------------------------------*/
+int affichefin(int numJoueurs,  t_joueur*tab){
+
+    int i=0, a=0, x=0;
+    int clic=0;
+
+    clear_bitmap(screen);
+
+    ///Chargements des Bitmaps
+    /******************************************************************************/
+    BITMAP* Fond;
+    Fond = load_bitmap("menuStart.bmp",NULL);
+
+    if (!Fond)
+    {
+        allegro_message("Nous n'avons pas pu charger \"menuStart.bmp\"");
+        quitterAllegro();
+    }
+    /******************************************************************************/
+    BITMAP* plan;
+    plan = load_bitmap("affichefin.bmp",NULL);
+
+    if (!plan)
+    {
+        allegro_message("Nous n'avons pas pu charger \"affichefin.bmp\"");
+        quitterAllegro();
+    }
+    /******************************************************************************/
+
+    draw_sprite(Fond,plan,152,445);
+
+    textprintf_ex(Fond, font,250,550, makecol(255, 255, 255),-1,"LE CLASSEMENT :");
+    textprintf_ex(Fond, font,250,552, makecol(255, 255, 255),-1,"_______________");
+    for(i=1; i<=numJoueurs; i++)
+    {
+        textprintf_ex(Fond, font,250,600+x, makecol(255, 255, 255),-1,"%s ton classement est %d",tab[i].pseudo,tab[i].classement);
+        x=x+20;
+
+    }
+
+    blit(Fond,screen,0,0,0,0,1024,768);
+
+    while(clic==0)
+    {
+        if(mouse_b & 1)
+        {
+            if(mouse_x>=152 && mouse_x<=252 && mouse_y>=445 && mouse_y<=524)
+            {
+                  printf("Nouvelle partie");
+                  clic=1;
+                  t=1;
+                  return t;
+            }
+            else if(mouse_x>=299 && mouse_x<=499 && mouse_y>=445 && mouse_y<=524)
+            {
+                  printf("Menu");
+                  clic=1;
+                  t=2;
+                  return t;
+            }
+            else if(mouse_x>=545 && mouse_x<=745 && mouse_y>=445 && mouse_y<=524)
+            {
+                quitterAllegro();
+            }
+        }
+    }
+}
