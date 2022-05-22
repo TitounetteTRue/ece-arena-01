@@ -1425,7 +1425,11 @@ void tourJoueur(t_joueur *tabJoueurs,int numJoueur, int nbJoueurs, BITMAP* decor
     while (clic == 0){
 
             affichageStats(page,tabJoueurs,nbJoueurs,numJoueur);
-
+            /*if(tab[numJoueur].vivant=0)//si joueur mort on passe le tour
+            {
+                clear_bitmap(spriteDresseur);
+                clic=1;
+            }*/
             //Déplacement
             if(deplaceIndispo1 != 1)
             {
