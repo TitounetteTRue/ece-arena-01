@@ -52,8 +52,8 @@ int main()
               //cptNbvivants=classement(nbJoueurs);
           }
     }while(cptNbvivant!=1)
-   //d=affichefin(nbJoueurs);
-    }while(d==1);
+   d=affichefin(nbJoueurs);//pour recommencer une partie, aller au menu ou quitter
+   }while(d==1);
 }while(c==0);
     free(tabJoueurs);
 
