@@ -1963,11 +1963,8 @@ void animationAttaque(BITMAP* spritePokeAttack[4][4], int classeAttaquant,int cl
 
         for (i=0; i<2000; i++){
         blit(attaqueAnim2, page, 0, 0, 0, 0, page->w,page->h);
-
-       draw_sprite(page, spritePokeAttack[classeAttaquant][typeAttaque], 60, 300);
-        draw_sprite(page, spritePokeAttack[classeAttaquant][typeAttaque], 640, 145);
-       // masked_stretch_blit(spritePokeAttack[classeAttaquant][typeAttaque],page , 0, 0, 58, 78,60, 300, 58*7, 78*7);
-        // masked_stretch_blit(spritePokeAttack[classeVictime][typeAttaque],page,  0, 0,640, 145, 58*4, 78*4);
+         masked_stretch_blit(spritePokeAttack[classeAttaquant][typeAttaque],page , 0, 0, 58, 78,60, 300, 58*7, 78*7);
+         masked_stretch_blit(spritePokeAttack[classeVictime][typeAttaque],page,  0, 0,640, 145, 58*4, 78*4);
         blit(page, screen, 0, 0, 0, 0, page->w,page->h );
     }
 
