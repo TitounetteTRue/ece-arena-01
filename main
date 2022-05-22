@@ -4,7 +4,9 @@
 int main()
 {
     //Déclarations
-    int nbJoueurs, i, cptNbMorts;
+    int nbJoueurs, i, cptNbvivants;
+    int d=1;
+    int c=0;
     t_joueur *tabJoueurs;   //Tableau de joueurs
     tabJoueurs = (t_joueur*) malloc(4*sizeof(t_joueur));
 
@@ -27,7 +29,7 @@ int main()
     }
 
     show_mouse(screen); //Permet de montrer la souris à l'écran
-
+    do{
     //Appel Fonction début partie
     menuDemarrage();
 
@@ -36,25 +38,23 @@ int main()
 
     //Appel fonction classe des Joueurs
     choixClasseJoueur(tabJoueurs,nbJoueurs);
-
+    do{
     page=create_bitmap(1024,768);
     extractionSprite(spriteDresseur, spritePokemon, spritePokeAttack);
     //deplace(map,page,spriteDresseur,tabJoueurs,0,4);
 
     //Boucle de jeu
-    while(cptNbMorts != nbJoueurs-1)
-    {
+    do
+    {   
           for(i=0;i<nbJoueurs;i++)
           {
               tourJoueur(tabJoueurs,i,nbJoueurs,map,page,spriteDresseur);
-
-              if(tabJoueurs[i].PV == 0)
-                cptNbMorts++;
+              //cptNbvivants=classement(nbJoueurs);
           }
-
-        i=0;
-    }
-
+    }while(cptNbvivant!=1)
+   //d=affichefin(nbJoueurs);
+    }while(d==1);
+}while(c==0);
     free(tabJoueurs);
 
     return 0;  // Fin du main
