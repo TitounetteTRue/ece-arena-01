@@ -918,7 +918,6 @@ int i, j;
 
 
 BITMAP* groupe_animes[4];
-BITMAP* groupe_pokemon[4];
 BITMAP*groupe_pokemonAttaque[4];
 
 
@@ -926,25 +925,25 @@ BITMAP*groupe_pokemonAttaque[4];
 groupe_animes[0]=load_bitmap("Joueur1.bmp",NULL);
     if (!groupe_animes[0])
     {
-        allegro_message("Nous n'avons pas pu charger \ Joueur1.bmp \"");
+        allegro_message("Nous n'avons pas pu charger  Joueur1.bmp ");
         quitterAllegro();
     }
 groupe_animes[1]=load_bitmap("Joueur2.bmp",NULL);
     if (!groupe_animes[1])
     {
-        allegro_message("Nous n'avons pas pu charger  \ Joueur2.bmp \"");
+        allegro_message("Nous n'avons pas pu charger  Joueur2.bmp ");
         quitterAllegro();
     }
 groupe_animes[2]=load_bitmap("Joueur3.bmp",NULL);
     if (!groupe_animes[2])
     {
-        allegro_message("Nous n'avons pas pu charger \* Joueur3.bmp *\"");
+        allegro_message("Nous n'avons pas pu charger  Joueur3.bmp ");
         quitterAllegro();
     }
 groupe_animes[3]=load_bitmap("Joueur4.bmp",NULL);
     if (!groupe_animes[3])
     {
-        allegro_message("Nous n'avons pas pu charger \* Joueur4.bmp *\"");
+        allegro_message("Nous n'avons pas pu charger  Joueur4.bmp ");
         quitterAllegro();
     }
 
@@ -958,28 +957,28 @@ spriteDresseur[i][j] = recup_sprites(groupe_animes[i],64,93,0,0,4,j);
 
 
 
-groupe_pokemonAttaque[0]=load_bitmap("pokefeu-Copy.bmp.bmp",NULL);
+groupe_pokemonAttaque[0]=load_bitmap("pokefeu - Copie.bmp",NULL);
     if (!groupe_pokemonAttaque[0])
     {
-        allegro_message("Nous n'avons pas pu charger \ Joueur1.bmp \"");
+        allegro_message("Nous n'avons pas pu charger pokefeu - Copie.bmp ");
         quitterAllegro();
     }
-groupe_pokemonAttaque[1]=load_bitmap("pokeeau-Copy.bmp",NULL);
+groupe_pokemonAttaque[1]=load_bitmap("pokeeau - Copie.bmp",NULL);
     if (!groupe_pokemonAttaque[1])
     {
-        allegro_message("Nous n'avons pas pu charger  \ Joueur2.bmp \"");
+        allegro_message("Nous n'avons pas pu charger  pokeeau - Copie.bmp ");
         quitterAllegro();
     }
-groupe_pokemonAttaque[2]=load_bitmap("pokeelec-Copy.bmp",NULL);
+groupe_pokemonAttaque[2]=load_bitmap("pokeelec - Copie.bmp",NULL);
     if (!groupe_pokemonAttaque[2])
     {
-        allegro_message("Nous n'avons pas pu charger \* Joueur3.bmp *\"");
+        allegro_message("Nous n'avons pas pu charger  pokeelec - Copie.bmp ");
         quitterAllegro();
     }
-groupe_pokemonAttaque[3]=load_bitmap("pokeplante-Copy.bmp",NULL);
+groupe_pokemonAttaque[3]=load_bitmap("pokeplante - Copie.bmp",NULL);
     if (!groupe_pokemonAttaque[3])
     {
-        allegro_message("Nous n'avons pas pu charger \* Joueur4.bmp *\"");
+        allegro_message("Nous n'avons pas pu charger  pokeplante - Copie.bmp ");
         quitterAllegro();
     }
 
@@ -997,25 +996,25 @@ spritePokeAttack[i][j] = recup_sprites(groupe_pokemonAttaque[i],58,78,0,0,4,j);
 spritePokemon[0]=load_bitmap("pokefeu.bmp",NULL);
     if (!spritePokemon[0])
     {
-        allegro_message("Nous n'avons pas pu charger \ Joueur1.bmp \"");
+        allegro_message("Nous n'avons pas pu charger  pokefeu.bmp");
         quitterAllegro();
     }
 spritePokemon[1]=load_bitmap("pokeeau.bmp",NULL);
     if (!spritePokemon[1])
     {
-        allegro_message("Nous n'avons pas pu charger  \ Joueur2.bmp \"");
+        allegro_message("Nous n'avons pas pu charger  pokefeu.bmp");
         quitterAllegro();
     }
 spritePokemon[2]=load_bitmap("pokeelec.bmp",NULL);
     if (!spritePokemon[2])
     {
-        allegro_message("Nous n'avons pas pu charger \* Joueur3.bmp *\"");
+        allegro_message("Nous n'avons pas pu charger pokeelec.bmp");
         quitterAllegro();
     }
 spritePokemon[3]=load_bitmap("pokeplante.bmp",NULL);
     if (!spritePokemon[3])
     {
-        allegro_message("Nous n'avons pas pu charger \* Joueur4.bmp *\"");
+        allegro_message("Nous n'avons pas pu charger pokeplante.bmp");
         quitterAllegro();
     }
 
