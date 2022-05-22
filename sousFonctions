@@ -1412,62 +1412,7 @@ void affichageStats(BITMAP* page, t_joueur* tabJoueurs, int nbJoueurs, int numJo
 /*-----------------------------------------------------------------------------------------------------*/
 
 
-/*-----------------------------------------------------------------------------------------------------*/
-void tourJoueur(t_joueur *tabJoueurs,int numJoueur, int nbJoueurs, BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16])
-{
-    ///Déclarations bitmaps
 
-    int clic=0;
-    int deplaceIndispo1= deplace(decor,page,spriteDresseur,tabJoueurs,numJoueur, nbJoueurs);
-    int deplaceIndispo2= deplace(decor,page,spriteDresseur,tabJoueurs,numJoueur, nbJoueurs);
-
-    //Boucle de jeu
-    while (clic == 0){
-
-            affichageStats(page,tabJoueurs,nbJoueurs,numJoueur);
-            /*if(tab[numJoueur].vivant=0)//si joueur mort on passe le tour
-            {
-                clear_bitmap(spriteDresseur);
-                clic=1;
-            }*/
-            //Déplacement
-            if(deplaceIndispo1 != 1)
-            {
-                deplace(decor,page,spriteDresseur,tabJoueurs,numJoueur, nbJoueurs);
-            }
-
-            if(deplaceIndispo2 != 2)
-            {
-                deplace(decor,page,spriteDresseur,tabJoueurs,numJoueur, nbJoueurs);
-            }
-
-            //Attaques
-            if(tabJoueurs[numJoueur].PA <= 15 && tabJoueurs[numJoueur].PA > 0)
-            {
-                //Attaque corps à corps
-                if(mouse_x>=415 && mouse_x<=585 && mouse_y>=434 && mouse_y<=532 && (mouse_b & 1))
-                {
-                    clic=1;
-                    //attaqueCaC();
-                }
-
-                //Attaque avec sorts
-                if(mouse_x>=415 && mouse_x<=585 && mouse_y>=434 && mouse_y<=532 && (mouse_b & 1))
-                {
-                    clic=1;
-                    //attaqueSorts();
-                }
-            }
-
-            //Joueur suivant
-            if(mouse_x>=415 && mouse_x<=585 && mouse_y>=434 && mouse_y<=532 && (mouse_b & 1))
-            {
-                clic=1; //Fin du tour
-            }
-
-    }
-
-}
 /*-----------------------------------------------------------------------------------------------------*/
 void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4],BITMAP* spritePokeattaque[4][4], BITMAP* spriteDresseur[4][16],int nbrjoueurs, int numJoueur)
 {
@@ -2120,3 +2065,70 @@ int affichefin(int numJoueurs,  t_joueur*tab){
         }
     }
 }
+/*-----------------------------------------------------------------------------------------------------*/
+
+
+/*-----------------------------------------------------------------------------------------------------*/
+void tourJoueur(t_joueur *tabJoueurs,int numJoueur, int nbJoueurs, BITMAP* decor, BITMAP* page,BITMAP* spritePokemon[4],BITMAP* spritePokeattaque[4][4], BITMAP* spriteDresseur[4][16])
+{
+    ///Déclarations bitmaps
+
+    /******************************************************************************/
+    BITMAP* choixActionsPartie;
+    choixActionsPartie = load_bitmap("choixActionsPartie.bmp",NULL);
+
+    if (!choixActionsPartie)
+    {
+        allegro_message("Nous n'avons pas pu charger \"choixActionsPartie.bmp\"");
+        quitterAllegro();
+    }
+    /******************************************************************************/
+
+    //draw_sprite(screen,choixActionsPartie,380,130);
+
+    int clic=0,i;
+
+    //Boucle de jeu
+    while (clic == 0){
+
+            affichageStats(page,tabJoueurs,nbJoueurs,numJoueur);
+
+            for (i=0; i<nbJoueurs; i++){
+
+                blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
+                draw_sprite(page, spriteDresseur[i][1], tabJoueurs[i].colonne*64,  tabJoueurs[i].ligne*64);
+                draw_sprite(page,choixActionsPartie,380,130);
+                }
+
+            if(mouse_b & 1)
+            {
+                //Déplacements
+                if(mouse_x>=443 && mouse_x<=617 && mouse_y>=193 && mouse_y<=247)
+                {
+                    clic=1;
+                    deplace(decor,page,spriteDresseur,tabJoueurs,numJoueur, nbJoueurs);
+                }
+
+                //Attaques
+                if(mouse_x>=443 && mouse_x<=617 && mouse_y>=294 && mouse_y<=356)
+                {
+                    clic=1;
+                    attaque(decor,page,tabJoueurs,spritePokemon,spritePokeattaque,spriteDresseur,nbJoueurs,numJoueur);
+                }
+
+                //Joueur suivant
+                if(mouse_x>=443 && mouse_x<=617 && mouse_y>=400 && mouse_y<=935)
+                {
+                    clic=1; //Fin du tour
+                    sleep(1);
+                }
+            }
+
+        blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
+    }
+
+}
+/*-----------------------------------------------------------------------------------------------------*/
+
+
+
