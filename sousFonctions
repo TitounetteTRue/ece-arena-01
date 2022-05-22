@@ -950,7 +950,7 @@ groupe_animes[3]=load_bitmap("Joueur4.bmp",NULL);
 
 for (i=0;i<4;i++){
     for (j=0;j<16;j++){
-spriteDresseur[i][j] = recup_sprites(groupe_animes[i],64,93,0,0,4,j);
+spriteDresseur[i][j] = recup_sprites(groupe_animes[i],50,64,0,0,4,j);
 
 }
 }
