@@ -15,14 +15,18 @@ void initialisationAllegro()
         exit(EXIT_FAILURE);
     }
 }
+
 /*----------------------------------------------------------------------------*/
+
 //Fonction pour quitter Allegro
 void quitterAllegro()
 {
     allegro_exit();
     exit(EXIT_FAILURE);
 }
+
 /*----------------------------------------------------------------------------*/
+
 //Affichage du bouton 'exit' en haut à gauche
 void affichageBoutonExit()
 {  //Dessin du bouton 'exit'
@@ -70,35 +74,35 @@ void exitJeu()
     /******************************************************************************/
 
     //Affichage sur la bitmap choisie
-      textout_centre_ex(bitmapFondNoir, font, "Es-tu sur de vouloir quitter notre superbe jeu ?", 510, 200, makecol(255, 255, 255), -1);
-      draw_sprite(bitmapFondNoir, boutonOui, 415, 300);
-      // draw_sprite(bitmapFondNoir, boutonNon, 600, 300);
+    textout_centre_ex(bitmapFondNoir, font, "Es-tu sur de vouloir quitter notre superbe jeu ?", 510, 200, makecol(255, 255, 255), -1);
+    draw_sprite(bitmapFondNoir, boutonOui, 415, 300);
+    // draw_sprite(bitmapFondNoir, boutonNon, 600, 300);
 
     //On copie le double buffer dans screen
-      blit(bitmapFondNoir,screen, 0, 0, 0, 0, 1024, 768);
+    blit(bitmapFondNoir,screen, 0, 0, 0, 0, 1024, 768);
 
     while (clic == 0){
 
         if (mouse_b & 1)   //Si clic gauche souris cliqué
+        {
+            //Si bouton 'Oui' cliqué -> quitte le jeu
+            if(mouse_x>=400 && mouse_x<=639 && mouse_y>=305 && mouse_y<=515)
             {
-                //Si bouton 'Oui' cliqué -> quitte le jeu
-                if(mouse_x>=400 && mouse_x<=639 && mouse_y>=305 && mouse_y<=515)
-                {
-                    //allegro_message("Dommage! A la prochaine");
-                    quitterAllegro();
-                }
+                //allegro_message("Dommage! A la prochaine");
+                quitterAllegro();
+            }
 
             ///Annuler 'quitter la partie' ne marche pas
             /*
-                //Si bouton 'Non' cliqué -> partie reprend
-                if(mouse_x>=600 && mouse_x<=859 && mouse_y>=305 && mouse_y<=515)
-                {
-                    sleep(3);
-                    clear_bitmap(screen);
-                }
+            //Si bouton 'Non' cliqué -> partie reprend
+            if(mouse_x>=600 && mouse_x<=859 && mouse_y>=305 && mouse_y<=515)
+            {
+                sleep(3);
+                clear_bitmap(screen);
             }
+
             */
-            }
+        }
     }
 }
 /*-----------------------------------------------------------------------------------------------------*/
@@ -178,68 +182,68 @@ void attributionClasseJoueur(t_joueur* tabJoueurs, int i)
     /******************************************************************************/
 
     //Switch case pour savoir à quel joueur de jouer
-        switch (i){
-            //Joueur 1
-            case 0:
-                textprintf_ex(fondCadreJoueur1, font, 300, 5, makecol(255,255,255), -1,  "             |        STATS       |");
-                textprintf_ex(fondCadreJoueur1, font, 300, 25, makecol(255,255,255), -1, "             | Nombre PV = %d    |", tabJoueurs[i].PV);
-                textprintf_ex(fondCadreJoueur1, font, 300, 45, makecol(255,255,255), -1, "             | Nombre PA = %d     |", tabJoueurs[i].PA);
-                textprintf_ex(fondCadreJoueur1, font, 300, 65, makecol(255,255,255), -1, "             | Nombre PM = %d      |", tabJoueurs[i].PM);
-                textprintf_ex(fondCadreJoueur1, font, 150, 35, makecol(255,255,255), -1,  "Joueur 1:");
-                textprintf_ex(fondCadreJoueur1, font, 240, 35, makecol(255,128,192), -1, "%s",tabJoueurs[i].pseudo);
-                textprintf_ex(fondCadreJoueur1, font, 700, 35, makecol(255,255,255), -1,  "---> %s",tabJoueurs[i].choixClasse);
+    switch (i){
+         //Joueur 1
+        case 0:
+            textprintf_ex(fondCadreJoueur1, font, 300, 5, makecol(255,255,255), -1,  "             |        STATS       |");
+            textprintf_ex(fondCadreJoueur1, font, 300, 25, makecol(255,255,255), -1, "             | Nombre PV = %d    |", tabJoueurs[i].PV);
+            textprintf_ex(fondCadreJoueur1, font, 300, 45, makecol(255,255,255), -1, "             | Nombre PA = %d     |", tabJoueurs[i].PA);
+            textprintf_ex(fondCadreJoueur1, font, 300, 65, makecol(255,255,255), -1, "             | Nombre PM = %d      |", tabJoueurs[i].PM);
+            textprintf_ex(fondCadreJoueur1, font, 150, 35, makecol(255,255,255), -1, "Joueur 1:");
+            textprintf_ex(fondCadreJoueur1, font, 240, 35, makecol(255,128,192), -1, "%s",tabJoueurs[i].pseudo);
+            textprintf_ex(fondCadreJoueur1, font, 700, 35, makecol(255,255,255), -1,  "---> %s",tabJoueurs[i].choixClasse);
 
-                blit(fondCadreJoueur1,screen, 0, 0, 30, 650, 1024, 768);  //Affichage stats Joueur 1
+            blit(fondCadreJoueur1,screen, 0, 0, 30, 650, 1024, 768);  //Affichage stats Joueur 1
 
-                break;
+            break;
 
-            //Joueur 2
-            case 1:
-                textprintf_ex(fondCadreJoueur2, font, 300, 5, makecol(255,255,255), -1,  "             |        STATS       |");
-                textprintf_ex(fondCadreJoueur2, font, 300, 25, makecol(255,255,255), -1, "             | Nombre PV = %d    |", tabJoueurs[i].PV);
-                textprintf_ex(fondCadreJoueur2, font, 300, 45, makecol(255,255,255), -1, "             | Nombre PA = %d     |", tabJoueurs[i].PA);
-                textprintf_ex(fondCadreJoueur2, font, 300, 65, makecol(255,255,255), -1, "             | Nombre PM = %d      |", tabJoueurs[i].PM);
-                textprintf_ex(fondCadreJoueur2, font, 150, 35, makecol(255,255,255), -1,  "Joueur 2:");
-                textprintf_ex(fondCadreJoueur2, font, 240, 35, makecol(255,128,192), -1, "%s",tabJoueurs[i].pseudo);
-                textprintf_ex(fondCadreJoueur2, font, 700, 35, makecol(255,255,255), -1,  "---> %s",tabJoueurs[i].choixClasse);
+        //Joueur 2
+        case 1:
+            textprintf_ex(fondCadreJoueur2, font, 300, 5, makecol(255,255,255), -1,  "             |        STATS       |");
+            textprintf_ex(fondCadreJoueur2, font, 300, 25, makecol(255,255,255), -1, "             | Nombre PV = %d    |", tabJoueurs[i].PV);
+            textprintf_ex(fondCadreJoueur2, font, 300, 45, makecol(255,255,255), -1, "             | Nombre PA = %d     |", tabJoueurs[i].PA);
+            textprintf_ex(fondCadreJoueur2, font, 300, 65, makecol(255,255,255), -1, "             | Nombre PM = %d      |", tabJoueurs[i].PM);
+            textprintf_ex(fondCadreJoueur2, font, 150, 35, makecol(255,255,255), -1, "Joueur 2:");
+            textprintf_ex(fondCadreJoueur2, font, 240, 35, makecol(255,128,192), -1, "%s",tabJoueurs[i].pseudo);
+            textprintf_ex(fondCadreJoueur2, font, 700, 35, makecol(255,255,255), -1,  "---> %s",tabJoueurs[i].choixClasse);
 
-                blit(fondCadreJoueur2,screen, 0, 0, 30, 650, 1024, 768);  //Affichage stats Joueur 2
+            blit(fondCadreJoueur2,screen, 0, 0, 30, 650, 1024, 768);  //Affichage stats Joueur 2
 
-                break;
+            break;
 
-            //Joueur 3
-            case 2:
-                textprintf_ex(fondCadreJoueur3, font, 300, 5, makecol(255,255,255), -1,  "             |        STATS       |");
-                textprintf_ex(fondCadreJoueur3, font, 300, 25, makecol(255,255,255), -1, "             | Nombre PV = %d    |", tabJoueurs[i].PV);
-                textprintf_ex(fondCadreJoueur3, font, 300, 45, makecol(255,255,255), -1, "             | Nombre PA = %d     |", tabJoueurs[i].PA);
-                textprintf_ex(fondCadreJoueur3, font, 300, 65, makecol(255,255,255), -1, "             | Nombre PM = %d      |", tabJoueurs[i].PM);
-                textprintf_ex(fondCadreJoueur3, font, 150, 35, makecol(255,255,255), -1,  "Joueur 3:");
-                textprintf_ex(fondCadreJoueur3, font, 240, 35, makecol(255,128,192), -1, "%s",tabJoueurs[i].pseudo);
-                textprintf_ex(fondCadreJoueur3, font, 700, 35, makecol(255,255,255), -1,  "---> %s",tabJoueurs[i].choixClasse);
+        //Joueur 3
+        case 2:
+            textprintf_ex(fondCadreJoueur3, font, 300, 5, makecol(255,255,255), -1,  "             |        STATS       |");
+            textprintf_ex(fondCadreJoueur3, font, 300, 25, makecol(255,255,255), -1, "             | Nombre PV = %d    |", tabJoueurs[i].PV);
+            textprintf_ex(fondCadreJoueur3, font, 300, 45, makecol(255,255,255), -1, "             | Nombre PA = %d     |", tabJoueurs[i].PA);
+            textprintf_ex(fondCadreJoueur3, font, 300, 65, makecol(255,255,255), -1, "             | Nombre PM = %d      |", tabJoueurs[i].PM);
+            textprintf_ex(fondCadreJoueur3, font, 150, 35, makecol(255,255,255), -1, "Joueur 3:");
+            textprintf_ex(fondCadreJoueur3, font, 240, 35, makecol(255,128,192), -1, "%s",tabJoueurs[i].pseudo);
+            textprintf_ex(fondCadreJoueur3, font, 700, 35, makecol(255,255,255), -1,  "---> %s",tabJoueurs[i].choixClasse);
 
-                blit(fondCadreJoueur3,screen, 0, 0, 30, 650, 1024, 768);  //Affichage stats Joueur 3
+            blit(fondCadreJoueur3,screen, 0, 0, 30, 650, 1024, 768);  //Affichage stats Joueur 3
 
-                break;
+            break;
 
-            //Joueur 4
-            case 3:
-                textprintf_ex(fondCadreJoueur4, font, 300, 5, makecol(255,255,255), -1,  "             |        STATS       |");
-                textprintf_ex(fondCadreJoueur4, font, 300, 25, makecol(255,255,255), -1, "             | Nombre PV = %d    |", tabJoueurs[i].PV);
-                textprintf_ex(fondCadreJoueur4, font, 300, 45, makecol(255,255,255), -1, "             | Nombre PA = %d     |", tabJoueurs[i].PA);
-                textprintf_ex(fondCadreJoueur4, font, 300, 65, makecol(255,255,255), -1, "             | Nombre PM = %d      |", tabJoueurs[i].PM);
-                textprintf_ex(fondCadreJoueur4, font, 150, 35, makecol(255,255,255), -1,  "Joueur 4:");
-                textprintf_ex(fondCadreJoueur4, font, 240, 35, makecol(255,128,192), -1, "%s",tabJoueurs[i].pseudo);
-                textprintf_ex(fondCadreJoueur4, font, 700, 35, makecol(255,255,255), -1,  "---> %s",tabJoueurs[i].choixClasse);
+        //Joueur 4
+        case 3:
+            textprintf_ex(fondCadreJoueur4, font, 300, 5, makecol(255,255,255), -1,  "             |        STATS       |");
+            textprintf_ex(fondCadreJoueur4, font, 300, 25, makecol(255,255,255), -1, "             | Nombre PV = %d    |", tabJoueurs[i].PV);
+            textprintf_ex(fondCadreJoueur4, font, 300, 45, makecol(255,255,255), -1, "             | Nombre PA = %d     |", tabJoueurs[i].PA);
+            textprintf_ex(fondCadreJoueur4, font, 300, 65, makecol(255,255,255), -1, "             | Nombre PM = %d      |", tabJoueurs[i].PM);
+            textprintf_ex(fondCadreJoueur4, font, 150, 35, makecol(255,255,255), -1, "Joueur 4:");
+            textprintf_ex(fondCadreJoueur4, font, 240, 35, makecol(255,128,192), -1, "%s",tabJoueurs[i].pseudo);
+            textprintf_ex(fondCadreJoueur4, font, 700, 35, makecol(255,255,255), -1,  "---> %s",tabJoueurs[i].choixClasse);
 
-                blit(fondCadreJoueur4,screen, 0, 0, 30, 650, 1024, 768);  //Affichage stats Joueur 4
+            blit(fondCadreJoueur4,screen, 0, 0, 30, 650, 1024, 768);  //Affichage stats Joueur 4
 
-                break;
+            break;
 
             //Par défaut
-            default:
-                allegro_message("Erreur nbJoueurs faux !");
-                break;
-            }
+        default:
+            allegro_message("Erreur nbJoueurs faux !");
+            break;
+    }
 }
 /*-----------------------------------------------------------------------------------------------------*/
 
@@ -891,56 +895,56 @@ void menuDemarrage(t_joueur *tabJoueurs, int* nbJoueurs)
 /*-----------------------------------------------------------------------------------------------------*/
 BITMAP* recup_sprites( BITMAP*scr, int w, int h, int startx, int starty, int col, int element)
 {
-BITMAP *bmp;
-int x,y;
+    BITMAP *bmp;
+    int x,y;
 
-bmp=create_bitmap(w,h);
+    bmp=create_bitmap(w,h);
 
-    if (!bmp)
-    {
-        allegro_message("Nous n'avons pas pu charger votre sprite");
-        quitterAllegro();
+        if (!bmp)
+        {
+            allegro_message("Nous n'avons pas pu charger votre sprite");
+            quitterAllegro();
+        }
+
+    if (bmp!=NULL){
+        x= startx+(element%col)*w;
+        y= starty+(element/col)*h;
+        blit(scr,bmp,x,y,0,0,w,h);
     }
-
-if (bmp!=NULL){
-x= startx+(element%col)*w;
-y= starty+(element/col)*h;
-blit(scr,bmp,x,y,0,0,w,h);
-}
-return bmp;
+    return bmp;
 }
 /*-----------------------------------------------------------------------------------------------------*/
 
 
 /*-----------------------------------------------------------------------------------------------------*/
 void extractionSprite (BITMAP* spriteDresseur[4][16],BITMAP* spritePokemon[4], BITMAP* spritePokeAttack[4][4]){
-int i, j;
+    int i, j;
 
 
-BITMAP* groupe_animes[4];
-BITMAP*groupe_pokemonAttaque[4];
+    BITMAP* groupe_animes[4];
+    BITMAP*groupe_pokemonAttaque[4];
 
 
 
-groupe_animes[0]=load_bitmap("Joueur1.bmp",NULL);
+    groupe_animes[0]=load_bitmap("Joueur1.bmp",NULL);
     if (!groupe_animes[0])
     {
         allegro_message("Nous n'avons pas pu charger  Joueur1.bmp ");
         quitterAllegro();
     }
-groupe_animes[1]=load_bitmap("Joueur2.bmp",NULL);
+    groupe_animes[1]=load_bitmap("Joueur2.bmp",NULL);
     if (!groupe_animes[1])
     {
         allegro_message("Nous n'avons pas pu charger  Joueur2.bmp ");
         quitterAllegro();
     }
-groupe_animes[2]=load_bitmap("Joueur3.bmp",NULL);
+    groupe_animes[2]=load_bitmap("Joueur3.bmp",NULL);
     if (!groupe_animes[2])
     {
         allegro_message("Nous n'avons pas pu charger  Joueur3.bmp ");
         quitterAllegro();
     }
-groupe_animes[3]=load_bitmap("Joueur4.bmp",NULL);
+    groupe_animes[3]=load_bitmap("Joueur4.bmp",NULL);
     if (!groupe_animes[3])
     {
         allegro_message("Nous n'avons pas pu charger  Joueur4.bmp ");
@@ -948,34 +952,33 @@ groupe_animes[3]=load_bitmap("Joueur4.bmp",NULL);
     }
 
 
-for (i=0;i<4;i++){
-    for (j=0;j<16;j++){
-spriteDresseur[i][j] = recup_sprites(groupe_animes[i],50,64,0,0,4,j);
-
-}
-}
-
+    for (i=0;i<4;i++){
+        for (j=0;j<16;j++){
+            spriteDresseur[i][j] = recup_sprites(groupe_animes[i],50,64,0,0,4,j);
+        }
+    }
 
 
-groupe_pokemonAttaque[0]=load_bitmap("pokefeu - Copie.bmp",NULL);
+
+    groupe_pokemonAttaque[0]=load_bitmap("pokefeu - Copie.bmp",NULL);
     if (!groupe_pokemonAttaque[0])
     {
         allegro_message("Nous n'avons pas pu charger pokefeu - Copie.bmp ");
         quitterAllegro();
     }
-groupe_pokemonAttaque[1]=load_bitmap("pokeeau - Copie.bmp",NULL);
+    groupe_pokemonAttaque[1]=load_bitmap("pokeeau - Copie.bmp",NULL);
     if (!groupe_pokemonAttaque[1])
     {
         allegro_message("Nous n'avons pas pu charger  pokeeau - Copie.bmp ");
         quitterAllegro();
     }
-groupe_pokemonAttaque[2]=load_bitmap("pokeelec - Copie.bmp",NULL);
+    groupe_pokemonAttaque[2]=load_bitmap("pokeelec - Copie.bmp",NULL);
     if (!groupe_pokemonAttaque[2])
     {
         allegro_message("Nous n'avons pas pu charger  pokeelec - Copie.bmp ");
         quitterAllegro();
     }
-groupe_pokemonAttaque[3]=load_bitmap("pokeplante - Copie.bmp",NULL);
+    groupe_pokemonAttaque[3]=load_bitmap("pokeplante - Copie.bmp",NULL);
     if (!groupe_pokemonAttaque[3])
     {
         allegro_message("Nous n'avons pas pu charger  pokeplante - Copie.bmp ");
@@ -983,35 +986,34 @@ groupe_pokemonAttaque[3]=load_bitmap("pokeplante - Copie.bmp",NULL);
     }
 
 
-for (i=0;i<4;i++){
-    for (j=0;j<4;j++){
-spritePokeAttack[i][j] = recup_sprites(groupe_pokemonAttaque[i],58,78,0,0,4,j);
-
-}
-}
-
+    for (i=0;i<4;i++){
+        for (j=0;j<4;j++){
+            spritePokeAttack[i][j] = recup_sprites(groupe_pokemonAttaque[i],58,78,0,0,4,j);
+        }
+    }
 
 
 
-spritePokemon[0]=load_bitmap("pokefeu.bmp",NULL);
+
+    spritePokemon[0]=load_bitmap("pokefeu.bmp",NULL);
     if (!spritePokemon[0])
     {
         allegro_message("Nous n'avons pas pu charger  pokefeu.bmp");
         quitterAllegro();
     }
-spritePokemon[1]=load_bitmap("pokeeau.bmp",NULL);
+    spritePokemon[1]=load_bitmap("pokeeau.bmp",NULL);
     if (!spritePokemon[1])
     {
         allegro_message("Nous n'avons pas pu charger  pokefeu.bmp");
         quitterAllegro();
     }
-spritePokemon[2]=load_bitmap("pokeelec.bmp",NULL);
+    spritePokemon[2]=load_bitmap("pokeelec.bmp",NULL);
     if (!spritePokemon[2])
     {
         allegro_message("Nous n'avons pas pu charger pokeelec.bmp");
         quitterAllegro();
     }
-spritePokemon[3]=load_bitmap("pokeplante.bmp",NULL);
+    spritePokemon[3]=load_bitmap("pokeplante.bmp",NULL);
     if (!spritePokemon[3])
     {
         allegro_message("Nous n'avons pas pu charger pokeplante.bmp");
@@ -1020,22 +1022,16 @@ spritePokemon[3]=load_bitmap("pokeplante.bmp",NULL);
 
 
 
+    destroy_bitmap(groupe_animes[0]);
+    destroy_bitmap(groupe_animes[1]);
+    destroy_bitmap(groupe_animes[2]);
+    destroy_bitmap(groupe_animes[3]);
 
 
-
-
-destroy_bitmap(groupe_animes[0]);
-destroy_bitmap(groupe_animes[1]);
-destroy_bitmap(groupe_animes[2]);
-destroy_bitmap(groupe_animes[3]);
-
-
-destroy_bitmap(groupe_pokemonAttaque[0]);
-destroy_bitmap(groupe_pokemonAttaque[1]);
-destroy_bitmap(groupe_pokemonAttaque[2]);
-destroy_bitmap(groupe_pokemonAttaque[3]);
-
-
+    destroy_bitmap(groupe_pokemonAttaque[0]);
+    destroy_bitmap(groupe_pokemonAttaque[1]);
+    destroy_bitmap(groupe_pokemonAttaque[2]);
+    destroy_bitmap(groupe_pokemonAttaque[3]);
 }
 /*-----------------------------------------------------------------------------------------------------*/
 
@@ -1043,43 +1039,42 @@ destroy_bitmap(groupe_pokemonAttaque[3]);
 /*-----------------------------------------------------------------------------------------------------*/
 int obstacle (int Scolonne, int Sligne){ // spg de hitbox
 
-//hitbox du lac
-if ((Scolonne>=0&&Scolonne<=15)&&(Sligne==10||Sligne==11)){
-    return 1;
-}
-//hitbaox maison
-if ((Scolonne>=10&&Scolonne<=13)&&(Sligne>=0&&Sligne<=3)){
-    return 1;
-}
+    //hitbox du lac
+    if ((Scolonne>=0&&Scolonne<=15)&&(Sligne==10||Sligne==11)){
+        return 1;
+    }
+    //hitbaox maison
+    if ((Scolonne>=10&&Scolonne<=13)&&(Sligne>=0&&Sligne<=3)){
+        return 1;
+    }
 
-//hitbaox arbres
-if ((Scolonne>=13&&Scolonne<=15)&&(Sligne>=8&&Sligne<=9)){
-    return 1;
-}
+    //hitbaox arbres
+    if ((Scolonne>=13&&Scolonne<=15)&&(Sligne>=8&&Sligne<=9)){
+        return 1;
+    }
 
 
-//hitbaox flac
-if ((Scolonne==2)&&(Sligne>=7&&Sligne<=8)){
-    return 1;
-}
-//hitbaox fleur
-else if (((Scolonne>=6&&Scolonne<=11)&&(Sligne>=6&&Sligne<=8))||((Scolonne>=10&&Scolonne<=11)&&(Sligne==9))){
-    return 1;
-}
+    //hitbaox flac
+    if ((Scolonne==2)&&(Sligne>=7&&Sligne<=8)){
+        return 1;
+    }
+    //hitbaox fleur
+    else if (((Scolonne>=6&&Scolonne<=11)&&(Sligne>=6&&Sligne<=8))||((Scolonne>=10&&Scolonne<=11)&&(Sligne==9))){
+        return 1;
+    }
 
-//hitbaox panneau 1
-else if ((Scolonne==4)&&(Sligne>=1&&Sligne<=2)){
-    return 1;
-}
+    //hitbaox panneau 1
+    else if ((Scolonne==4)&&(Sligne>=1&&Sligne<=2)){
+        return 1;
+    }
 
-//hitbaox panneau 2
-else if ((Scolonne==1)&&(Sligne==3)){
-    return 1;
-}
+    //hitbaox panneau 2
+    else if ((Scolonne==1)&&(Sligne==3)){
+        return 1;
+    }
 
-else
-
-return 0;
+    else
+    return 0;
 }
 /*-----------------------------------------------------------------------------------------------------*/
 
@@ -1120,26 +1115,22 @@ int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur
         Scolonne=mouse_x/64; // chaque case de la grille a des coté de 32 pixedls
         Sligne=mouse_y/64;
 
-
-
         int deplacement;
         int deplacementABS;
         int deplacementORD;
 
 
-       for (i=0; i<nbJoueur; i++){
+        for (i=0; i<nbJoueur; i++){
+            draw_sprite(page, spriteDresseur[i][0], mesJoueur[i].colonne*64, mesJoueur[i].ligne*64);
+        }
 
-        draw_sprite(page, spriteDresseur[i][0], mesJoueur[i].colonne*64, mesJoueur[i].ligne*64);
-       }
-
-affichageStats(page, mesJoueur, nbJoueur, numJoueur);
+        affichageStats(page, mesJoueur, nbJoueur, numJoueur);
 
 
         if (mouse_b&1)
         {
              newLigne=Sligne;
              newColonne=Scolonne;
-
 
 
             deplacementABS=mesJoueur[numJoueur].colonne-Scolonne;
@@ -1156,141 +1147,131 @@ affichageStats(page, mesJoueur, nbJoueur, numJoueur);
             deplacement= deplacementABS+deplacementORD;
 
 
-if ((deplacement<=3)&&(obstacle(newColonne,newLigne)!=1)){ //le joueur rentre les conditions pour se déplacer
+            if ((deplacement<=3)&&(obstacle(newColonne,newLigne)!=1)){ //le joueur rentre les conditions pour se déplacer
 
 
 
-            mesJoueur[numJoueur].PM=mesJoueur[numJoueur].PM-deplacement; //on enleve le nombre de pm correspondant au joueur
+                mesJoueur[numJoueur].PM=mesJoueur[numJoueur].PM-deplacement; //on enleve le nombre de pm correspondant au joueur
 
-            ///deplacement animé////
-            //deplacement abcisse
-            //for (i=(mesJoueur[numJoueur].colonne*64); i<newColonne*64; i++){
+                ///deplacement animé////
+                //deplacement abcisse
+                //for (i=(mesJoueur[numJoueur].colonne*64); i<newColonne*64; i++){
 
-            if ((mesJoueur[numJoueur].colonne-newColonne)<0){
-                for (i=(mesJoueur[numJoueur].colonne*64); i<newColonne*64; i++){
-                //marcher à droite
-                    for (j=8; j<12; j++){ //sprite correspondant a marcher a droite
-                        clear_bitmap(page);
-                        blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
-                         textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
-                        draw_sprite(page, spriteDresseur[numJoueur][j], i, mesJoueur[numJoueur].ligne*64);
+                if ((mesJoueur[numJoueur].colonne-newColonne)<0){
+                    for (i=(mesJoueur[numJoueur].colonne*64); i<newColonne*64; i++){
+                    //marcher à droite
+                        for (j=8; j<12; j++){ //sprite correspondant a marcher a droite
+                            clear_bitmap(page);
+                            blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
+                            textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
+                            draw_sprite(page, spriteDresseur[numJoueur][j], i, mesJoueur[numJoueur].ligne*64);
 
-                               for (k=0; k<nbJoueur; k++){
+                                for (k=0; k<nbJoueur; k++){
                                     if (k!=numJoueur){
+                                        draw_sprite(page, spriteDresseur[k][0], mesJoueur[k].colonne*64, mesJoueur[k].ligne*64);
+                                    }
+                                }
+                                blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
 
-                                    draw_sprite(page, spriteDresseur[k][0], mesJoueur[k].colonne*64, mesJoueur[k].ligne*64);
+                                if (j>=12){
+                                    j=8;
+                                }
                             }
-                               }
+                        }
+                    }
 
+                    else if ((mesJoueur[numJoueur].colonne-newColonne)>0){
+                        for (i=mesJoueur[numJoueur].colonne*64; i>newColonne*64; i--){
+                        //marcher à gauche
+                        for (j=4; j<8; j++){
+                            clear_bitmap(page);
+                            blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
+                            textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
+                            draw_sprite(page, spriteDresseur[numJoueur][j], i, mesJoueur[numJoueur].ligne*64);
 
+                            for (k=0; k<nbJoueur; k++){
+                                if (k!=numJoueur){
+                                    draw_sprite(page, spriteDresseur[k][0], mesJoueur[k].colonne*64, mesJoueur[k].ligne*64);
+                                    }
+                            }
+                            blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
 
-                        blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
-
-                        if (j>=12){
-                            j=8;
+                            if (j>=8){
+                                j=4;
+                            }
                         }
                     }
                 }
-            }
 
-            else if ((mesJoueur[numJoueur].colonne-newColonne)>0){
-                for (i=mesJoueur[numJoueur].colonne*64; i>newColonne*64; i--){
-                    //marcher à gauche
-                    for (j=4; j<8; j++){
-                        clear_bitmap(page);
-                        blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
-                         textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
-                        draw_sprite(page, spriteDresseur[numJoueur][j], i, mesJoueur[numJoueur].ligne*64);
+                //deplacement ordonné
 
-                        for (k=0; k<nbJoueur; k++){
-                                    if (k!=numJoueur){
-
-                                    draw_sprite(page, spriteDresseur[k][0], mesJoueur[k].colonne*64, mesJoueur[k].ligne*64);
-                            }
-                               }
-                        blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
-
-                        if (j>=8){
-                            j=4;
-                        }
-                    }
-                }
-            }
-
-            //deplacement ordonné
-
-            //for (i=(mesJoueur[numJoueur].ligne*64); i<newLigne*64; i++){
+                //for (i=(mesJoueur[numJoueur].ligne*64); i<newLigne*64; i++){
 
 
-            if ((mesJoueur[numJoueur].ligne -newLigne)<0){
-                for (i=(mesJoueur[numJoueur].ligne*64); i<newLigne*64; i++){
+                if ((mesJoueur[numJoueur].ligne -newLigne)<0){
+                    for (i=(mesJoueur[numJoueur].ligne*64); i<newLigne*64; i++){
                     //marcher en bas
-                    for (j=0; j<4; j++){ //sprite correspondant a marcher a droite
+                        for (j=0; j<4; j++){ //sprite correspondant a marcher a droite
 
-                        clear_bitmap(page);
-                        blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
-                         textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
-                        draw_sprite(page, spriteDresseur[numJoueur][j],newColonne*64, i);
-                        for (k=0; k<nbJoueur; k++){
-                                    if (k!=numJoueur){
-
+                            clear_bitmap(page);
+                            blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
+                            textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
+                            draw_sprite(page, spriteDresseur[numJoueur][j],newColonne*64, i);
+                            for (k=0; k<nbJoueur; k++){
+                                if (k!=numJoueur){
                                     draw_sprite(page, spriteDresseur[k][0], mesJoueur[k].colonne*64, mesJoueur[k].ligne*64);
+                                }
                             }
-                               }
-                        blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
+                            blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
 
-                        if (j>=4){
-                            j=0;
+                            if (j>=4){
+                                j=0;
+                            }
                         }
                     }
                 }
-            }
 
-            else if ((mesJoueur[numJoueur].ligne-newLigne)>0){
-                for (i=(mesJoueur[numJoueur].ligne*64 ); i>newLigne*64; i--){
-                    //marcher en haut
-                    for (j=12; j<16; j++){
-                        clear_bitmap(page);
-                        blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
-                         textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
-                        draw_sprite(page, spriteDresseur[numJoueur][j], newColonne*64, i);
-                        for (k=0; k<nbJoueur; k++){
-                                    if (k!=numJoueur){
-
+                else if ((mesJoueur[numJoueur].ligne-newLigne)>0){
+                    for (i=(mesJoueur[numJoueur].ligne*64 ); i>newLigne*64; i--){
+                        //marcher en haut
+                        for (j=12; j<16; j++){
+                            clear_bitmap(page);
+                            blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
+                            textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
+                            draw_sprite(page, spriteDresseur[numJoueur][j], newColonne*64, i);
+                            for (k=0; k<nbJoueur; k++){
+                                if (k!=numJoueur){
                                     draw_sprite(page, spriteDresseur[k][0], mesJoueur[k].colonne*64, mesJoueur[k].ligne*64);
-                            }
+                                    }
                                }
-                        blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
-                        if (j>=16){
-                            j=12;
+                            blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
+                            if (j>=16){
+                                j=12;
+                            }
                         }
                     }
                 }
-            }
-            clear_bitmap(page);
-            blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
+                clear_bitmap(page);
+                blit(decor, page, 0, 0, 0, 0, decor->w,decor->h);
 
-            mesJoueur[numJoueur].ligne=newLigne;
-            mesJoueur[numJoueur].colonne=newColonne;
-            mesJoueur[numJoueur].PM=3;
+                mesJoueur[numJoueur].ligne=newLigne;
+                mesJoueur[numJoueur].colonne=newColonne;
+                mesJoueur[numJoueur].PM=3;
 
-            draw_sprite(page, spriteDresseur[numJoueur][1],mesJoueur[numJoueur].colonne*64, mesJoueur[numJoueur].ligne*64);
-             textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
-            clic=1;
-            }
+                draw_sprite(page, spriteDresseur[numJoueur][1],mesJoueur[numJoueur].colonne*64, mesJoueur[numJoueur].ligne*64);
+                textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "Nombre de deplacement : %d", deplacement);
+                clic=1;
+                }
 
            else {
-            return 2; // le joueur a touché un obstacle ou n'a pas assez de PM pour le déplacement
+                return 2; // le joueur a touché un obstacle ou n'a pas assez de PM pour le déplacement
            }
+       }
 
-        }
-
-    blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
+        blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
 
     }
-
-return 0;
-
+    return 0;
 }
 /*-----------------------------------------------------------------------------------------------------*/
 
