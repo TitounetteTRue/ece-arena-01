@@ -958,25 +958,25 @@ spriteDresseur[i][j] = recup_sprites(groupe_animes[i],64,93,0,0,4,j);
 
 
 
-groupe_pokemonAttaque[0]=load_bitmap("Joueur1.bmp",NULL);
+groupe_pokemonAttaque[0]=load_bitmap("pokefeu-Copy.bmp.bmp",NULL);
     if (!groupe_pokemonAttaque[0])
     {
         allegro_message("Nous n'avons pas pu charger \ Joueur1.bmp \"");
         quitterAllegro();
     }
-groupe_pokemonAttaque[1]=load_bitmap("Joueur2.bmp",NULL);
+groupe_pokemonAttaque[1]=load_bitmap("pokeeau-Copy.bmp",NULL);
     if (!groupe_pokemonAttaque[1])
     {
         allegro_message("Nous n'avons pas pu charger  \ Joueur2.bmp \"");
         quitterAllegro();
     }
-groupe_pokemonAttaque[2]=load_bitmap("Joueur3.bmp",NULL);
+groupe_pokemonAttaque[2]=load_bitmap("pokeelec-Copy.bmp",NULL);
     if (!groupe_pokemonAttaque[2])
     {
         allegro_message("Nous n'avons pas pu charger \* Joueur3.bmp *\"");
         quitterAllegro();
     }
-groupe_pokemonAttaque[3]=load_bitmap("Joueur4.bmp",NULL);
+groupe_pokemonAttaque[3]=load_bitmap("pokeplante-Copy.bmp",NULL);
     if (!groupe_pokemonAttaque[3])
     {
         allegro_message("Nous n'avons pas pu charger \* Joueur4.bmp *\"");
