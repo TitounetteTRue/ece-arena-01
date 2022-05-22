@@ -4,7 +4,7 @@
 int main()
 {
     //Déclarations
-    int nbJoueurs, i;
+    int nbJoueurs, i, cptNbMorts;
     t_joueur *tabJoueurs;   //Tableau de joueurs
     tabJoueurs = (t_joueur*) malloc(4*sizeof(t_joueur));
 
@@ -12,7 +12,7 @@ int main()
     BITMAP* map;
     BITMAP* page;
     BITMAP* spriteDresseur[4][16];
-     BITMAP* spritePokemon[4];
+    BITMAP* spritePokemon[4];
     BITMAP* spritePokeAttack[4][4];
 
     // Initialisation d'Allegro
@@ -42,8 +42,18 @@ int main()
     //deplace(map,page,spriteDresseur,tabJoueurs,0,4);
 
     //Boucle de jeu
-    for(i=0;i<nbJoueurs;i++)
-            tourJoueur(tabJoueurs,i,nbJoueurs,map,page,spriteDresseur);
+    while(cptNbMorts != nbJoueurs-1)
+    {
+          for(i=0;i<nbJoueurs;i++)
+          {
+              tourJoueur(tabJoueurs,i,nbJoueurs,map,page,spriteDresseur);
+
+              if(tabJoueurs[i].PV == 0)
+                cptNbMorts++;
+          }
+
+        i=0;
+    }
 
     free(tabJoueurs);
 
