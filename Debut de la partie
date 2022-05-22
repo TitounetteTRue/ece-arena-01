@@ -75,7 +75,7 @@ void menuDemarrage(t_joueur *tabJoueurs, int* nbJoueurs)
     if (!boutonStart)
     {
         allegro_message("Nous n'avons pas pu charger \"Bouton start.bmp\"");
-        quitterAllegro();;
+        quitterAllegro();
     }
     /******************************************************************************/
     BITMAP* menuStart;
@@ -84,7 +84,7 @@ void menuDemarrage(t_joueur *tabJoueurs, int* nbJoueurs)
     if (!menuStart)
     {
         allegro_message("Nous n'avons pas pu charger \"menuStart.bmp\"");
-        quitterAllegro();;
+        quitterAllegro();
     }
     /******************************************************************************/
 
@@ -137,7 +137,7 @@ void menuDemarrage(t_joueur *tabJoueurs, int* nbJoueurs)
         if (mouse_b & 1)
         {
             //Si bouton 'start' cliqué -> lancement choix des joueurs
-            if(mouse_x>=415 && mouse_x<=585 && mouse_y>=434 && mouse_y<=532 && (mouse_b & 1))
+            if(mouse_x>=415 && mouse_x<=585 && mouse_y>=434 && mouse_y<=532)
             {
                 clic=1;
                 //Suppresion des anciennes bitmaps sauf la 7 qui reste pour le fond d'écran
@@ -151,48 +151,6 @@ void menuDemarrage(t_joueur *tabJoueurs, int* nbJoueurs)
                 destroy_bitmap(boutonStart);
 
                 clear_bitmap(screen);
-
-                //Appel de la fonction pour le choix du nombre de joueurs
-                choixNbJoueurs(tabJoueurs,nbJoueurs);
-
-            }
-        }
-    }
-}
-/*-----------------------------------------------------------------------------------------------------*/
-
-
-/*-----------------------------------------------------------------------------------------------------*/
-void chargementDecorArene()
-{
-    clear_bitmap(screen);
-
-    int clic=0;
-
-    //Déclaration bitmap arene
-    /******************************************************************************/
-    BITMAP* mapJeu;
-    mapJeu = load_bitmap("mapJeu.bmp",NULL);
-
-    if (!mapJeu)
-    {
-        allegro_message("Nous n'avons pas pu charger \"mapJeu.bmp\"");
-        quitterAllegro();
-    }
-    /******************************************************************************/
-
-    blit(mapJeu,screen, 0, 0, 0, 0, 1024, 768);  //Affichage arene
-    affichageBoutonExit();
-
-     while (clic == 0){
-
-        //Si clic gauche souris cliqué
-        if (mouse_b & 1)
-        {
-            //Si bouton 'exit' cliqué -> quitte le jeu
-            if (mouse_x<=40 && mouse_y<=20)
-            {
-                exitJeu();
             }
         }
     }
