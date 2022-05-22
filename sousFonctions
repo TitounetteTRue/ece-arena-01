@@ -1120,10 +1120,7 @@ int deplace (BITMAP* decor, BITMAP* page,BITMAP* spriteDresseur[4][16], t_joueur
         Scolonne=mouse_x/64; // chaque case de la grille a des coté de 32 pixedls
         Sligne=mouse_y/64;
 
-        if (mesJoueur[numJoueur].PM<=0){
-            textprintf_ex(page, font, 100, 20, makecol(255, 255, 0), -1, "nombre de PM : %d", mesJoueur[numJoueur].PM); //si le joueur n'a pas de point de mouvement, il ne peut pas se déplacer
-            return 1;
-        }
+
 
         int deplacement;
         int deplacementABS;
