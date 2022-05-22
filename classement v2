@@ -1,0 +1,19 @@
+int classement(joueur*tab,numJoueur,int nbJoueurs)
+{
+    if(tab[numJoueur].PV<=0)
+    {
+        tab[numJoueur].vivant=0;
+        tab[numJoueur].classement=nbJoueurs;
+        nbJoueurs--;
+        return nbJoueurs;
+    }
+    if(nbJoueurs=1)
+    {
+        tab[numJoueur].classement=1;
+        return nbJoueurs;
+    }
+    else
+    {
+        return nbJoueurs;
+    }
+}
