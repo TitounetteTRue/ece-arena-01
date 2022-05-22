@@ -1,4 +1,4 @@
-#include "biblioJeu.h"
+#include "header.h"
 
 /*----------------------------------------------------------*/
 int main()
@@ -32,7 +32,7 @@ int main()
     show_mouse(screen); //Permet de montrer la souris à l'écran
 
     //Appel Fonction début partie
-    //menuDemarrage();
+    menuDemarrage();
 
     //Appel de la fonction pour le choix du nombre de joueurs
     nbJoueurs=choixNbJoueurs(tabJoueurs);
@@ -54,7 +54,11 @@ tourJoueur(tabJoueurs, i, nbJoueurs, map, page, spritePokemon, spritePokeAttack,
 }
 
 
+// classement(tabJoueurs,i, nbJoueurs);
+ //affichefin(i,  tabJoueurs);
 
+
+/*----------------------------------------------*/
 
 
     free(tabJoueurs);
