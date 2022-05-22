@@ -1307,111 +1307,115 @@ return 0;
 
 
 /*-----------------------------------------------------------------------------------------------------*/
-void affichageStats(BITMAP* page, t_joueur* tabJoueurs, int nbJoueurs, int numJoueur)
-{
+void affichageStats(BITMAP* page, t_joueur* tabJoueurs, int nbJoueurs, int numJoueur){
+
     if(nbJoueurs==2)
     {
-        if(numJoueur==0) //si c'est au joueur 1 de jouer
+        if(numJoueur==0) //Si c'est au joueur 1 de jouer
         {
 
-            textprintf_ex(page, font, 473, 700, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
-            textprintf_ex(page, font, 473, 705, makecol(255,255,255), -1,  "---> %s",tabJoueurs[numJoueur].choixClasse);
-            textprintf_ex(page, font, 473, 710, makecol(255,255,255), -1,  "|        STATS       |");
-            textprintf_ex(page, font, 473, 715, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
-            textprintf_ex(page, font, 473, 720, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
-            textprintf_ex(page, font, 473, 730, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+            textprintf_ex(page, font, 10, 715, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
+            textprintf_ex(page, font, 10, 727, makecol(255,255,255), -1, "%s",tabJoueurs[numJoueur].choixClasse);
+            //textprintf_ex(page, font, 10, 735, makecol(255,255,255), -1, "LOGO CLASSE");
+            textprintf_ex(page, font, 125, 715, makecol(255,255,255), -1, "|        STATS       |");
+            textprintf_ex(page, font, 125, 737, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
+            textprintf_ex(page, font, 125, 747, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
+            textprintf_ex(page, font, 125, 757, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+            //textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
         }
-        else if(numJoueur==1) //si c'est au joueur 2 de jouer
-            {
-            textprintf_ex(page, font, 10, 705, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
-            textprintf_ex(page, font, 10, 720, makecol(255,255,255), -1, "---> %s",tabJoueurs[numJoueur].choixClasse);
-            textprintf_ex(page, font, 10, 735, makecol(255,255,255), -1, "LOGO CLASSE");
-            textprintf_ex(page, font, 122, 705, makecol(255,255,255), -1, "|_________STATS_________|");
-            textprintf_ex(page, font, 122, 725, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
-            textprintf_ex(page, font, 122, 735, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
-            textprintf_ex(page, font, 122, 745, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
-            textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
+        else if(numJoueur==1) //Si c'est au joueur 2 de jouer
+        {
+            textprintf_ex(page, font, 10, 715, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
+            textprintf_ex(page, font, 10, 727, makecol(255,255,255), -1, "%s",tabJoueurs[numJoueur].choixClasse);
+            //textprintf_ex(page, font, 10, 735, makecol(255,255,255), -1, "LOGO CLASSE");
+            textprintf_ex(page, font, 125, 715, makecol(255,255,255), -1, "|        STATS       |");
+            textprintf_ex(page, font, 125, 737, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
+            textprintf_ex(page, font, 125, 747, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
+            textprintf_ex(page, font, 125, 757, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+            //textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
         }
     }
     else if(nbJoueurs==3){
-        if(nbJoueurs == 0) //si c'est au joueur 1 de jouer
+        if(nbJoueurs == 0) //Si c'est au joueur 1 de jouer
         {
-            textprintf_ex(page, font, 473, 700, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
-            textprintf_ex(page, font, 473, 705, makecol(255,255,255), -1,  "---> %s",tabJoueurs[numJoueur].choixClasse);
-            textprintf_ex(page, font, 473, 710, makecol(255,255,255), -1,  "|        STATS       |");
-            textprintf_ex(page, font, 473, 715, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
-            textprintf_ex(page, font, 473, 720, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
-            textprintf_ex(page, font, 473, 730, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+            textprintf_ex(page, font, 10, 715, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
+            textprintf_ex(page, font, 10, 727, makecol(255,255,255), -1, "%s",tabJoueurs[numJoueur].choixClasse);
+            //textprintf_ex(page, font, 10, 735, makecol(255,255,255), -1, "LOGO CLASSE");
+            textprintf_ex(page, font, 125, 715, makecol(255,255,255), -1, "|        STATS       |");
+            textprintf_ex(page, font, 125, 737, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
+            textprintf_ex(page, font, 125, 747, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
+            textprintf_ex(page, font, 125, 757, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+            //textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
         }
-        else if(nbJoueurs==1) //si c'est au joueur 2 de jouer
-            {
-            textprintf_ex(page, font, 10, 705, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
-            textprintf_ex(page, font, 10, 720, makecol(255,255,255), -1, "---> %s",tabJoueurs[numJoueur].choixClasse);
-            textprintf_ex(page, font, 10, 735, makecol(255,255,255), -1, "LOGO CLASSE");
-            textprintf_ex(page, font, 122, 705, makecol(255,255,255), -1, "|_________STATS_________|");
-            textprintf_ex(page, font, 122, 725, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
-            textprintf_ex(page, font, 122, 735, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
-            textprintf_ex(page, font, 122, 745, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
-            textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
-        }
-        else if(nbJoueurs==2) //si c'est au joueur 2 de jouer
+        else if(nbJoueurs==1) //Si c'est au joueur 2 de jouer
         {
-            textprintf_ex(page, font, 10, 705, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
-            textprintf_ex(page, font, 10, 720, makecol(255,255,255), -1, "---> %s",tabJoueurs[numJoueur].choixClasse);
-            textprintf_ex(page, font, 10, 735, makecol(255,255,255), -1, "LOGO CLASSE");
-            textprintf_ex(page, font, 122, 705, makecol(255,255,255), -1, "|_________STATS_________|");
-            textprintf_ex(page, font, 122, 725, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
-            textprintf_ex(page, font, 122, 735, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
-            textprintf_ex(page, font, 122, 745, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
-            textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
+            textprintf_ex(page, font, 10, 715, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
+            textprintf_ex(page, font, 10, 727, makecol(255,255,255), -1, "%s",tabJoueurs[numJoueur].choixClasse);
+            //textprintf_ex(page, font, 10, 735, makecol(255,255,255), -1, "LOGO CLASSE");
+            textprintf_ex(page, font, 125, 715, makecol(255,255,255), -1, "|        STATS       |");
+            textprintf_ex(page, font, 125, 737, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
+            textprintf_ex(page, font, 125, 747, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
+            textprintf_ex(page, font, 125, 757, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+            //textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
+        }
+        else if(nbJoueurs==2) //Si c'est au joueur 2 de jouer
+        {
+            textprintf_ex(page, font, 10, 715, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
+            textprintf_ex(page, font, 10, 727, makecol(255,255,255), -1, "%s",tabJoueurs[numJoueur].choixClasse);
+            //textprintf_ex(page, font, 10, 735, makecol(255,255,255), -1, "LOGO CLASSE");
+            textprintf_ex(page, font, 125, 715, makecol(255,255,255), -1, "|        STATS       |");
+            textprintf_ex(page, font, 125, 737, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
+            textprintf_ex(page, font, 125, 747, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
+            textprintf_ex(page, font, 125, 757, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+            //textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
         }
     }
     else if(nbJoueurs==4){
-        if(nbJoueurs==0) //si c'est au joueur 1 de jouer
+        if(nbJoueurs==0) //Si c'est au joueur 1 de jouer
         {
-            textprintf_ex(page, font, 473, 700, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
-            textprintf_ex(page, font, 473, 705, makecol(255,255,255), -1,  "---> %s",tabJoueurs[numJoueur].choixClasse);
-            textprintf_ex(page, font, 473, 710, makecol(255,255,255), -1,  "|        STATS       |");
-            textprintf_ex(page, font, 473, 715, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
-            textprintf_ex(page, font, 473, 720, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
-            textprintf_ex(page, font, 473, 730, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+            textprintf_ex(page, font, 10, 715, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
+            textprintf_ex(page, font, 10, 727, makecol(255,255,255), -1, "%s",tabJoueurs[numJoueur].choixClasse);
+            //textprintf_ex(page, font, 10, 735, makecol(255,255,255), -1, "LOGO CLASSE");
+            textprintf_ex(page, font, 125, 715, makecol(255,255,255), -1, "|        STATS       |");
+            textprintf_ex(page, font, 125, 737, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
+            textprintf_ex(page, font, 125, 747, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
+            textprintf_ex(page, font, 125, 757, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+            //textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
         }
-        else if(nbJoueurs==1) //si c'est au joueur 2 de jouer
-            {
-            textprintf_ex(page, font, 10, 705, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
-            textprintf_ex(page, font, 10, 720, makecol(255,255,255), -1, "---> %s",tabJoueurs[numJoueur].choixClasse);
-            textprintf_ex(page, font, 10, 735, makecol(255,255,255), -1, "LOGO CLASSE");
-            textprintf_ex(page, font, 122, 705, makecol(255,255,255), -1, "|_________STATS_________|");
-            textprintf_ex(page, font, 122, 725, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
-            textprintf_ex(page, font, 122, 735, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
-            textprintf_ex(page, font, 122, 745, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
-            textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
-        }
-        else if(nbJoueurs==2) //si c'est au joueur 3 de jouer
+        else if(nbJoueurs==1) //Si c'est au joueur 2 de jouer
         {
-            textprintf_ex(page, font, 10, 705, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
-            textprintf_ex(page, font, 10, 720, makecol(255,255,255), -1, "---> %s",tabJoueurs[numJoueur].choixClasse);
-            textprintf_ex(page, font, 10, 735, makecol(255,255,255), -1, "LOGO CLASSE");
-            textprintf_ex(page, font, 122, 705, makecol(255,255,255), -1, "|_________STATS_________|");
-            textprintf_ex(page, font, 122, 725, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
-            textprintf_ex(page, font, 122, 735, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
-            textprintf_ex(page, font, 122, 745, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
-            textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
+            textprintf_ex(page, font, 10, 715, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
+            textprintf_ex(page, font, 10, 727, makecol(255,255,255), -1, "%s",tabJoueurs[numJoueur].choixClasse);
+            //textprintf_ex(page, font, 10, 735, makecol(255,255,255), -1, "LOGO CLASSE");
+            textprintf_ex(page, font, 125, 715, makecol(255,255,255), -1, "|        STATS       |");
+            textprintf_ex(page, font, 125, 737, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
+            textprintf_ex(page, font, 125, 747, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
+            textprintf_ex(page, font, 125, 757, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+            //textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
         }
-        else if(nbJoueurs==3) //si c'est au joueur 4 de jouer
+        else if(nbJoueurs==2) //Si c'est au joueur 3 de jouer
         {
-            textprintf_ex(page, font, 10, 705, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
-            textprintf_ex(page, font, 10, 720, makecol(255,255,255), -1, "---> %s",tabJoueurs[numJoueur].choixClasse);
-            textprintf_ex(page, font, 10, 735, makecol(255,255,255), -1, "LOGO CLASSE");
-            textprintf_ex(page, font, 122, 705, makecol(255,255,255), -1, "|_________STATS_________|");
-            textprintf_ex(page, font, 122, 725, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
-            textprintf_ex(page, font, 122, 735, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
-            textprintf_ex(page, font, 122, 745, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
-            textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
+            textprintf_ex(page, font, 10, 715, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
+            textprintf_ex(page, font, 10, 727, makecol(255,255,255), -1, "%s",tabJoueurs[numJoueur].choixClasse);
+            //textprintf_ex(page, font, 10, 735, makecol(255,255,255), -1, "LOGO CLASSE");
+            textprintf_ex(page, font, 125, 715, makecol(255,255,255), -1, "|        STATS       |");
+            textprintf_ex(page, font, 125, 737, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
+            textprintf_ex(page, font, 125, 747, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
+            textprintf_ex(page, font, 125, 757, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+            //textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
+        }
+        else if(nbJoueurs==3) //Si c'est au joueur 4 de jouer
+        {
+            textprintf_ex(page, font, 10, 715, makecol(255,128,192), -1, "%s",tabJoueurs[numJoueur].pseudo);
+            textprintf_ex(page, font, 10, 727, makecol(255,255,255), -1, "%s",tabJoueurs[numJoueur].choixClasse);
+            //textprintf_ex(page, font, 10, 735, makecol(255,255,255), -1, "LOGO CLASSE");
+            textprintf_ex(page, font, 125, 715, makecol(255,255,255), -1, "|        STATS       |");
+            textprintf_ex(page, font, 125, 737, makecol(255,255,255), -1, "| PV = %d    |", tabJoueurs[numJoueur].PV);
+            textprintf_ex(page, font, 125, 747, makecol(255,255,255), -1, "| PA = %d     |", tabJoueurs[numJoueur].PA);
+            textprintf_ex(page, font, 125, 757, makecol(255,255,255), -1, "| PM = %d      |", tabJoueurs[numJoueur].PM);
+            //textprintf_ex(page, font, 350, 715, makecol(255,255,255), -1, "|POKEMON LA|");
         }
     }
-
-
 }
 /*-----------------------------------------------------------------------------------------------------*/
 
