@@ -1489,6 +1489,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
 
     int clic=0;
     int clic2=0;
+    int clic3=0;
     int j;                                        /// joueur victime
     int s,f,g,h,q,x,y,z,a,b;
                  ///variables aléatoires
@@ -1558,7 +1559,8 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
         }
         draw_sprite(page, spritePokemon[tab[numJoueur].classe], 732, 690);
 
-
+while(clic3==0)
+{
     //Si clic gauche souris cliqué
     if (mouse_b & 1)
                 {
@@ -1579,7 +1581,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                         }
                         else
                         {
-                            allegro_message("rate");
+                            allegro_message("Pas de chance");
                         }
                         printf("Attaque 1");
                         clic2=1;
@@ -1588,6 +1590,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                     {
                         allegro_message("Impossible");
                     }
+                    clic3=1;
                 }
                             //collision loin(2cases)
                 if(mouse_x>=790 && mouse_x<=847 && mouse_y>=690 && mouse_y<=768)//Si souris clique 'sort1' du dresseur
@@ -1605,7 +1608,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                         }
                         else
                         {
-                            allegro_message("rate");
+                            allegro_message("Pas de chance");
                         }
                         printf("Attaque 2");
                         clic2=1;
@@ -1614,6 +1617,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                     {
                         allegro_message("Impossible");
                     }
+                    clic3=1;
                 }
                             //collision loin(3cases)
                 if(mouse_x>=848 && mouse_x<=905 && mouse_y>=690 && mouse_y<=768)//si souris clique 'sort2' du dresseur//189 218 339 378
@@ -1631,7 +1635,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                             }
                             else
                             {
-                                allegro_message("rate");
+                                allegro_message("Pas de chance");
                             }
                             printf("Attaque 3");
                             clic2=1;
@@ -1640,6 +1644,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                     {
                         allegro_message("Impossible");
                     }
+                    clic3=1;
                 }
                 if(mouse_x>=906 && mouse_x<=963 && mouse_y>=690 && mouse_y<=768)//si souris clique 'sort3' du dresseur
                 {
@@ -1654,10 +1659,11 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                     }
                     else
                     {
-                        allegro_message("rate");
+                        allegro_message("Pas de chance");
                     }
                     printf("Attaque 4");
                     clic2=1;
+                    clic3=1;
                 }
                             //collision loin 4 cases
                 if(mouse_x>=964 && mouse_x<=1022 && mouse_y>=690 && mouse_y<=768)//si souris clique 'sort4' du dresseur
@@ -1675,7 +1681,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                         }
                         else
                         {
-                            allegro_message("rate");
+                            allegro_message("Pas de chance");
                         }
                         printf("Attaque 5");
                         clic2=1;
@@ -1684,6 +1690,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                     {
                         allegro_message("Impossible");
                     }
+                    clic3=1;
                 }
             }
             blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
@@ -1706,10 +1713,14 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
 
 
                                     //Si clic gauche souris cliqué
-            if (mouse_b & 1)
-            {
-                        //collision proche(1case)
-                if(mouse_x>=732 && mouse_x<=789  && mouse_y>=690 && mouse_y<=768  ) //Si souris clique 'attaque corps' du dresseur
+           while(clic3==0)
+{
+    //Si clic gauche souris cliqué
+    if (mouse_b & 1)
+                {
+            //collision proche(1case)
+
+                if(mouse_x>=732 && mouse_x<=789 && mouse_y>=690 && mouse_y<=768 ) //Si souris clique 'attaque corps' du dresseur
                 {
                     if((tab[j].ligne==tab[numJoueur].ligne+1 || tab[j].ligne==tab[numJoueur].ligne-1) &&(tab[j].colonne==tab[numJoueur].colonne+1 || tab[j].colonne==tab[numJoueur].colonne-1))
                     {
@@ -1719,12 +1730,12 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                             tab[numJoueur].PA=tab[numJoueur].PA-1;
                             x=rand()%(30-10+1)+10;
                             tab[j].PV=tab[j].PV-x;
-                             animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 1);
+                            animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 1);
                            // printf("PV restant: %d, PV pris : %d du joueur %d\n",tab[j].PV,x,j);
                         }
                         else
                         {
-                            allegro_message("rate");
+                            allegro_message("Pas de chance");
                         }
                         printf("Attaque 1");
                         clic2=1;
@@ -1733,6 +1744,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                     {
                         allegro_message("Impossible");
                     }
+                    clic3=1;
                 }
                             //collision loin(2cases)
                 if(mouse_x>=790 && mouse_x<=847 && mouse_y>=690 && mouse_y<=768)//Si souris clique 'sort1' du dresseur
@@ -1750,7 +1762,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                         }
                         else
                         {
-                            allegro_message("rate");
+                            allegro_message("Pas de chance");
                         }
                         printf("Attaque 2");
                         clic2=1;
@@ -1759,6 +1771,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                     {
                         allegro_message("Impossible");
                     }
+                    clic3=1;
                 }
                             //collision loin(3cases)
                 if(mouse_x>=848 && mouse_x<=905 && mouse_y>=690 && mouse_y<=768)//si souris clique 'sort2' du dresseur//189 218 339 378
@@ -1772,11 +1785,11 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                                 z=rand()%(60-40+1)+40;
                                 tab[j].PV=tab[j].PV-z;
                                  animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 3);
-                               // printf("PV restant: %d, PV pris : %d du joueur %d\n",tab[j].PV,z,j);
+                                //printf("PV restant: %d, PV pris : %d du joueur %d\n",tab[j].PV,z,j);
                             }
                             else
                             {
-                                allegro_message("rate");
+                                allegro_message("Pas de chance");
                             }
                             printf("Attaque 3");
                             clic2=1;
@@ -1785,6 +1798,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                     {
                         allegro_message("Impossible");
                     }
+                    clic3=1;
                 }
                 if(mouse_x>=906 && mouse_x<=963 && mouse_y>=690 && mouse_y<=768)//si souris clique 'sort3' du dresseur
                 {
@@ -1795,14 +1809,15 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                         a=rand()%(60-20+1)+20;
                         tab[numJoueur].PV=tab[numJoueur].PV+a;
                          animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 4);
-                        //printf("PV restant:%d, PV donnee : %d au joueur %d\n",tab[numJoueur].PV,a,numJoueur);
+                       // printf("PV restant:%d, PV donnee : %d au joueur %d\n",tab[numJoueur].PV,a,numJoueur);
                     }
                     else
                     {
-                        allegro_message("rate");
+                        allegro_message("Pas de chance");
                     }
                     printf("Attaque 4");
                     clic2=1;
+                    clic3=1;
                 }
                             //collision loin 4 cases
                 if(mouse_x>=964 && mouse_x<=1022 && mouse_y>=690 && mouse_y<=768)//si souris clique 'sort4' du dresseur
@@ -1816,11 +1831,11 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                             b=rand()%(100-70+1)+70;
                             tab[j].PV=tab[j].PV-b;
                              animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 5);
-                         //   printf("PV restant : %d, PV pris: %d du joueur %d\n",tab[j].PV,b,j);
+                          //  printf("PV restant : %d, PV pris: %d du joueur %d\n",tab[j].PV,b,j);
                         }
                         else
                         {
-                            allegro_message("rate");
+                            allegro_message("Pas de chance");
                         }
                         printf("Attaque 5");
                         clic2=1;
@@ -1829,6 +1844,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                     {
                         allegro_message("Impossible");
                     }
+                    clic3=1;
                 }
             }
             blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
@@ -1850,12 +1866,14 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
         draw_sprite(page, spriteDresseur[i][0], tab[i].colonne*64, tab[i].ligne*64);
         }
         draw_sprite(page, spritePokemon[tab[numJoueur].classe], 732, 690);
+while(clic3==0)
+{
+    //Si clic gauche souris cliqué
+    if (mouse_b & 1)
+                {
+            //collision proche(1case)
 
-                                    //Si clic gauche souris cliqué
-            if (mouse_b & 1)
-            {
-                        //collision proche(1case)
-                if(mouse_x>=732 && mouse_x<=789 && mouse_y>=690 && mouse_y<=768  ) //Si souris clique 'attaque corps' du dresseur
+                if(mouse_x>=732 && mouse_x<=789 && mouse_y>=690 && mouse_y<=768 ) //Si souris clique 'attaque corps' du dresseur
                 {
                     if((tab[j].ligne==tab[numJoueur].ligne+1 || tab[j].ligne==tab[numJoueur].ligne-1) &&(tab[j].colonne==tab[numJoueur].colonne+1 || tab[j].colonne==tab[numJoueur].colonne-1))
                     {
@@ -1865,12 +1883,12 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                             tab[numJoueur].PA=tab[numJoueur].PA-1;
                             x=rand()%(30-10+1)+10;
                             tab[j].PV=tab[j].PV-x;
-                             animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 1);
+                            animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 1);
                            // printf("PV restant: %d, PV pris : %d du joueur %d\n",tab[j].PV,x,j);
                         }
                         else
                         {
-                            allegro_message("rate");
+                            allegro_message("Pas de chance");
                         }
                         printf("Attaque 1");
                         clic2=1;
@@ -1879,6 +1897,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                     {
                         allegro_message("Impossible");
                     }
+                    clic3=1;
                 }
                             //collision loin(2cases)
                 if(mouse_x>=790 && mouse_x<=847 && mouse_y>=690 && mouse_y<=768)//Si souris clique 'sort1' du dresseur
@@ -1896,7 +1915,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                         }
                         else
                         {
-                            allegro_message("rate");
+                            allegro_message("Pas de chance");
                         }
                         printf("Attaque 2");
                         clic2=1;
@@ -1905,6 +1924,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                     {
                         allegro_message("Impossible");
                     }
+                    clic3=1;
                 }
                             //collision loin(3cases)
                 if(mouse_x>=848 && mouse_x<=905 && mouse_y>=690 && mouse_y<=768)//si souris clique 'sort2' du dresseur//189 218 339 378
@@ -1918,11 +1938,11 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                                 z=rand()%(60-40+1)+40;
                                 tab[j].PV=tab[j].PV-z;
                                  animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 3);
-                            //    printf("PV restant: %d, PV pris : %d du joueur %d\n",tab[j].PV,z,j);
+                                //printf("PV restant: %d, PV pris : %d du joueur %d\n",tab[j].PV,z,j);
                             }
                             else
                             {
-                                allegro_message("rate");
+                                allegro_message("Pas de chance");
                             }
                             printf("Attaque 3");
                             clic2=1;
@@ -1931,6 +1951,7 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                     {
                         allegro_message("Impossible");
                     }
+                    clic3=1;
                 }
                 if(mouse_x>=906 && mouse_x<=963 && mouse_y>=690 && mouse_y<=768)//si souris clique 'sort3' du dresseur
                 {
@@ -1941,26 +1962,29 @@ void attaque(BITMAP* decor,BITMAP* page, t_joueur *tab, BITMAP* spritePokemon[4]
                         a=rand()%(60-20+1)+20;
                         tab[numJoueur].PV=tab[numJoueur].PV+a;
                          animationAttaque(spritePokeattaque, tab[numJoueur].classe, tab[j].classe, 4);
-                      //  printf("PV restant:%d, PV donnee : %d au joueur %d\n",tab[numJoueur].PV,a,numJoueur);
+                       // printf("PV restant:%d, PV donnee : %d au joueur %d\n",tab[numJoueur].PV,a,numJoueur);
                     }
                     else
                     {
-                        allegro_message("rate");
+                        allegro_message("Pas de chance");
                     }
                     printf("Attaque 4");
                     clic2=1;
+                    clic3=1;
                 }
-
+                            //collision loin 4 cases
                 if(mouse_x>=964 && mouse_x<=1022 && mouse_y>=690 && mouse_y<=768)//si souris clique 'sort4' du dresseur
                 {
+                    if((tab[j].ligne<=tab[numJoueur].ligne+4 || tab[j].ligne>=tab[numJoueur].ligne-4) &&(tab[j].colonne<=tab[numJoueur].colonne+3 || tab[j].colonne>=tab[numJoueur].colonne-3))
+                    {
                         allegro_message("Impossible");
-                }
+                    }
+                    clic3=1;
             }
             blit(page, screen, 0, 0, 0, 0, decor->w,decor->h);
         }
         tab[numJoueur].cpt++;  //compteur plus 1
     }
-
 }
 
 
