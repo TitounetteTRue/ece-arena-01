@@ -1,6 +1,6 @@
 /*-----------------------------------------------------------------------------------------------------*/
 ///Attribution de la classe en fonction des joueurs
-void attributionClasseJoueur(t_joueur* tabJoueurs, int* nbJoueurs, int i)
+void attributionClasseJoueur(t_joueur* tabJoueurs, int i)
 {
     //Déclarations d'un double buffer pour stats de chaque joueur
     /******************************************************************************/
@@ -110,7 +110,7 @@ void attributionClasseJoueur(t_joueur* tabJoueurs, int* nbJoueurs, int i)
 
 /*-----------------------------------------------------------------------------------------------------*/
 ///Choix de la classe(personnage) des joueurs
-void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
+void choixClasseJoueur(t_joueur *tabJoueurs, int nbJoueurs)
 {
     int i=0;
     int clic=0;
@@ -343,7 +343,7 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
 
     //Affichages
     textprintf_ex(arrierePlanChoix, font, 450, 50, makecol(202,112,0),-1, "Choix du dresseur:");
-    textprintf_ex(arrierePlanChoix, font, 20, 80, makecol(128,0,128), -1, "Nombre joueurs: %d", *nbJoueurs);
+    textprintf_ex(arrierePlanChoix, font, 20, 80, makecol(128,0,128), -1, "Nombre joueurs: %d", nbJoueurs);
     rect(arrierePlanChoix, 445,46,600,61, makecol(202,112,0));
     line(arrierePlanChoix,23,93,149,93, makecol(128,0,128));
 
@@ -356,7 +356,7 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
     clear(fondCadreJoueur);
 
     //Boucle des choix de classe
-    while(i < *nbJoueurs)
+    while(i < nbJoueurs)
     {
         textprintf_ex(fondCadreJoueur, font, 360, 30, makecol(255,255,255), -1, "Choisissez votre dresseur !");  //On affiche à chaque tour
         clear(fondCadreJoueur);
@@ -381,7 +381,9 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
                         strcpy(tabJoueurs[i].pseudo,"Sacha");     //On affecte le nom du dresseur au joueur
                         strcpy(tabJoueurs[i].choixClasse,"Classe: FEU");
 
-                        attributionClasseJoueur(tabJoueurs,nbJoueurs,i); //Appel sous fonction attribution
+                        tabJoueurs[i].classe=1;
+
+                        attributionClasseJoueur(tabJoueurs,i); //Appel sous fonction attribution
 
                         rectfill(screen, 80, 140, 235, 362, makecol(195,195,195));  //Colorise 'case' dresseur choisi
                         draw_sprite(screen, carteDos, 83, 398);
@@ -401,7 +403,9 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
                         strcpy(tabJoueurs[i].pseudo,"Clem");
                         strcpy(tabJoueurs[i].choixClasse,"Classe: ELECTRIQUE");
 
-                        attributionClasseJoueur(tabJoueurs,nbJoueurs,i);
+                        tabJoueurs[i].classe=3;
+
+                        attributionClasseJoueur(tabJoueurs,i);
 
                         rectfill(screen, 330, 140, 486, 362, makecol(195,195,195));
                         draw_sprite(screen, carteDos, 332, 398);
@@ -420,7 +424,9 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
                         strcpy(tabJoueurs[i].pseudo,"Pierre");
                         strcpy(tabJoueurs[i].choixClasse,"Classe: PLANTE");
 
-                        attributionClasseJoueur(tabJoueurs,nbJoueurs,i);
+                        tabJoueurs[i].classe=4;
+
+                        attributionClasseJoueur(tabJoueurs,i);
 
                         rectfill(screen, 580, 140, 730, 362, makecol(195,195,195));
                         draw_sprite(screen, carteDos, 582, 398);
@@ -440,7 +446,9 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
                         strcpy(tabJoueurs[i].pseudo,"Flora");
                         strcpy(tabJoueurs[i].choixClasse,"Classe: EAU");
 
-                        attributionClasseJoueur(tabJoueurs,nbJoueurs,i);
+                        tabJoueurs[i].classe=2;
+
+                        attributionClasseJoueur(tabJoueurs,i);
 
                         rectfill(screen, 830, 140, 987, 362, makecol(195,195,195));
                         draw_sprite(screen, carteDos, 836, 398);
@@ -463,7 +471,7 @@ void choixClasseJoueur(t_joueur *tabJoueurs, int* nbJoueurs)
         sleep(2.2);
 
         /*------------------------------------------------*/   ///Passage au joueur suivant
-        if (i == *nbJoueurs)
+        if (i == nbJoueurs)
             allegro_message("Lancer la partie");
         else
             allegro_message("--> Passer au 'Joueur %d'", i+1);
