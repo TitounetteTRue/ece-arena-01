@@ -1,4 +1,4 @@
-#include "header.h"
+#include "biblioJeu.h"
 
 /*----------------------------------------------------------*/
 int main()
