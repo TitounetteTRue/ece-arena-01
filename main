@@ -29,7 +29,7 @@ int main()
     show_mouse(screen); //Permet de montrer la souris à l'écran
 
     //Appel Fonction début partie
-    //menuDemarrage();
+    menuDemarrage();
 
     //Appel de la fonction pour le choix du nombre de joueurs
     nbJoueurs=choixNbJoueurs(tabJoueurs);
