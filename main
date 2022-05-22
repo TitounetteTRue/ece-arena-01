@@ -38,23 +38,47 @@ int main()
 
     //Appel fonction classe des Joueurs
     choixClasseJoueur(tabJoueurs,nbJoueurs);
+    
     do{
-    page=create_bitmap(1024,768);
-    extractionSprite(spriteDresseur, spritePokemon, spritePokeAttack);
-    //deplace(map,page,spriteDresseur,tabJoueurs,0,4);
+    //Appel Fonction début partie
+    //menuDemarrage();
+
+    //Appel de la fonction pour le choix du nombre de joueurs
+    nbJoueurs=choixNbJoueurs(tabJoueurs);
+
+    //Appel fonction classe des Joueurs
+    choixClasseJoueur(tabJoueurs,nbJoueurs);
+
+
+    extractionSprite(spriteDresseur,spritePokemon,spritePokeAttack);
 
     //Boucle de jeu
-    do
-    {   
-          for(i=0;i<nbJoueurs;i++)
-          {
-              tourJoueur(tabJoueurs,i,nbJoueurs,map,page,spriteDresseur);
-              //cptNbvivants=classement(nbJoueurs);
-          }
-    }while(cptNbvivant!=1)
-   d=affichefin(nbJoueurs);//pour recommencer une partie, aller au menu ou quitter
-   }while(d==1);
-}while(c==0);
+
+    do{
+        page=create_bitmap(1024,768);
+        extractionSprite(spriteDresseur, spritePokemon, spritePokeAttack);
+        //deplace(map,page,spriteDresseur,tabJoueurs,0,4);
+
+        //Boucle de jeu
+        do
+        {
+            for(i=0;i<nbJoueurs;i++)
+            {
+                tourJoueur(tabJoueurs,i,nbJoueurs,decor,page,spriteDresseur,spritePokeAttack,spriteDresseur);
+                //cptNbvivants=classement(nbJoueurs);
+            }
+
+            i=0;
+
+        }while(cptNbvivants!=1);
+
+
+        d=affichefin(nbJoueurs);//pour recommencer une partie, aller au menu ou quitter
+
+        }while(d==1);
+
+    }while(c==0);
+    
     free(tabJoueurs);
 
     return 0;  // Fin du main
