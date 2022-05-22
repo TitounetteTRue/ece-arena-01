@@ -11,11 +11,12 @@ int main()
     tabJoueurs = (t_joueur*) malloc(4*sizeof(t_joueur));
 
     //Bitmaps
-    BITMAP* map;
+    BITMAP* decor;
     BITMAP* page;
     BITMAP* spriteDresseur[4][16];
     BITMAP* spritePokemon[4];
     BITMAP* spritePokeAttack[4][4];
+
 
     // Initialisation d'Allegro
     initialisationAllegro();
@@ -29,17 +30,9 @@ int main()
     }
 
     show_mouse(screen); //Permet de montrer la souris à l'écran
-    do{
-    //Appel Fonction début partie
-    menuDemarrage();
 
-    //Appel de la fonction pour le choix du nombre de joueurs
-    nbJoueurs=choixNbJoueurs(tabJoueurs);
 
-    //Appel fonction classe des Joueurs
-    choixClasseJoueur(tabJoueurs,nbJoueurs);
-    
-    do{
+do{
     //Appel Fonction début partie
     //menuDemarrage();
 
@@ -57,14 +50,13 @@ int main()
     do{
         page=create_bitmap(1024,768);
         extractionSprite(spriteDresseur, spritePokemon, spritePokeAttack);
-        //deplace(map,page,spriteDresseur,tabJoueurs,0,4);
 
         //Boucle de jeu
         do
         {
             for(i=0;i<nbJoueurs;i++)
             {
-                tourJoueur(tabJoueurs,i,nbJoueurs,decor,page,spriteDresseur,spritePokeAttack,spriteDresseur);
+                tourJoueur(tabJoueurs,i,nbJoueurs,decor,page,spritePokemon,spritePokeAttack,spriteDresseur);
                 //cptNbvivants=classement(nbJoueurs);
             }
 
@@ -77,11 +69,15 @@ int main()
 
         }while(d==1);
 
-    }while(c==0);
-    
+}while(c==0);
+
+
+    //attaque(map,page,tabJoueurs,spritePokemon,spritePokeAttack,spriteDresseur,nbJoueurs,0);
+
     free(tabJoueurs);
 
     return 0;  // Fin du main
 
 }END_OF_MAIN();  //Macro pour quitter Allegro
 /*-----------------------------------------------------------------------------------------------------*/
+
